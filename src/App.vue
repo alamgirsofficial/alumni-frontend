@@ -1,21 +1,45 @@
-<script>
+<template>
+  <main class="h-screen items-center justify-center bg-linear-to-br from-slate-900 via-blue-900 to-slate-900">
+    <Navbar/>
 
-import Header from './components/layouts/Header.vue'
+    <RouterView />
+
+  </main>
+</template>
+
+<script>
+import {ref, onMounted, nextTick } from "vue";
+import { useRouter } from "vue-router";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import Navbar from "./components/layout/Navbar.vue";
 
 export default {
-  components: {
-    Header
-  }
-}
+  setup() {
+    const loading = ref(true);
 
+    onMounted(async () => {
+      await nextTick();
 
+      AOS.init({
+        duration: 800,
+        once: false,
+        offset: 100,
+        easing: "ease-in-out",
+      });
+
+      setTimeout(() => {
+        loading.value = false;
+      }, 800);
+    });
+
+    return {
+      loading,
+    };
+  },
+};
 
 </script>
 
-<template>
 
-  <Header />
-
-
-
-</template>

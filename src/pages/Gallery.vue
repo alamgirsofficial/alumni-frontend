@@ -1,6 +1,6 @@
-<template>
+<template lang="">
     <div>
-        <h2 class="text-3xl font-bold underline"> This is from Header component</h2>
+        <h1> This is Gallery Page</h1>
     </div>
 </template>
 <script>

@@ -1,12 +1,6 @@
 <template>
 
-   <header class="flex justify-between items-center px-4 py-6 sm:px-6 lg:px-8 bg-opacity-50 relative z-20">
-      <!-- If Want to sticky Navbar  -->
-      <!-- <header class="sticky top-0 z-50 flex justify-between items-center p-6 bg-gray-900/50 backdrop-blur-md">  -->
-      <!-- <div class="text-3xl font-bold bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-         Dev <span class="font-black"> Portfolio</span>
-      </div> -->
-
+   <header class="flex justify-between items-center px-4 py-2 sm:px-6 lg:px-8 bg-opacity-50 relative z-20">
       <!-- Navbar logo view  -->
       <div class=" flex items-center shrink-0 ">
          <RouterLink to="/"

@@ -13,10 +13,6 @@ export const footerInfo = {
 
 export const quickLinks = [
     {
-        name: "হোম",
-        href: "/",
-    },
-    {
         name: "আমাদের সম্পর্কে",
         href: "/about",
     },
@@ -36,6 +32,10 @@ export const quickLinks = [
         name: "যোগাযোগ",
         href: "/contact",
     },
+    {
+        name: "অভিজ্ঞতা",
+        href: "/testimonial",
+    }
 ];
 
 export const supportLinks = [

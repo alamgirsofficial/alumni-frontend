@@ -48,19 +48,19 @@
                         <div class="text-center lg:text-left" 
                             data-aos="fade-left">
                             <h2 class="text-white font-bold text-4xl md:text-5xl lg:text-6xl leading-tight">
-                                About <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-400">
-                                    Me 
+                                আমাদের  <span class="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-400">
+                                সম্পর্কে 
                                 </span>                                
                             </h2>
                             <p class="text-blue-200 font-medium text-lg md:text-xl mt-4"
                             data-aos="fade-left" data-aos-delay="100">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            প্রাক্তন শিক্ষার্থীদের এই প্ল্যাটফর্মটি সম্পর্কে জানুন
                             </p>
                             </div>
                           
-                            <p class="text-gray-300 pt-6 text-center lg:text-left text-lg leading-relaxed"
+                            <p class="text-gray-300 pt-6 text-center lg:text-left text-2xl font-bold leading-relaxed"
                             data-aos="fade-left" data-aos-delay="200">
-                            Technical Skills
+                            আমাদের ইতিহাস
                             </p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8"
                             data-aos="fade-up" data-aos-delay="300">

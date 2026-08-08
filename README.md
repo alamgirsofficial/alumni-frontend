@@ -23,6 +23,7 @@
  4. Animation-AOS
  5. Icon-lucide/vue [x]
  6. Install @iconify/vue for brand icon and Social
+ 7. lightweight custom Vue + Tailwind slider for testimonial section
 
  
 

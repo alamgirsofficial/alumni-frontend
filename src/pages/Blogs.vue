@@ -41,7 +41,7 @@
                         <!-- Date and Comments  -->
                          <div class="flex items-center text-sm text-gray-300 mb-4"> 
                             <div class="flex items-center gap-2">
-                                <Calendar class="w-4 h-4 text-cyan-400" />
+                                <CalendarDays  class="w-4 h-4 text-cyan-400" />
                                 <span>{{ blog.publish_date }}</span>
                          </div>
                          
@@ -82,4 +82,6 @@
 </template>
 <script setup>
 import { blogs } from "../constrants/blogData.js";
+
+import { CalendarDays, ArrowRight  } from '@lucide/vue';
 </script>

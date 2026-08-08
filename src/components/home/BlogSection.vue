@@ -41,7 +41,7 @@
                         <!-- Date and Comments  -->
                          <div class="flex items-center text-sm text-gray-300 mb-4"> 
                             <div class="flex items-center gap-2">
-                                <Calendar class="w-4 h-4 text-cyan-400" />
+                                <CalendarDays  class="w-5 h-5 text-cyan-400" />
                                 <span>{{ blog.publish_date }}</span>
                          </div>
                          
@@ -98,6 +98,8 @@
 <script setup>
 import {computed } from "vue";
 import { blogs } from "../../constrants/blogData";
+
+import { CalendarDays, ArrowRight  } from '@lucide/vue';
 
 const homeBlogs = computed(() =>blogs.value.slice(0, 3))
 

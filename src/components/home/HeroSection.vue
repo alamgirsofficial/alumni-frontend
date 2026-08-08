@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-screen w-full bg-animated-linear text-white flex items-center overflow-hidden">
+  <section class="relative min-h-screen w-full bg-gradient-linear text-white flex items-center overflow-hidden">
     <!-- floating shapes layer (background animation) -->
     <div class="floating-shapes absolute inset-0 w-full h-full pointer-events-none">
       <span></span>
@@ -14,7 +14,7 @@
 <div class="absolute bottom-0 right-0 w-110 h-100 rounded-full bg-cyan-500/10 blur-[150px]"></div>
 
     <!-- main container -->
-    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-6 py-8 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- LEFT SIDE: content -->
         <div data-aos="fade-right" data-aos-duration="800" data-aos-easing="ease-out">
@@ -24,41 +24,42 @@
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
             </span>
-            <span>Alumni community · 12k+ members</span>
+            <span>Alumni community · 6k+ members</span>
           </div>
 
           <!-- Title -->
-          <h1 class="text-2xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-            সংযুক্ত হোন with Your
-            <span class="text-transparent bg-clip-text bg-linear-to-r from-sky-400 via-cyan-300 to-indigo-400">Alumni Community</span>
+          <h1 class="text-xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight">
+            আমাদের গল্প এখনও চলছে...
+            <span class="text-transparent bg-clip-text bg-linear-to-r from-sky-400 via-cyan-300 to-indigo-400">
+              আপনার অপেক্ষায়</span>
           </h1>
 
           <!-- Subtitle -->
           <p class="mt-5 text-lg md:text-xl text-gray-300/90 max-w-lg leading-relaxed">
-            Stay connected with former students, participate in alumni events, share opportunities, and strengthen lifelong relationships.
+            প্রাক্তন শিক্ষার্থীদের সাথে সংযুক্ত থাকুন, অ্যালামনাই বা প্রাক্তন শিক্ষার্থীদের বিভিন্ন আয়োজনে অংশ নিন, সুযোগ-সুবিধা শেয়ার করুন এবং আজীবন সম্পর্ক সুদৃঢ় করুন।
           </p>
 
           <!-- CTA Buttons -->
           <div class="mt-8 flex flex-wrap items-center gap-4">
             <a href="#" class="group inline-flex items-center gap-2 bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400  text-gray-900 font-semibold px-7 py-3.5 rounded-full shadow-blue-500/30 shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-out hover:bg-gray-100">
-              <span>Join Alumni</span>
-              <UsersIcon class="w-5 h-5 group-hover:rotate-6 transition-transform" />
+              <span> আমাদের সাথে যুক্ত হোন</span>
+              <Users class="w-5 h-5 group-hover:rotate-6 transition-transform" />
             </a>
             <a href="#" class="group inline-flex items-center gap-2 bg-slate-800/30 border-blue-400/20 hover:bg-slate-700/40 backdrop-blur-sm border text-white font-medium px-7 py-3.5 rounded-full  transition-all duration-300 hover:scale-105 hover:shadow-lg">
-              <span>Explore Events</span>
-              <CalendarIcon class="w-5 h-5 group-hover:rotate-6 transition-transform" />
+              <span>ইভেন্ট দেখুন</span>
+              <Calendar class="w-5 h-5 group-hover:rotate-6 transition-transform" />
             </a>
           </div>
 
           <!-- small community stat (extra highlight) -->
-          <div class="mt-8 flex items-center gap-6 text-sm text-gray-300/70">
+          <div class="mt-8 flex items-center gap-6 text-sm text-gray-3 00/70">
             <div class="flex items-center gap-2">
-              <GraduationCapIcon class="w-4 h-4 text-blue-300" />
-              <span>20+ events yearly</span>
+              <GraduationCap class="w-4 h-4 text-blue-300" />
+              <span>৬ টিরও বেশি ইভেন্ট প্রতিবছর</span>
             </div>
             <div class="flex items-center gap-2">
-              <GlobeIcon class="w-4 h-4 text-cyan-300" />
-              <span>12+ countries</span>
+              <Trophy  class="w-4 h-4 text-cyan-300" />
+              <span>সফলতার ১২ বছরে</span>
             </div>
           </div>
         </div>
@@ -66,6 +67,8 @@
         <!-- RIGHT SIDE: Illustration + floating icons -->
         <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="150" data-aos-easing="ease-out" class="relative flex justify-center lg:justify-end">
           <div class="illustration-wrapper relative w-full max-w-md lg:max-w-lg">
+
+
             <!-- main illustration (custom graphic) -->
             <svg viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
               <circle cx="200" cy="170" r="130" fill="url(#grad1)" opacity="0.15" />
@@ -88,23 +91,61 @@
                 <line x1="200" y1="160" x2="170" y2="220" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4 4" />
                 <line x1="200" y1="160" x2="230" y2="220" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="4 4" />
               </g>
+
+
+
+
+<!-- 🔥 Most beautiful - logo with gradient ring -->
+<g transform="translate(200, 170)">
+  <!-- outer gradient glow -->
+  <circle cx="0" cy="0" r="70" fill="url(#grad3)" opacity="0.1" filter="url(#glow)" />
+  
+  <!-- gradient ring (border) -->
+  <circle cx="0" cy="0" r="70" fill="none" stroke="url(#grad3)" stroke-width="3" opacity="0.6" />
+  
+  <!-- inner background -->
+  <circle cx="0" cy="0" r="52" fill="rgba(255,255,255,0.05)" />
+  <circle cx="0" cy="0" r="52" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+  
+  <!-- logo -->
+  <image 
+    :href="logo" 
+    x="-30" 
+    y="-30" 
+    width="60" 
+    height="60" 
+    preserveAspectRatio="xMidYMid meet"
+  />
+</g>
+
+
+
+
+
+
+
+
+
               <!-- small icon badges floating around (using vue components) -->
               <g transform="translate(60, 50)">
                 <rect x="0" y="0" width="32" height="32" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.1)" />
-                <UsersIcon class="text-white w-5 h-5" style="transform: translate(6px, 6px);" />
+                <Users class="text-white w-5 h-5" style="transform: translate(6px, 6px);" />
               </g>
               <g transform="translate(300, 40)">
                 <rect x="0" y="0" width="32" height="32" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.1)" />
-                <CalendarIcon class="text-white w-5 h-5" style="transform: translate(6px, 6px);" />
+                <BookOpenText  class="text-white w-5 h-5" style="transform: translate(6px, 6px);" />
+                
               </g>
               <g transform="translate(320, 230)">
                 <rect x="0" y="0" width="32" height="32" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.1)" />
-                <GraduationCapIcon class="text-white w-5 h-5" style="transform: translate(6px, 6px);" />
+                <GraduationCap class="text-white w-5 h-5" style="transform: translate(6px, 6px);" />
               </g>
               <g transform="translate(50, 250)">
                 <rect x="0" y="0" width="32" height="32" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.1)" />
-                <MessageCircleIcon class="text-white w-5 h-5" style="transform: translate(6px, 6px);" />
+                <Trophy class="text-white w-5 h-5" style="transform: translate(6px, 6px);" />             
               </g>
+
+              
               <defs>
                 <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stop-color="#818cf8" />
@@ -127,10 +168,10 @@
 
             <!-- extra floating "lucid" icons (decorative) -->
             <div class="absolute -top-4 -right-6 bg-white/5 backdrop-blur-sm rounded-full p-3 border border-white/10 shadow-lg hidden sm:block animate-pulse">
-              <NetworkIcon class="w-7 h-7 text-blue-200/70" />
+              <Network class="w-7 h-7 text-blue-200/70" />
             </div>
             <div class="absolute -bottom-2 -left-6 bg-white/5 backdrop-blur-sm rounded-full p-2.5 border border-white/10 shadow-lg hidden sm:block animate-pulse" style="animation-delay: 1.5s;">
-              <SparkleIcon class="w-6 h-6 text-cyan-200/70" />
+              <Sparkle class="w-6 h-6 text-cyan-200/70" />
             </div>
           </div>
         </div>
@@ -147,18 +188,23 @@ import {
   Users,
   Calendar,
   GraduationCap,
-  Globe,
+  Trophy,
   MessageCircle,
   Network,
-  Sparkle
-} from '@lucide/vue'
+  Sparkle,
+  BookOpenText 
+} from '@lucide/vue';
+
+import logo from '../../assets/icon/logo.png';
+
+
 
 
 </script>
 
 <style scoped>
 
- .bg-animated-linear {
+ .bg-gradient-linear {
   background: linear-gradient(
     -45deg,
     #020617,

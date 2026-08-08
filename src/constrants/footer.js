@@ -14,27 +14,27 @@ export const footerInfo = {
 export const quickLinks = [
     {
         name: "হোম",
-        href: "#home",
+        href: "/",
     },
     {
         name: "আমাদের সম্পর্কে",
-        href: "#about",
+        href: "/about",
     },
     {
         name: "ইভেন্টস",
-        href: "#events",
+        href: "/events",
     },
     {
         name: "ব্লগ",
-        href: "#blogs",
+        href: "/blogs",
     },
     {
         name: "গ্যালারি",
-        href: "#gallery",
+        href: "/gallery",
     },
     {
         name: "যোগাযোগ",
-        href: "#contact",
+        href: "/contact",
     },
 ];
 

@@ -1,15 +1,11 @@
 <script setup>
-
 import HeroSection from '../components/home/HeroSection.vue';
-import Navbar from '../components/layout/Navbar.vue';
-import Footer from '../components/footer/Footer.vue';
-
+import BlogSection from '../components/home/BlogSection.vue';
 
 </script>
 
 <template>
-  <Navbar/>
   <HeroSection/>
-  <Footer/>
+  <BlogSection/>
 
 </template>

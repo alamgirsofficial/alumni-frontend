@@ -9,9 +9,9 @@
       <span></span>
     </div>
 
-    <div class="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-blue-600/20 blur-[140px]"></div>
+    <div class="absolute -top-40 -left-40 w-125 h-125 rounded-full bg-blue-600/20 blur-[140px]"></div>
 
-<div class="absolute bottom-0 right-0 w-[450px] h-[450px] rounded-full bg-cyan-500/10 blur-[150px]"></div>
+<div class="absolute bottom-0 right-0 w-110 h-100 rounded-full bg-cyan-500/10 blur-[150px]"></div>
 
     <!-- main container -->
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">

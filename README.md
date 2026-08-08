@@ -21,7 +21,8 @@
  2. Vite
  3. Tailwind CSS
  4. Animation-AOS
- 5. Icon-lucide/vue
+ 5. Icon-lucide/vue [x]
+ 6. Install @iconify/vue for brand icon and Social
 
  
 

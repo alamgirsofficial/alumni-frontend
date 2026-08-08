@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify-vue/mdi": "^1.0.3",
+    "@iconify/vue": "^5.0.1",
     "@lucide/vue": "^1.28.0",
     "@tailwindcss/vite": "^4.3.3",
     "aos": "^2.3.4",

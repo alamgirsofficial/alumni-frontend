@@ -32,10 +32,6 @@ export const quickLinks = [
         name: "যোগাযোগ",
         href: "/contact",
     },
-    {
-        name: "অভিজ্ঞতা",
-        href: "/testimonial",
-    }
 ];
 
 export const supportLinks = [

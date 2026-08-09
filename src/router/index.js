@@ -3,6 +3,8 @@ import Home from "../pages/Home.vue";
 import About from "../pages/About.vue";
 import Events from "../pages/Events.vue";
 import Blogs from "../pages/Blogs.vue";
+import Blog from '@/pages/blogs.vue';
+import BlogDetails from '@/pages/BlogDetails.vue';
 import Contact from "../pages/Contact.vue";
 import Gallery from "../pages/Gallery.vue";
 
@@ -28,6 +30,11 @@ const routes =[
         name: 'Blogs',
         component: Blogs
     },
+        {
+            path: '/blog/:id',
+            name: 'blog.details',
+            component: BlogDetails
+        },    
     {
         path: '/contact',
         name: 'Contact',

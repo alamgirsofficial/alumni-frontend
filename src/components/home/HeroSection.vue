@@ -55,7 +55,7 @@
           <div class="mt-8 flex items-center gap-6 text-sm text-gray-3 00/70">
             <div class="flex items-center gap-2">
               <GraduationCap class="w-4 h-4 text-blue-300" />
-              <span>৬ টিরও বেশি ইভেন্ট প্রতিবছর</span>
+              <span>প্রতিবছর ৬ টিরও বেশি ইভেন্ট </span>
             </div>
             <div class="flex items-center gap-2">
               <Trophy  class="w-4 h-4 text-cyan-300" />

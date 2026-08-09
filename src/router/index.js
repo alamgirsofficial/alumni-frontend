@@ -7,6 +7,10 @@ import Blog from '@/pages/blogs.vue';
 import BlogDetails from '@/pages/BlogDetails.vue';
 import Contact from "../pages/Contact.vue";
 import Gallery from "../pages/Gallery.vue";
+import Login from "../pages/Login.vue";
+import Register from "../pages/Register.vue";
+import ForgotPassword from "../pages/ForgotPassword.vue";
+import VerifyEmail from "../pages/VerifyEmail.vue";
 
 
 const routes =[
@@ -45,6 +49,28 @@ const routes =[
         name: 'Gallery',
         component: Gallery
     },
+    {
+        path:'/login',
+        name:'Login',
+        component:Login
+    },
+    {
+    path: '/register',
+    name:'Register',
+    component:Register,
+},
+
+{
+    path: '/forgot-password',
+    name:'ForgotPassword',
+    component: ForgotPassword,
+},
+
+{
+    path: '/verify-email',
+    name: 'VerifyEmail',  
+    component: VerifyEmail,
+},
 ];
 
 const router = createRouter({

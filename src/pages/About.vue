@@ -232,7 +232,6 @@
                         class="flex items-center
                         gap-3 mb-5"
                     >
-
                         <span
                             class="w-10 h-px
                             bg-cyan-400"
@@ -247,19 +246,14 @@
                         >
                             আমাদের ইতিহাস
                         </span>
-
                     </div>
-
-
                     <h3
-                        class="text-3xl md:text-4xl
-                        lg:text-5xl
+                        class="text-2xl md:text-3xl
+                        lg:text-2xl
                         font-black text-white
                         leading-tight"
                     >
-                        স্মৃতি থেকে
-                        <br>
-
+                        স্মৃতি থেকে                       
                         <span
                             class="text-transparent
                             bg-clip-text
@@ -272,21 +266,16 @@
                     </h3>
 
 
-                    <p
-                        class="mt-6 text-gray-300/80
+                    <p class="mt-6 text-gray-300/80
                         text-base md:text-lg
-                        leading-8 max-w-2xl"
+                        leading-8 max-w-2xl mb-4"
                     >
-                        আমাদের অ্যালামনাই প্ল্যাটফর্ম
-                        প্রাক্তন শিক্ষার্থীদের মধ্যে
-                        যোগাযোগ, বন্ধুত্ব এবং সহযোগিতার
-                        একটি শক্তিশালী সেতুবন্ধন তৈরি করছে।
-                        অতীতের স্মৃতিকে সঙ্গে নিয়ে
-                        আমরা ভবিষ্যতের জন্য কাজ করে যাচ্ছি।
+                        আমাদের অ্যালামনাই প্ল্যাটফর্ম  প্রাক্তন শিক্ষার্থীদের মধ্যে যোগাযোগ, বন্ধুত্ব এবং সহযোগিতার
+                        একটি শক্তিশালী সেতুবন্ধন তৈরি করছে।  অতীতের স্মৃতিকে সঙ্গে নিয়ে  আমরা ভবিষ্যতের জন্য কাজ করে যাচ্ছি।
                     </p>
 
-
                     <!-- Mini Features -->
+                     <h2 class="text-xl font-black text-white leading-tight mt-2"> প্রাক্তন শিক্ষার্থী পরিষদ যেসব কাজগুলো করে থাকে</h2>
 
                     <div
                         class="grid sm:grid-cols-2
@@ -294,7 +283,7 @@
                     >
 
                         <div
-                            v-for="about in aboutWorks"
+                            v-for="(about, index) in aboutWorks"
                             :key="about.id"
                             class="group p-4
                             rounded-2xl
@@ -303,18 +292,20 @@
                             hover:border-cyan-400/30
                             hover:bg-white/10
                             transition-all duration-300"
+                           data-aos="fade-up"
+                           :data-aos-delay="index * 100"
+                            
                         >
 
                             <div
                                 class="flex items-center
                                 gap-3"
                             >
-
                                 <div
                                     class="w-10 h-10
                                     flex items-center
                                     justify-center
-                                    rounded-xl
+                                    rounded-full
                                     bg-blue-500/10
                                     border
                                     border-blue-400/20
@@ -385,7 +376,7 @@
                     </span>
 
                     <h3
-                        class="mt-3 text-3xl
+                        class="mt-2 text-2xl
                         md:text-4xl
                         font-black text-white"
                     >
@@ -407,135 +398,150 @@
                 <!-- ========================= -->
                 <!-- DESKTOP TIMELINE -->
                 <!-- ========================= -->
+<!-- DESKTOP HORIZONTAL TIMELINE -->
+
+<div
+    class="hidden md:block overflow-x-auto
+    pb-8 scrollbar-thin scrollbar-thumb-cyan-500/40
+    scrollbar-track-transparent"
+>
+
+    <div
+        class="relative min-w-375"
+    >
+
+        <!-- Timeline Line -->
+        <div
+            class="absolute
+            top-11
+            left-10 right-10
+            h-0.5
+            bg-linear-to-r
+            from-blue-500/20
+            via-cyan-400
+            to-blue-500/20"
+        ></div>
+
+
+        <!-- Timeline Items -->
+
+        <div
+            class="relative flex
+            justify-between gap-6 px-4"
+        >
+
+            <div
+                v-for="(item, index) in timeline"
+                :key="item.id"
+                class="relative w-42.5
+                shrink-0"
+                data-aos="fade-up"
+                :data-aos-delay="index * 100"
+            >
+
+                <!-- YEAR CIRCLE -->
 
                 <div
-                    class="hidden md:block
-                    relative"
+                    class="relative z-10
+                    flex justify-center"
                 >
 
-                    <!-- Main Line -->
-
                     <div
-                        class="absolute
-                        top-[44px]
-                        left-0 right-0
-                        h-[2px]
-                        bg-linear-to-r
-                        from-blue-500/20
-                        via-cyan-400
-                        to-blue-500/20"
-                    ></div>
-
-
-                    <!-- Timeline Items -->
-
-                    <div
-                        class="grid
-                        grid-cols-4
-                        gap-6"
+                        class="w-22 h-22
+                        rounded-full
+                        flex items-center
+                        justify-center
+                        bg-gray-950
+                        border-2
+                        border-cyan-400
+                        shadow-[0_0_30px_rgba(34,211,238,0.25)]
+                        hover:scale-110
+                        hover:shadow-[0_0_40px_rgba(34,211,238,0.45)]
+                        transition-all duration-300"
                     >
 
-                        <div
-                            v-for="(item, index) in timeline"
-                            :key="item.id"
-                            class="relative"
-                            data-aos="fade-up"
-                            :data-aos-delay="index * 150"
+                        <span
+                            class="text-lg
+                            font-black
+                            text-white"
                         >
-
-                            <!-- Year -->
-
-                            <div
-                                class="relative z-10
-                                flex justify-center"
-                            >
-
-                                <div
-                                    class="w-[88px] h-[88px]
-                                    rounded-full
-                                    flex items-center
-                                    justify-center
-                                    bg-gray-900
-                                    border-2
-                                    border-cyan-400
-                                    shadow-[0_0_30px_rgba(34,211,238,0.25)]
-                                    hover:scale-110
-                                    transition duration-300"
-                                >
-
-                                    <span
-                                        class="text-xl
-                                        font-black
-                                        text-white"
-                                    >
-                                        {{ item.year }}
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Card -->
-
-                            <div
-                                class="mt-8 p-6
-                                min-h-[210px]
-                                rounded-2xl
-                                bg-white/5
-                                backdrop-blur-xl
-                                border border-white/10
-                                hover:border-cyan-400/30
-                                hover:bg-white/10
-                                hover:-translate-y-2
-                                transition-all duration-300"
-                            >
-
-                                <!-- Icon -->
-
-                                <div
-                                    class="w-11 h-11
-                                    flex items-center
-                                    justify-center
-                                    rounded-xl
-                                    bg-blue-500/10
-                                    border
-                                    border-blue-400/20
-                                    mb-4"
-                                >
-                                    <component
-                                        :is="item.icon"
-                                        class="w-5 h-5"
-                                        :class="item.iconColor"
-                                    />
-                                </div>
-
-
-                                <h4
-                                    class="text-lg
-                                    font-bold
-                                    text-white"
-                                >
-                                    {{ item.title }}
-                                </h4>
-
-
-                                <p
-                                    class="mt-3
-                                    text-sm
-                                    text-gray-400
-                                    leading-6"
-                                >
-                                    {{ item.description }}
-                                </p>
-
-                            </div>
-
-                        </div>
+                            {{ item.year }}
+                        </span>
 
                     </div>
 
                 </div>
+
+
+                <!-- CARD -->
+
+                <div
+                    class="mt-8 p-5
+                    min-h-57.5
+                    rounded-2xl
+                    bg-white/5
+                    backdrop-blur-xl
+                    border border-white/10
+                    hover:border-cyan-400/40
+                    hover:bg-white/10
+                    hover:-translate-y-2
+                    transition-all duration-300
+                    group"
+                >
+
+                    <!-- Icon -->
+
+                    <div
+                        class="w-11 h-11
+                        flex items-center
+                        justify-center
+                        rounded-xl
+                        bg-blue-500/10
+                        border border-blue-400/20
+                        mb-4
+                        group-hover:scale-110
+                        transition"
+                    >
+
+                        <component
+                            :is="item.icon"
+                            class="w-5 h-5"
+                            :class="item.iconColor"
+                        />
+
+                    </div>
+
+
+                    <!-- Title -->
+
+                    <h4
+                        class="text-base
+                        font-bold
+                        text-white"
+                    >
+                        {{ item.title }}
+                    </h4>
+
+
+                    <!-- Description -->
+
+                    <p
+                        class="mt-3 text-sm
+                        text-gray-400
+                        leading-6"
+                    >
+                        {{ item.description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
                 <!-- ========================= -->
@@ -551,9 +557,9 @@
 
                     <div
                         class="absolute
-                        left-[9px]
+                        left-2.25
                         top-0 bottom-0
-                        w-[2px]
+                        w-0.5
                         bg-linear-to-b
                         from-blue-500
                         via-cyan-400
@@ -573,7 +579,7 @@
 
                         <div
                             class="absolute
-                            -left-[31px]
+                            -left-7.75
                             top-1
                             w-5 h-5
                             rounded-full
@@ -721,54 +727,57 @@
         import about3 from '@/assets/images/about/about3.jpg'
         import about4 from '@/assets/images/about/about4.jpg'
 
-    import { aboutWorks, timeline, stats } from '@/constrants/about.js'
+    import { 
+            aboutWorks, 
+            timeline, 
+            stats 
+        } from '@/constrants/about.js'
+
 
             
-     const aboutImage =[
-            {
-                id:1,
-                src:about,
-                alt: "Alamgir Professional Photo",
-                gradient:`bg-linear-to-r from-blue-600 to-cyan-600 border-blue-400/40`,
-                badge:"professional",
-                badgeColor:`bg-blue-500`,
-                animation:"fade-right",
-                delay: "200"
-            },
-            {
-                id:2,
-                src:about2,
-                alt: "Alamgir Professional Photo",
-                gradient:`bg-linear-to-r from-cyan-600 to-blue-600 border-blue-400/40`,
-                badge:"Creative",
-                badgeColor:`bg-blue-500`,
-                animation:"fade-right",
-                delay: "200"
-            },
-            {
-                id:3,
-                src:about3,
-                alt: "Alamgir Professional Photo",
-                gradient:`bg-linear-to-r from-blue-600 to-cyan-600 border-blue-400/40`,
-                badge:"Developer",
-                badgeColor:`bg-blue-500`,
-                animation:"fade-right",
-                delay: "200"
-            },
-            
-            {
-                id:4,
-                src:about4,
-                alt: "Alamgir Professional Photo",
-                gradient:`bg-linear-to-r from-cyan-600 to-blue-600 border-blue-400/40`,
-                badge:"Designer",
-                badgeColor:`bg-blue-500`,
-                animation:"fade-right",
-                delay: "200"
-            },
-            
-            
-        ]
+     const aboutImage = [
+
+    {
+        id: 1,
+        src: about,
+        alt: "Alumni Community",
+        badge: "Community",
+        badgeColor: "bg-blue-500",
+        animation: "fade-right",
+        delay: "200"
+    },
+
+    {
+        id: 2,
+        src: about2,
+        alt: "Alumni Event",
+        badge: "Event",
+        badgeColor: "bg-cyan-500",
+        animation: "fade-right",
+        delay: "300"
+    },
+
+    {
+        id: 3,
+        src: about3,
+        alt: "Alumni Members",
+        badge: "Members",
+        badgeColor: "bg-blue-500",
+        animation: "fade-right",
+        delay: "400"
+    },
+
+    {
+        id: 4,
+        src: about4,
+        alt: "Alumni Activity",
+        badge: "Activity",
+        badgeColor: "bg-cyan-500",
+        animation: "fade-right",
+        delay: "500"
+    }
+
+]
 
 
 </script>

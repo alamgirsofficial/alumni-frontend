@@ -159,7 +159,7 @@
             <!-- Back Login -->
             <div class="mt-7 text-center">
                 <RouterLink
-                    to="/login"
+                    :to="{ name: 'login' }"
                     class="inline-flex items-center
                     gap-2
                     text-sm

@@ -314,7 +314,7 @@
                     Already have an account?
 
                     <RouterLink
-                        to="/login"
+                        :to="{ name: 'login' }"
                         class="ml-1
                         font-medium
                         text-blue-400

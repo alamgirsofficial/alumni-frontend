@@ -1,7 +1,7 @@
 ```vue
 <template>
     <div
-        class="min-h-screen flex items-center justify-center
+        class=" flex items-center justify-center
         bg-linear-to-br from-slate-950 via-blue-950 to-slate-900
         px-4 py-10"
     >
@@ -175,7 +175,7 @@
                         </label>
 
                         <RouterLink
-                            to="/forgot-password"
+                            :to="{ name: 'ForgotPassword' }"
                             class="text-sm
                             text-blue-400
                             hover:text-blue-300
@@ -372,7 +372,7 @@
                     Don't have an account?
 
                     <RouterLink
-                        to="/register"
+                        :to="{ name: 'register' }"
                         class="ml-1
                         font-medium
                         text-blue-400

@@ -173,7 +173,7 @@
             <!-- Login -->
             <div class="mt-6 text-center">
                 <RouterLink
-                    to="/login"
+                    :to="{ name: 'login' }"
                     class="text-sm
                     text-blue-400
                     hover:text-blue-300

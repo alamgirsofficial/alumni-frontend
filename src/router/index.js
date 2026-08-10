@@ -1,81 +1,149 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../pages/Home.vue";
-import About from "../pages/About.vue";
-import Events from "../pages/Events.vue";
-import Blogs from "../pages/Blogs.vue";
-import Blog from '@/pages/blogs.vue';
-import BlogDetails from '@/pages/BlogDetails.vue';
-import Contact from "../pages/Contact.vue";
-import Gallery from "../pages/Gallery.vue";
-import Login from "../pages/Login.vue";
-import Register from "../pages/Register.vue";
-import ForgotPassword from "../pages/ForgotPassword.vue";
-import VerifyEmail from "../pages/VerifyEmail.vue";
+
+// =========================
+// Layouts
+// =========================
+
+import MainLayout from "@/layouts/MainLayout.vue";
+import AuthLayout from "@/layouts/AuthLayout.vue";
 
 
-const routes =[
+// =========================
+// Public Pages
+// =========================
+
+import Home from "@/pages/Home.vue";
+import About from "@/pages/About.vue";
+import Events from "@/pages/Events.vue";
+import Blogs from "@/pages/Blogs.vue";
+import BlogDetails from "@/pages/BlogDetails.vue";
+import Contact from "@/pages/Contact.vue";
+import Gallery from "@/pages/Gallery.vue";
+
+
+// =========================
+// Authentication Pages
+// =========================
+
+import Login from "@/pages/auth/Login.vue";
+import Register from "@/pages/auth/Register.vue";
+import ForgotPassword from "@/pages/auth/ForgotPassword.vue";
+import VerifyEmail from "@/pages/auth/VerifyEmail.vue";
+
+
+// =========================
+// Routes
+// =========================
+
+const routes = [
+
+    // =========================
+    // Main Website
+    // =========================
+
     {
         path: '/',
-        name: 'Home',
-        component: Home
-    },
-    {
-        path: '/about',
-        name: 'About',
-        component: About
-    },
-    {
-        path: '/events',
-        name: 'Events',
-        component: Events
-    },
-    {
-        path: '/blogs',
-        name: 'Blogs',
-        component: Blogs
-    },
-        {
-            path: '/blog/:id',
-            name: 'blog.details',
-            component: BlogDetails
-        },    
-    {
-        path: '/contact',
-        name: 'Contact',
-        component: Contact
-    },
-    {
-        path: '/gallery',
-        name: 'Gallery',
-        component: Gallery
-    },
-    {
-        path:'/login',
-        name:'Login',
-        component:Login
-    },
-    {
-    path: '/register',
-    name:'Register',
-    component:Register,
-},
+        component: MainLayout,
 
-{
-    path: '/forgot-password',
-    name:'ForgotPassword',
-    component: ForgotPassword,
-},
+        children: [
 
-{
-    path: '/verify-email',
-    name: 'VerifyEmail',  
-    component: VerifyEmail,
-},
+            {
+                path: '',
+                name: 'Home',
+                component: Home,
+            },
+
+            {
+                path: 'about',
+                name: 'About',
+                component: About,
+            },
+
+            {
+                path: 'events',
+                name: 'Events',
+                component: Events,
+            },
+
+            {
+                path: 'blogs',
+                name: 'Blogs',
+                component: Blogs,
+            },
+
+            {
+                path: 'blog/:id',
+                name: 'blog.details',
+                component: BlogDetails,
+            },
+
+            {
+                path: 'contact',
+                name: 'Contact',
+                component: Contact,
+            },
+
+            {
+                path: 'gallery',
+                name: 'Gallery',
+                component: Gallery,
+            },
+
+        ],
+    },
+
+
+    // =========================
+    // Authentication
+    // =========================
+
+    {
+        path: '/auth/',
+        component: AuthLayout,
+
+        children: [
+
+            {
+                path: 'login',
+                name: 'login',
+                component: Login,
+            },
+
+            {
+                path: 'register',
+                name: 'register',
+                component: Register,
+            },
+
+            {
+                path: 'verify-email',
+                name: 'VerifyEmail',
+                component: VerifyEmail,
+            },
+
+            {
+                path: 'forgot-password',
+                name: 'ForgotPassword',
+                component: ForgotPassword,
+            },
+
+        ],
+    },
+
 ];
 
+
+// =========================
+// Router
+// =========================
+
 const router = createRouter({
+
     history: createWebHistory(),
-    routes
+
+    routes,
+
 });
+
 
 export default router;

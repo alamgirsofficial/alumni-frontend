@@ -71,6 +71,20 @@ components/
 │   ├── GallerySection.vue
 │   ├── CTASection.vue
 │   └── FooterSection.vue
+
+
+src/
+├── layouts/
+│   └── MainLayout.vue
+│
+├── views/
+│   ├── Home.vue
+│   ├── About.vue
+│   ├── Login.vue
+│   └── Register.vue
+│
+└── router/
+    └── index.js
 ```
 ---
 

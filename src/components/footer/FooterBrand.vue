@@ -1,5 +1,5 @@
 <script setup>
-import logo from "../../assets/icon/logo.png";
+import logo from "@/assets/icon/logo.png";
 
 defineProps({
     info: Object,
@@ -45,7 +45,7 @@ defineProps({
                 :key="item.label"
                 :href="item.href"
                 :aria-label="item.label"
-                class="p-3 rounded-xl bg-slate-800 hover:bg-cyan-500 transition"
+                class="p-3 rounded-xl border border-white/10 hover:bg-cyan-500 transition"
             >
                 <component
                     :is="item.icon"
@@ -54,6 +54,8 @@ defineProps({
             </a> 
 
         </div>
+
+        
 
     </div>
 </template>

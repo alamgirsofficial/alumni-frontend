@@ -214,32 +214,30 @@ export const missionVision = [
 */
 
 export const stats = [
-
     {
         id: 1,
-        value: '500+',
-        label: 'Alumni Members',
+        value: "৬০০০+",
+        label: "প্রাক্তন সদস্য"
     },
 
     {
         id: 2,
-        value: '20+',
-        label: 'Events',
+        value: "২০+",
+        label: "ইভেন্টস"
     },
 
     {
         id: 3,
-        value: '50+',
-        label: 'Successful Initiatives',
+        value: "৫০+",
+        label: "সফল উদ্যোগ"
     },
 
     {
         id: 4,
-        value: '13+',
-        label: 'Years of Connection',
-    },
-
-]
+        value: "১২+",
+        label: "বছরের পথচলা"
+    }
+];
 
 
 /*

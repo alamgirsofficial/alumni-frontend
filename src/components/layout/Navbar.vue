@@ -219,10 +219,13 @@ const Menu = ref([
             }
         ]
     },
-
     {
         name: 'গ্যালারি',
         to: '/gallery'
+    },
+    {
+        name: 'যোগাযোগ',
+        to: '/contact'
     }
 ])
 

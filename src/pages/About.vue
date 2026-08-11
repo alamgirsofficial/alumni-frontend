@@ -686,6 +686,334 @@
 
             </div>
 
+
+            <!-- ================================================= -->
+            <!-- HORIZONTAL TIMELINE -->
+            <!-- ================================================= -->
+
+            <div
+                class="relative py-6 md:py-8 my-8
+                overflow-hidden shadow-2xl rounded-xl"
+                data-aos="fade-up"
+            >
+
+                <!-- Timeline Heading -->
+
+                <!-- <div
+                    class="text-center mb-14"
+                >
+
+                    <span
+                        class="text-cyan-400
+                        text-sm font-bold
+                        uppercase
+                        tracking-[0.25em]"
+                    >
+                        আমাদের যাত্রা
+                    </span>
+
+                    <h3
+                        class="mt-2 text-2xl
+                        md:text-4xl
+                        font-black text-white"
+                    >
+                        গুরুত্বপূর্ণ
+                        <span
+                            class="text-transparent
+                            bg-clip-text
+                            bg-linear-to-r
+                            from-blue-400
+                            to-cyan-400"
+                        >
+                            মাইলফলক
+                        </span>
+                    </h3>
+
+                </div> -->
+
+                <sectionTitle class="text-center  mb-8"
+                title="আমাদের যাত্রা"
+                />
+
+                <!-- ========================= -->
+                <!-- DESKTOP TIMELINE -->
+                <!-- ========================= -->
+
+<div
+    class="hidden md:block overflow-x-auto
+    pb-8 scrollbar-thin scrollbar-thumb-cyan-500/40
+    scrollbar-track-transparent"
+>
+
+    <div
+        class="relative min-w-375"
+    >
+
+        <!-- Timeline Line -->
+        <div
+            class="absolute
+            top-11
+            left-10 right-10
+            h-0.5
+            bg-linear-to-r
+            from-blue-500/20
+            via-cyan-400
+            to-blue-500/20"
+        ></div>
+
+
+        <!-- Timeline Items -->
+
+        <div
+            class="relative flex
+            justify-between gap-6 px-4"
+        >
+
+            <div
+                v-for="(item, index) in timeline"
+                :key="item.id"
+                class="relative w-42.5
+                shrink-0"
+                data-aos="fade-up"
+                :data-aos-delay="index * 100"
+            >
+
+                <!-- YEAR CIRCLE -->
+
+                <div
+                    class="relative z-10
+                    flex justify-center"
+                >
+
+                    <div
+                        class="w-22 h-22
+                        rounded-full
+                        flex items-center
+                        justify-center
+                        bg-gray-950
+                        border-2
+                        border-cyan-400
+                        shadow-[0_0_30px_rgba(34,211,238,0.25)]
+                        hover:scale-110
+                        hover:shadow-[0_0_40px_rgba(34,211,238,0.45)]
+                        transition-all duration-300"
+                    >
+
+                        <span
+                            class="text-lg
+                            font-black
+                            text-white"
+                        >
+                            {{ item.year }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARD -->
+
+                <div
+                    class="mt-8 p-5
+                    min-h-57.5
+                    rounded-2xl
+                    bg-white/5
+                    backdrop-blur-xl
+                    border border-white/10
+                    hover:border-cyan-400/40
+                    hover:bg-white/10
+                    hover:-translate-y-2
+                    transition-all duration-300
+                    group"
+                >
+
+                    <!-- Icon -->
+
+                    <div
+                        class="w-11 h-11
+                        flex items-center
+                        justify-center
+                        rounded-xl
+                        bg-blue-500/10
+                        border border-blue-400/20
+                        mb-4
+                        group-hover:scale-110
+                        transition"
+                    >
+
+                        <component
+                            :is="item.icon"
+                            class="w-5 h-5"
+                            :class="item.iconColor"
+                        />
+
+                    </div>
+
+
+                    <!-- Title -->
+
+                    <h4
+                        class="text-base
+                        font-bold
+                        text-white"
+                    >
+                        {{ item.title }}
+                    </h4>
+
+
+                    <!-- Description -->
+
+                    <p
+                        class="mt-3 text-sm
+                        text-gray-400
+                        leading-6"
+                    >
+                        {{ item.description }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+                <!-- ========================= -->
+                <!-- MOBILE TIMELINE -->
+                <!-- ========================= -->
+
+                <div
+                    class="md:hidden relative
+                    pl-8"
+                >
+
+                    <!-- Vertical Line -->
+
+                    <div
+                        class="absolute
+                        left-2.25
+                        top-0 bottom-0
+                        w-0.5
+                        bg-linear-to-b
+                        from-blue-500
+                        via-cyan-400
+                        to-blue-500/20"
+                    ></div>
+
+
+                    <div
+                        v-for="(item, index) in timeline"
+                        :key="item.id"
+                        class="relative mb-10 last:mb-0"
+                        data-aos="fade-left"
+                        :data-aos-delay="index * 100"
+                    >
+
+                        <!-- Dot -->
+
+                        <div
+                            class="absolute
+                            -left-7.75
+                            top-1
+                            w-5 h-5
+                            rounded-full
+                            bg-gray-900
+                            border-2
+                            border-cyan-400
+                            shadow-[0_0_15px_rgba(34,211,238,0.4)]"
+                        ></div>
+
+
+                        <!-- Card -->
+
+                        <div
+                            class="p-5 rounded-2xl
+                            bg-white/5
+                            backdrop-blur-xl
+                            border border-white/10"
+                        >
+
+                            <div
+                                class="flex items-center
+                                gap-3 mb-4"
+                            >
+
+                                <span
+                                    class="text-cyan-400
+                                    font-black text-lg"
+                                >
+                                    {{ item.year }}
+                                </span>
+
+                                <div
+                                    class="h-px flex-1
+                                    bg-white/10"
+                                ></div>
+
+                            </div>
+
+
+                            <div
+                                class="flex gap-4"
+                            >
+
+                                <div
+                                    class="shrink-0
+                                    w-10 h-10
+                                    rounded-xl
+                                    flex items-center
+                                    justify-center
+                                    bg-blue-500/10
+                                    border
+                                    border-blue-400/20"
+                                >
+
+                                    <component
+                                        :is="item.icon"
+                                        class="w-5 h-5"
+                                        :class="item.iconColor"
+                                    />
+
+                                </div>
+
+
+                                <div>
+
+                                    <h4
+                                        class="font-bold
+                                        text-white"
+                                    >
+                                        {{ item.title }}
+                                    </h4>
+
+                                    <p
+                                        class="mt-2
+                                        text-sm
+                                        text-gray-400
+                                        leading-6"
+                                    >
+                                        {{ item.description }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
         </div>
 
     </section>

@@ -14,9 +14,13 @@
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Conatct info  -->
                  <div data-aos="fade-right">
-                    <h3 class="text-2xl font-bold text-white mb-6">
+                    <!-- <h3 class="text-2xl font-bold text-white mb-6">
                         আমাদের ঠিকানা
-                    </h3>  
+                    </h3>   -->
+                    <sectionTitle class="mb-8" 
+                    title="আমাদের ঠিকানা"/>
+
+
                 <div class="space-y-6">
                     <div class="flex items-center gap-4">
                         <MapPin class="w-6 h-6 text-cyan-400 hover:scale-110"/>
@@ -63,6 +67,22 @@
                         </a>                       
                         </div>
                  </div>
+
+
+                 <!-- For Social Link Test -->
+
+     
+<div class="flex  gap-4">
+    <Icon
+      v-for="item in socialIcons"
+      :key="item.id"
+      :icon="item.icon"
+      :width="48"
+      :height="48"
+      :class="item.tailwindColor"
+    />
+  </div>
+
 
 
                  </div>
@@ -130,6 +150,37 @@
     </section>
 </template>
 <script setup>
+import { Icon } from '@iconify/vue';
+
+const socialIcons = [
+  {
+    id: 1,
+    icon: 'mdi:facebook',
+    tailwindColor: 'text-blue-600 hover:text-blue-800'
+  },
+  {
+    id: 2,
+    icon: 'mdi:linkedin',
+    tailwindColor: 'text-blue-700 hover:text-blue-900'
+  },
+  {
+    id: 3,
+    icon: 'mdi:youtube',
+    tailwindColor: 'text-red-600 hover:text-red-800'
+  },
+];
+
+
+
+
+
+
+
+
+
+
+
+import sectionTitle from '@/components/common/sectionTitle.vue';
 
 import { 
     Mail,
@@ -139,6 +190,9 @@ import {
     Users,
     Share2 ,
        } from '@lucide/vue';
+
+
+       
 
 const socialLinks =[
     {

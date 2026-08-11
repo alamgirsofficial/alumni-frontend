@@ -4,6 +4,8 @@ import {
     MapPin,
 } from "@lucide/vue";
 
+
+
 export const footerInfo = {
     school: "উপকূলীয় আদর্শ উচ্চ বিদ্যালয়",
     title: "প্রাক্তন ছাত্র পরিষদ",
@@ -60,20 +62,3 @@ export const contactIcons = [
     },
 ];
 
-export const socialLinks = [
-    {
-        icon: Phone,
-        href: "#",
-        label: "Facebook",
-    },
-    {
-        icon: Phone,
-        href: "#",
-        label: "YouTube",
-    },
-    {
-        icon: Phone,
-        href: "#",
-        label: "LinkedIn",
-    },
-];

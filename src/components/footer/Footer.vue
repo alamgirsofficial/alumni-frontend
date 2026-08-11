@@ -1,19 +1,18 @@
 <script setup>
-import FooterBrand from "./FooterBrand.vue";
-import FooterLinks from "./FooterLink.vue";
-import FooterBottom from "./FooterBottom.vue";
+import FooterBrand from "@/components/footer/FooterBrand.vue";
+import FooterLinks from "@/components/footer/FooterLink.vue";
+import FooterBottom from "@/components/footer/FooterBottom.vue";
 
 import {
     footerInfo,
     quickLinks,
     supportLinks,
     contactIcons,
-    socialLinks,
-} from "../../constrants/footer.js";
+} from "@/constrants/footer.js";
 </script>
 
 <template>
-    <footer class="border-t border-slate-800 bg-slate-950">
+    <footer class="border-t border-slate-800">
 
         <div class="max-w-7xl mx-auto px-6 py-16">
 
@@ -27,7 +26,6 @@ import {
                 <FooterBrand
                     :info="footerInfo"
                     :contacts="contactIcons"
-                    :socials="socialLinks"
                 />
 
                 <FooterLinks

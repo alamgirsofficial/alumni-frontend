@@ -359,4 +359,3 @@ const blog = computed(() => {
 })
 
 </script>
-```

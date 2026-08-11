@@ -9,8 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@iconify-vue/mdi": "^1.0.3",
-    "@iconify/vue": "^5.0.1",
     "@lucide/vue": "^1.28.0",
     "@tailwindcss/vite": "^4.3.3",
     "aos": "^2.3.4",
@@ -19,6 +17,7 @@
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
+    "@iconify/vue": "^5.0.1",
     "@vitejs/plugin-vue": "^6.0.8",
     "vite": "^8.2.0"
   }

@@ -13,12 +13,15 @@
             </div>
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Conatct info  -->
-                 <div data-aos="fade-right">
-                    <!-- <h3 class="text-2xl font-bold text-white mb-6">
-                        আমাদের ঠিকানা
-                    </h3>   -->
+                 <div>
+
                     <sectionTitle class="mb-8" 
+                    data-aos="fade-up"
                     title="আমাদের ঠিকানা"/>
+
+ <div class="from-gray-800/60 to-blue-900/40 rounded-3xl backdrop-blur-sm border border-blue-500/30 shadow-2xl p-6"
+ data-aos="fade-right"
+ >
 
 
                 <div class="space-y-6">
@@ -48,39 +51,34 @@
                     
 
                 </div>
+                </div>
                 <!-- Social Links  -->
                  <div class="mt-8">
-                    <h4 class="text-lg font-bold text-white mb-4"> 
-                        আমাদের খুঁজে পেতে
-                    </h4>
+                    <sectionTitle
+                    class="mb-6"
+                    title="আমাদের খুঁজে পেতে"/>
+                 <!-- For Social Link Test -->     
+<div class="flex gap-4">
+    <a
+    v-for="(item,index) in socialIcons"
+    :key="item.id"
+    :href="item.url"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300",
+    :style="{'--social-color':item.color}"
+     data-aos="fade-up"
+    :data-aos-delay="index * 100"
+    
 
-                    <div class="flex gap-4">
-                        <a v-for="link in socialLinks"
-                        :key="link.label"
-                        :href="link.href"
-                        :class="[
-                            'p-3 rounded-xl transition-all duration-300 hover:scale-110',
-                            link.bg,
-                            link.text
-                        ]">
-                        <component :is="link.icon" class="size-5"/>
-                        </a>                       
-                        </div>
-                 </div>
 
-
-                 <!-- For Social Link Test -->
-
-     
-<div class="flex  gap-4">
+>
     <Icon
-      v-for="item in socialIcons"
-      :key="item.id"
-      :icon="item.icon"
-      :width="48"
-      :height="48"
-      :class="item.tailwindColor"
+        :icon="item.icon"
+        class="size-10 text-slate-900 transition-colors duration-300 cursor-pointer group-hover:scale-110 group-hover:text-(--social-color)"
     />
+</a>
+  </div>
   </div>
 
 
@@ -150,27 +148,39 @@
     </section>
 </template>
 <script setup>
+
 import { Icon } from '@iconify/vue';
 
 const socialIcons = [
-  {
-    id: 1,
-    icon: 'mdi:facebook',
-    tailwindColor: 'text-blue-600 hover:text-blue-800'
-  },
-  {
-    id: 2,
-    icon: 'mdi:linkedin',
-    tailwindColor: 'text-blue-700 hover:text-blue-900'
-  },
-  {
-    id: 3,
-    icon: 'mdi:youtube',
-    tailwindColor: 'text-red-600 hover:text-red-800'
-  },
+    {
+        id: 1,
+        name: 'Facebook',
+        icon: 'mdi:facebook',
+        color: '#1877F2',
+        url: 'https://facebook.com/',
+    },
+    {
+        id: 2,
+        name: 'LinkedIn',
+        icon: 'mdi:linkedin',
+        color: '#0A66C2',
+        url: 'https://linkedin.com/',
+    },
+    {
+        id: 3,
+        name: 'YouTube',
+        icon: 'mdi:youtube',
+        color: '#FF0000',
+        url: 'https://youtube.com/',
+    },
+    {
+        id:4,
+        name:'WhatsApp',
+        icon:'mdi:whatsapp',
+        color:'#128C7E',
+        url:'#'
+    }
 ];
-
-
 
 
 
@@ -186,43 +196,6 @@ import {
     Mail,
     Phone,
     MapPin ,
-    MessagesSquare,
-    Users,
-    Share2 ,
        } from '@lucide/vue';
 
-
-       
-
-const socialLinks =[
-    {
-        icon:Share2,
-        href: "#",
-        label: "Share",
-        bg:"bg-pink-500/20",
-        text:"text-pink-400",
-    },
-    {
-        icon:Users,
-        href: "#",
-        label: "Followers",
-        bg:"bg-cyan-500/20",
-        text:"text-cyan-400",
-    },
-    {
-        icon:MessagesSquare,
-        href: "#",
-        label: "Message",
-        bg:"bg-blue-500/20",
-        text:"text-blue-400",
-    },
-    {
-        icon:Phone,
-        href: "#",
-        label: "Call",
-        bg:"bg-green-500/20",
-        text:"text-green-400",
-    },
-
-]
 </script>

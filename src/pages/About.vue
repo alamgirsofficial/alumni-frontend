@@ -699,38 +699,6 @@
 
                 <!-- Timeline Heading -->
 
-                <!-- <div
-                    class="text-center mb-14"
-                >
-
-                    <span
-                        class="text-cyan-400
-                        text-sm font-bold
-                        uppercase
-                        tracking-[0.25em]"
-                    >
-                        আমাদের যাত্রা
-                    </span>
-
-                    <h3
-                        class="mt-2 text-2xl
-                        md:text-4xl
-                        font-black text-white"
-                    >
-                        গুরুত্বপূর্ণ
-                        <span
-                            class="text-transparent
-                            bg-clip-text
-                            bg-linear-to-r
-                            from-blue-400
-                            to-cyan-400"
-                        >
-                            মাইলফলক
-                        </span>
-                    </h3>
-
-                </div> -->
-
                 <sectionTitle class="text-center  mb-8"
                 title="আমাদের যাত্রা"
                 />

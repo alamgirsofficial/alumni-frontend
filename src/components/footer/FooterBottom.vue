@@ -17,19 +17,19 @@ const year = new Date().getFullYear();
 
         <div class="flex gap-6 mt-4 md:mt-0">
 
-            <a
-                href="#"
+            <RouterLink
+                to="#"
                 class="text-slate-400 hover:text-cyan-400"
             >
                 গোপনীয়তা নীতি
-            </a>
+            </RouterLink>
 
-            <a
-                href="#"
+            <RouterLink
+                to="#"
                 class="text-slate-400 hover:text-cyan-400"
             >
                 সেবা শর্তাবলী
-            </a>
+            </RouterLink>
 
         </div>
 

@@ -19,6 +19,7 @@ import Blogs from "@/pages/Blogs.vue";
 import BlogDetails from "@/pages/BlogDetails.vue";
 import Contact from "@/pages/Contact.vue";
 import Gallery from "@/pages/Gallery.vue";
+import Members from "@/pages/Members.vue";
 
 
 // =========================
@@ -29,6 +30,7 @@ import Login from "@/pages/auth/Login.vue";
 import Register from "@/pages/auth/Register.vue";
 import ForgotPassword from "@/pages/auth/ForgotPassword.vue";
 import VerifyEmail from "@/pages/auth/VerifyEmail.vue";
+
 
 
 // =========================
@@ -88,6 +90,11 @@ const routes = [
                 name: 'Gallery',
                 component: Gallery,
             },
+            {
+                path: 'members',
+                name:'Member',
+                component: Members
+            }
 
         ],
     },

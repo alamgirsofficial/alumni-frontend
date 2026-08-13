@@ -1,8 +1,12 @@
+import { ref} from 'vue';
+
+
 import {
     Mail,
     Phone,
     MapPin,
 } from "@lucide/vue";
+
 
 
 
@@ -46,36 +50,58 @@ export const footerSocials = [
 ]
 
 
-export const quickLinks = [
+export const quickLinks =[
     {
         name: "আমাদের সম্পর্কে",
-        href: "/about",
+        to: "/about",
     },
     {
         name: "ইভেন্টস",
-        href: "/events",
+        to: "/events",
     },
     {
         name: "ব্লগ",
-        href: "/blogs",
+        to: "/blogs",
     },
     {
         name: "গ্যালারি",
-        href: "/gallery",
+        to: "/gallery",
     },
     {
         name: "যোগাযোগ",
-        href: "/contact",
+        to: "/contact",
     },
 ];
 
+
+
+
+
+
+
+
 export const supportLinks = [
-    "Career Development",
-    "Technical Skills",
-    "Scholarship",
-    "Training",
-    "Consultation",
-];
+    {
+        name: "Career Development",
+        to: "/career-development",
+    },
+    {
+        name: "Technical Skills",
+        to: "/technical-skills",
+    },
+    {
+        name: "Scholarship",
+        to: "/scholarship",
+    },
+    {
+        name: "Training",
+        to: "/training",
+    },
+    {
+        name: "Consultation",
+        to: "/consultation",
+    },
+]
 
 
 

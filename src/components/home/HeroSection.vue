@@ -179,7 +179,7 @@
     </div>
 
     <!-- bottom subtle gradient overlay (depth) -->
-    <div class="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-[#0b1120] to-transparent pointer-events-none"></div>
+    <!-- <div class="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-[#7689b9] to-transparent pointer-events-none"></div> -->
   </section>
 </template>
 

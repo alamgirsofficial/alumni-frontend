@@ -16,12 +16,22 @@ defineProps({
                 v-for="item in items"
                 :key="typeof item === 'string' ? item : item.name"
             >
-                <a
-                    :href="typeof item === 'string' ? '#' : item.href"
+                <!-- String item -->
+                <span
+                    v-if="typeof item === 'string'"
+                    class="text-slate-400"
+                >
+                    {{ item }}
+                </span>
+
+                <!-- Router item -->
+                <RouterLink
+                    v-else
+                    :to="item.to"
                     class="text-slate-400 hover:text-cyan-400 transition duration-300"
                 >
-                    {{ typeof item === 'string' ? item : item.name }}
-                </a>
+                    {{ item.name }}
+                </RouterLink>
             </li>
         </ul>
     </div>

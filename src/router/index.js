@@ -20,6 +20,7 @@ import BlogDetails from "@/pages/BlogDetails.vue";
 import Contact from "@/pages/Contact.vue";
 import Gallery from "@/pages/Gallery.vue";
 import Members from "@/pages/Members.vue";
+import Committee from "@/pages/ExecutiveCommitee.vue";
 
 
 // =========================
@@ -94,6 +95,11 @@ const routes = [
                 path: 'members',
                 name:'Member',
                 component: Members
+            },
+            {
+                path:'committee',
+                name: 'Committee',
+                component:Committee
             }
 
         ],

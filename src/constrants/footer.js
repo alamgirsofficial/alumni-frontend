@@ -13,6 +13,39 @@ export const footerInfo = {
         "আমাদের স্কুলের প্রাক্তন শিক্ষার্থীদের জন্য একটি প্ল্যাটফর্ম। সংযোগ রাখুন, স্মৃতি রোমন্থন করুন এবং বর্তমান শিক্ষার্থীদের সহায়তা করুন।",
 };
 
+// for social links 
+export const footerSocials = [
+    {
+        id: 1,
+        name: 'Facebook',
+        icon: 'mdi:facebook',
+        color: '#1877F2',
+        url: 'https://facebook.com/your-page',
+    },
+    {
+        id: 2,
+        name: 'LinkedIn',
+        icon: 'mdi:linkedin',
+        color: '#0A66C2',
+        url: 'https://linkedin.com/company/your-page',
+    },
+    {
+        id: 3,
+        name: 'YouTube',
+        icon: 'mdi:youtube',
+        color: '#FF0000',
+        url: 'https://youtube.com/@your-channel',
+    },
+    {
+        id: 4,
+        name: 'WhatsApp',
+        icon: 'mdi:whatsapp',
+        color: '#128C7E',
+        url: 'https://wa.me/8801XXXXXXXXX',
+    },
+]
+
+
 export const quickLinks = [
     {
         name: "আমাদের সম্পর্কে",
@@ -44,21 +77,6 @@ export const supportLinks = [
     "Consultation",
 ];
 
-export const contactIcons = [
-    {
-        icon: Mail,
-        href: "mailto:info@example.com",
-        label: "Email",
-    },
-    {
-        icon: Phone,
-        href: "tel:+8801700000000",
-        label: "Phone",
-    },
-    {
-        icon: MapPin,
-        href: "#",
-        label: "Location",
-    },
-];
+
+
 

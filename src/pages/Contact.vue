@@ -190,7 +190,7 @@ const socialIcons = [
 
 
 
-import sectionTitle from '@/components/common/sectionTitle.vue';
+import sectionTitle from '@/components/common/SectionTitle.vue';
 
 import { 
     Mail,

@@ -240,75 +240,9 @@ export const stats = [
 ];
 
 
-/*
-|--------------------------------------------------------------------------
-| Executive Members
-|--------------------------------------------------------------------------
-*/
-import presidentImage from '@/assets/icon/logo.png'
-import secretaryImage from '@/assets/icon/logo.png'
 
-export const executiveMembers = [
 
-    {
-        id: 1,
-        name: 'আবদুল জব্বার',
-        designation: 'সভাপতি',
-        phone: '01212345678',
-        image: presidentImage,
-
-        social: [
-            {
-                icon: Phone,
-                url: '#',
-            },
-
-            {
-                icon: Phone,
-                url: '#',
-            },
-            {
-                icon: Phone,
-                url: '#',
-            },
-
-            {
-                icon: Phone,
-                url: '#',
-            },
-        ],
-    },
-
-    {
-        id: 2,
-        name: 'বজলুল হক',
-        designation: 'সাধারণ সম্পাদক',
-        phone: '01212345678',
-        image: secretaryImage,
-
-        social: [
-            {
-                icon: Phone,
-                url: '#',
-            },
-
-            {
-                icon: Phone,
-                url: '#',
-            },
-            {
-                icon: Phone,
-                url: '#',
-            },
-
-            {
-                icon: Phone,
-                url: '#',
-            },
-        ],
-    },
-
-]
+// 
                    
 /*
 |--------------------------------------------------------------------------

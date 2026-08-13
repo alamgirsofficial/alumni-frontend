@@ -7,7 +7,7 @@ import {
     footerInfo,
     quickLinks,
     supportLinks,
-    contactIcons,
+    footerSocials,
 } from "@/constrants/footer.js";
 </script>
 
@@ -25,7 +25,7 @@ import {
 
                 <FooterBrand
                     :info="footerInfo"
-                    :contacts="contactIcons"
+                    :socials="footerSocials"
                 />
 
                 <FooterLinks

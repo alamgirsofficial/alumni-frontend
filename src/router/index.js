@@ -15,6 +15,7 @@ import AuthLayout from "@/layouts/AuthLayout.vue";
 import Home from "@/pages/Home.vue";
 import About from "@/pages/About.vue";
 import Events from "@/pages/Events.vue";
+import EventDetails from "@/pages/EventDetails.vue";
 import Blogs from "@/pages/Blogs.vue";
 import BlogDetails from "@/pages/BlogDetails.vue";
 import Contact from "@/pages/Contact.vue";
@@ -61,13 +62,16 @@ const routes = [
                 name: 'About',
                 component: About,
             },
-
-            {
-                path: 'events',
-                name: 'Events',
-                component: Events,
-            },
-
+             {
+            path: '/events',
+            name: 'events',
+            component: Events,
+        },
+        {
+            path: '/events/:slug',
+            name: 'event-details',
+            component: EventDetails,
+        },
             {
                 path: 'blogs',
                 name: 'Blogs',

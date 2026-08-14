@@ -177,28 +177,7 @@
             </div>
           </div>
 
-          <!-- ================================= -->
-          <!-- Stats -->
-          <!-- ================================= -->
-
-          <div
-            class="grid grid-cols-2 md:grid-cols-4 rounded-3xl overflow-hidden bg-white/5 border border-white/10"
-            data-aos="fade-up"
-          >
-            <div
-              v-for="stat in stats"
-              :key="stat.id"
-              class="text-center px-4 py-6 border-b md:border-b-0 border-white/10 hover:bg-white/5 transition"
-            >
-              <div class="text-2xl md:text-3xl font-black text-white">
-                {{ stat.value }}
-              </div>
-
-              <p class="mt-2 text-xs text-blue-200">
-                {{ stat.label }}
-              </p>
-            </div>
-          </div>
+          
         </div>
 
         <!-- ================================= -->
@@ -477,7 +456,6 @@ import {
   aboutWorks,
   timeline,
   missionVision,
-  stats,
   technicalTeam,
 } from "@/constrants/about.js";
 </script>

@@ -58,12 +58,14 @@
             <div
               v-for="feature in features"
               :key="feature.id"
-              class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
+              class="group flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300"
               :class="
                 feature.color === 'blue'
                   ? 'hover:border-blue-400/30'
                   : 'hover:border-cyan-400/30'
               "
+              data-aos="fade-up"
+              :data-aos-delay="feature.id * 100"
             >
               <div
                 class="w-10 h-10 shrink-0 rounded-lg flex items-center justify-center"
@@ -73,7 +75,7 @@
               >
                 <component
                   :is="feature.icon"
-                  class="w-5 h-5"
+                  class="w-5 h-5 transition-transform duration-300 group-hover:scale-110"
                   :class="
                     feature.color === 'blue' ? 'text-blue-400' : 'text-cyan-400'
                   "
@@ -97,7 +99,7 @@
             class="absolute top-0 right-0 w-[45%] h-44 sm:h-52 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
           >
             <img
-              src="/images/about4.jpg"
+              src="/images/picnic_2022.jpg"
               alt="Alumni gathering"
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
@@ -108,7 +110,7 @@
             class="absolute top-0 left-0 w-[45%] h-44 sm:h-52 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
           >
             <img
-              src="/images/about2.jpg"
+              src="/images/about.jpg"
               alt="Alumni community"
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
@@ -119,7 +121,7 @@
             class="relative mt-36 sm:mt-40 w-full h-72 sm:h-80 lg:h-96 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
           >
             <img
-              src="/images/about.jpg"
+              src="/images/meraton_2026.jpg"
               alt="Alumni community"
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />

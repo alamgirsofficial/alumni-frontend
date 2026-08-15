@@ -32,6 +32,7 @@
           <!-- Heading -->
           <h2
             class="text-4xl sm:text-4xl lg:text-4xl xl:text-4xl font-bold leading-tight text-white"
+            data-aos="fade-up"
           >
             একসাথে পথচলা,
             <br />
@@ -44,7 +45,9 @@
           </h2>
 
           <!-- Description -->
-          <p class="mt-6 text-gray-400 text-base sm:text-lg leading-8 max-w-xl">
+          <p class="mt-6 text-gray-400 text-base sm:text-lg leading-8 max-w-xl" 
+          data-aos="fade-up">
+
             একজন প্রাক্তন শিক্ষার্থী হিসেবে আপনার স্মৃতি, অভিজ্ঞতা এবং অর্জন
             আমাদের কমিউনিটির একটি গুরুত্বপূর্ণ অংশ। এই প্ল্যাটফর্মের মাধ্যমে
             আমরা প্রাক্তন শিক্ষার্থীদের মধ্যে যোগাযোগ, সহযোগিতা এবং বন্ধুত্বের
@@ -52,7 +55,7 @@
           </p>
 
           <!-- Features -->
-          <SectionTitle title="প্রাক্তন শিক্ষার্থী পরিষদে যা আছে " />
+          <SectionTitle title="প্রাক্তন শিক্ষার্থী পরিষদে যা আছে " data-aos="fade-up" />
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
             <div
@@ -97,17 +100,21 @@
           <!-- Small Image 1 -->
           <div
             class="absolute top-0 right-0 w-[45%] h-44 sm:h-52 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+            data-aos="zoom-in" data-aos-delay="300"
           >
             <img
               src="/images/picnic_2022.jpg"
               alt="Alumni gathering"
               class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              
             />
           </div>
 
           <!-- Small Image 2 -->
           <div
             class="absolute top-0 left-0 w-[45%] h-44 sm:h-52 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+            data-aos="zoom-in"
+            data-aos-delay="200"
           >
             <img
               src="/images/about.jpg"
@@ -119,6 +126,7 @@
           <!-- Main Image -->
           <div
             class="relative mt-36 sm:mt-40 w-full h-72 sm:h-80 lg:h-96 rounded-2xl overflow-hidden border border-white/10 shadow-2xl"
+            data-aos="fade-up" data-aos-delay="600"
           >
             <img
               src="/images/meraton_2026.jpg"
@@ -134,11 +142,12 @@
 
           <!-- Floating Badge -->
           <div
-            class="absolute bottom-6 left-6 px-5 py-3 rounded-xl bg-black/70 backdrop-blur-md border border-white/10"
+            class="absolute bottom-6 left-6 px-5 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/10 shadow-xl"
+            data-aos="fade-up" data-aos-delay="800"
           >
             <p class="text-white font-semibold">Alumni Community</p>
 
-            <p class="text-gray-400 text-sm">একসাথে আমাদের পথচলা</p>
+            <p class="text-white/70 text-sm">একসাথে আমাদের পথচলা</p>
           </div>
         </div>
       </div>

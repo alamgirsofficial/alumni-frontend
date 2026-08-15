@@ -55,17 +55,21 @@ const displayedEvents = computed(() => {
       <div
         v-if="displayedEvents.length"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10"
+        
       >
         <EventCard
           v-for="event in displayedEvents"
           :key="event.id"
           :event="event"
+          data-aos="fade-up" 
+        :data-aos-delay="event.id *200"
         />
       </div>
 
       <!-- All Events -->
 
-      <div class="flex justify-center mt-10">
+      <div class="flex justify-center mt-10" data-aos="fade-up"
+     data-aos-delay="300">
         <RouterLink
           to="/events"
           class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 text-white font-semibold shadow-lg shadow-blue-500/20 hover:shadow-xl transition-all duration-300"

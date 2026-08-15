@@ -85,6 +85,15 @@ src/
 │
 └── router/
     └── index.js
+
+
+└── gallery/
+│       ├── GalleryHero.vue
+│       ├── GalleryFilter.vue
+│       ├── FeaturedGallery.vue
+│       ├── GalleryGrid.vue
+│       ├── GalleryCard.vue
+│       └── GalleryLightbox.vue
 ```
 ---
 

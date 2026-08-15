@@ -6,6 +6,7 @@ import TestimonialSection from '@/components/home/TestimonialSection.vue';
 import WelcomeSection from '@/components/home/WelcomeSection.vue';
 import EventSection from '@/components/home/EventSection.vue';
 import StatisticsSection from '@/components/home/StatisticsSection.vue';
+import GallerySection from '@/components/home/GallerySection.vue';
 
 </script>
 
@@ -16,5 +17,6 @@ import StatisticsSection from '@/components/home/StatisticsSection.vue';
   <EventSection/>
   <BlogSection/>
   <TestimonialSection/>
+  <GallerySection/>
 
 </template>

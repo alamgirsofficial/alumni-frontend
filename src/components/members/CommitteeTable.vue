@@ -1,313 +1,963 @@
 <script setup>
-import { ref } from "vue";
-import { Eye } from "@lucide/vue";
+import { ref, computed, watch } from "vue";
+import { Eye, ChevronLeft, ChevronRight } from "@lucide/vue";
 import MemberDetailsModal from "./MemberDetailsModal.vue";
 
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
 
-  members: {
-    type: Array,
-    required: true,
-  },
+// -------------------------------------
+// Props
+// -------------------------------------
 
-  headerColor: {
-    type: String,
-    default: "bg-blue-100",
-  },
+const props = defineProps({
+    members: {
+        type: Array,
+        required: true,
+    },
+
+    pagination: {
+        type: Boolean,
+        default: false,
+    },
+
+    perPage: {
+        type: Number,
+        default: 10,
+    },
 });
+
+
+// -------------------------------------
+// Modal
+// -------------------------------------
 
 const selectedMember = ref(null);
 
 const openModal = (member) => {
-  selectedMember.value = member;
+    selectedMember.value = member;
 };
 
 const closeModal = () => {
-  selectedMember.value = null;
+    selectedMember.value = null;
 };
+
+
+// -------------------------------------
+// Pagination
+// -------------------------------------
+
+const currentPage = ref(1);
+
+
+// Total pages
+const totalPages = computed(() => {
+    if (!props.pagination) {
+        return 1;
+    }
+
+    return Math.ceil(props.members.length / props.perPage);
+});
+
+
+// Paginated members
+const paginatedMembers = computed(() => {
+    if (!props.pagination) {
+        return props.members;
+    }
+
+    const start =
+        (currentPage.value - 1) * props.perPage;
+
+    const end =
+        start + props.perPage;
+
+    return props.members.slice(start, end);
+});
+
+
+// -------------------------------------
+// Page Numbers
+// -------------------------------------
+
+const visiblePages = computed(() => {
+    const total = totalPages.value;
+    const current = currentPage.value;
+
+    if (total <= 5) {
+        return Array.from(
+            { length: total },
+            (_, index) => index + 1
+        );
+    }
+
+    if (current <= 3) {
+        return [1, 2, 3, 4, 5];
+    }
+
+    if (current >= total - 2) {
+        return [
+            total - 4,
+            total - 3,
+            total - 2,
+            total - 1,
+            total,
+        ];
+    }
+
+    return [
+        current - 2,
+        current - 1,
+        current,
+        current + 1,
+        current + 2,
+    ];
+});
+
+
+// -------------------------------------
+// Change Page
+// -------------------------------------
+
+const goToPage = (page) => {
+    if (
+        page < 1 ||
+        page > totalPages.value
+    ) {
+        return;
+    }
+
+    currentPage.value = page;
+};
+
+
+// -------------------------------------
+// Reset Page
+// -------------------------------------
+// Year অথবা tab change হলে নতুন data আসলে
+// pagination আবার প্রথম page থেকে শুরু হবে.
+
+watch(
+    () => props.members,
+    () => {
+        currentPage.value = 1;
+    }
+);
+
 </script>
 
+
 <template>
-  <section class="mb-10">
-    <!-- Section Title -->
-    <div class="mb-6">
-      <h2 class="text-2xl sm:text-3xl font-bold text-white">
-        {{ title }}
-      </h2>
 
-      <div
-        class="mt-3 w-16 h-1 rounded-full bg-linear-to-r from-blue-500 to-cyan-400"
-      ></div>
-    </div>
+    <section>
 
-    <!-- Table Wrapper -->
-    <!-- Desktop Table -->
-<div
-    class="
-        hidden sm:block
-        relative
-        overflow-hidden
-        rounded-2xl
-        border border-white/10
-        bg-white/5
-        backdrop-blur-xl
-        shadow-xl shadow-black/10
-    "
->
-    <table class="w-full text-left">
 
-        <!-- Header -->
-        <thead class="bg-blue-500/10">
-            <tr>
-                <th
-                    class="
-                        px-5 py-4
-                        text-xs
-                        font-semibold
-                        text-cyan-300
-                        uppercase
-                        tracking-wide
-                        w-16
-                    "
-                >
-                    #
-                </th>
+        <!-- ================================= -->
+        <!-- Desktop Table -->
+        <!-- ================================= -->
 
-                <th
-                    class="
-                        px-5 py-4
-                        text-xs
-                        font-semibold
-                        text-cyan-300
-                        uppercase
-                        tracking-wide
-                    "
-                >
-                    Name
-                </th>
+        <div
+            class="
+                hidden
+                sm:block
 
-                <th
-                    class="
-                        px-5 py-4
-                        text-xs
-                        font-semibold
-                        text-cyan-300
-                        uppercase
-                        tracking-wide
-                    "
-                >
-                    Designation
-                </th>
+                relative
+                overflow-hidden
 
-                <th
-                    class="
-                        px-5 py-4
-                        text-center
-                        text-xs
-                        font-semibold
-                        text-cyan-300
-                        uppercase
-                        tracking-wide
-                        w-24
-                    "
-                >
-                    Action
-                </th>
-            </tr>
-        </thead>
+                rounded-2xl
 
-        <!-- Body -->
-        <tbody>
+                border border-white/10
 
-            <tr
-                v-for="(member, index) in members"
-                :key="member.id"
+                bg-white/5
+                backdrop-blur-xl
+
+                shadow-xl
+                shadow-black/10
+            "
+        >
+
+            <table
                 class="
-                    border-t border-white/5
-                    hover:bg-white/5
-                    transition-all duration-300
-                    group
+                    w-full
+                    text-left
                 "
             >
 
-                <td class="px-5 py-4 text-sm text-gray-500">
-                    {{ String(index + 1).padStart(2, '0') }}
-                </td>
+                <!-- ========================= -->
+                <!-- Table Header -->
+                <!-- ========================= -->
 
-                <td class="px-5 py-4">
-                    <span
-                        class="
-                            font-medium
-                            text-gray-200
-                            group-hover:text-white
-                            transition-colors
-                        "
-                    >
-                        {{ member.name }}
-                    </span>
-                </td>
-
-                <td
+                <thead
                     class="
-                        px-5 py-4
-                        text-sm
-                        text-gray-400
-                        group-hover:text-gray-300
-                        transition-colors
+                        bg-blue-500/10
                     "
                 >
-                    {{ member.designation }}
-                </td>
 
-                <td class="px-5 py-4">
-                    <div class="flex justify-center">
+                    <tr>
 
-                        <button
-                            @click="openModal(member)"
-                            type="button"
-                            title="View Details"
+                        <!-- Number -->
+
+                        <th
                             class="
-                                w-9 h-9
-                                flex items-center justify-center
-                                rounded-xl
-                                bg-cyan-400/10
-                                border border-cyan-400/20
-                                text-cyan-400
+                                w-16
+                                px-5 py-4
 
-                                hover:bg-cyan-400
-                                hover:text-slate-950
-                                hover:border-cyan-400
-                                hover:shadow-lg
-                                hover:shadow-cyan-500/20
+                                text-left
 
-                                transition-all duration-300
+                                text-xs
+                                font-semibold
+
+                                text-cyan-300
+
+                                uppercase
+                                tracking-wide
                             "
                         >
-                            <Eye :size="17" />
-                        </button>
+                            #
+                        </th>
 
-                    </div>
-                </td>
 
-            </tr>
+                        <!-- Name -->
 
-        </tbody>
+                        <th
+                            class="
+                                px-5 py-4
 
-    </table>
-</div>
-<!-- Mobile Cards -->
-<div class="sm:hidden space-y-3">
+                                text-left
 
-    <div
-        v-for="(member, index) in members"
-        :key="member.id"
-        class="
-            relative
-            p-4
-            rounded-2xl
+                                text-xs
+                                font-semibold
 
-            bg-white/5
-            backdrop-blur-xl
+                                text-cyan-300
 
-            border border-white/10
+                                uppercase
+                                tracking-wide
+                            "
+                        >
+                            Name
+                        </th>
 
-            hover:border-cyan-400/20
-            hover:bg-white/10
 
-            transition-all duration-300
-        "
-    >
+                        <!-- Designation -->
 
-        <!-- Top -->
-        <div class="flex items-center justify-between">
+                        <th
+                            class="
+                                px-5 py-4
 
-            <span
+                                text-left
+
+                                text-xs
+                                font-semibold
+
+                                text-cyan-300
+
+                                uppercase
+                                tracking-wide
+                            "
+                        >
+                            Designation
+                        </th>
+
+
+                        <!-- Action -->
+
+                        <th
+                            class="
+                                w-24
+                                px-5 py-4
+
+                                text-center
+
+                                text-xs
+                                font-semibold
+
+                                text-cyan-300
+
+                                uppercase
+                                tracking-wide
+                            "
+                        >
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <!-- ========================= -->
+                <!-- Table Body -->
+                <!-- ========================= -->
+
+                <tbody>
+
+                    <tr
+                        v-for="(member, index) in paginatedMembers"
+                        :key="member.id"
+
+                        class="
+                            group
+
+                            border-t
+                            border-white/5
+
+                            hover:bg-white/5
+
+                            transition-all
+                            duration-300
+                        "
+                    >
+
+                        <!-- Number -->
+
+                        <td
+                            class="
+                                px-5 py-4
+
+                                text-sm
+                                text-gray-500
+                            "
+                        >
+                            {{
+                                props.pagination
+                                    ? String(
+                                        (currentPage - 1) *
+                                        props.perPage +
+                                        index +
+                                        1
+                                    ).padStart(2, "0")
+                                    : String(index + 1).padStart(2, "0")
+                            }}
+                        </td>
+
+
+                        <!-- Name -->
+
+                        <td
+                            class="
+                                px-5 py-4
+                            "
+                        >
+
+                            <span
+                                class="
+                                    font-medium
+                                    text-gray-200
+
+                                    group-hover:text-white
+
+                                    transition-colors
+                                "
+                            >
+                                {{ member.name }}
+                            </span>
+
+                        </td>
+
+
+                        <!-- Designation -->
+
+                        <td
+                            class="
+                                px-5 py-4
+
+                                text-sm
+                                text-gray-400
+
+                                group-hover:text-gray-300
+
+                                transition-colors
+                            "
+                        >
+                            {{ member.designation }}
+                        </td>
+
+
+                        <!-- Action -->
+
+                        <td
+                            class="
+                                px-5 py-4
+                            "
+                        >
+
+                            <div
+                                class="
+                                    flex
+                                    justify-center
+                                "
+                            >
+
+                                <button
+                                    @click="openModal(member)"
+                                    type="button"
+                                    title="View Details"
+
+                                    class="
+                                        w-9 h-9
+
+                                        flex
+                                        items-center
+                                        justify-center
+
+                                        rounded-xl
+
+                                        bg-cyan-400/10
+
+                                        border
+                                        border-cyan-400/20
+
+                                        text-cyan-400
+
+                                        hover:bg-cyan-400
+                                        hover:text-slate-950
+                                        hover:border-cyan-400
+
+                                        hover:shadow-lg
+                                        hover:shadow-cyan-500/20
+
+                                        transition-all
+                                        duration-300
+                                    "
+                                >
+                                    <Eye :size="17" />
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- ========================= -->
+                    <!-- Empty State -->
+                    <!-- ========================= -->
+
+                    <tr
+                        v-if="!paginatedMembers.length"
+                    >
+
+                        <td
+                            colspan="4"
+
+                            class="
+                                px-5 py-12
+
+                                text-center
+
+                                text-sm
+                                text-gray-500
+                            "
+                        >
+                            No data available
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+            <!-- ================================= -->
+            <!-- Desktop Pagination -->
+            <!-- ================================= -->
+
+            <div
+                v-if="
+                    props.pagination &&
+                    totalPages > 1
+                "
+
                 class="
-                    text-xs
-                    font-semibold
-                    text-cyan-400
-                    tracking-wider
+                    flex
+                    items-center
+                    justify-between
+
+                    gap-4
+
+                    px-5
+                    py-4
+
+                    border-t
+                    border-white/10
                 "
             >
-                {{ String(index + 1).padStart(2, '0') }}
-            </span>
 
-            <button
-                @click="openModal(member)"
-                type="button"
-                class="
-                    w-9 h-9
-                    flex items-center justify-center
-                    rounded-xl
+                <!-- Showing -->
 
-                    bg-cyan-400/10
-                    border border-cyan-400/20
+                <p
+                    class="
+                        hidden
+                        sm:block
 
-                    text-cyan-400
+                        text-xs
+                        text-gray-500
+                    "
+                >
+                    Showing
 
-                    hover:bg-cyan-400
-                    hover:text-slate-950
+                    <span class="text-gray-300">
+                        {{
+                            (currentPage - 1) *
+                            props.perPage + 1
+                        }}
+                    </span>
 
-                    transition-all duration-300
-                "
-            >
-                <Eye :size="17" />
-            </button>
+                    -
+
+                    <span class="text-gray-300">
+                        {{
+                            Math.min(
+                                currentPage *
+                                props.perPage,
+                                props.members.length
+                            )
+                        }}
+                    </span>
+
+                    of
+
+                    <span class="text-gray-300">
+                        {{ props.members.length }}
+                    </span>
+                </p>
+
+
+                <!-- Pagination -->
+
+                <div
+                    class="
+                        flex
+                        items-center
+                        gap-1
+                        mx-auto
+                        sm:mx-0
+                    "
+                >
+
+                    <!-- Previous -->
+
+                    <button
+                        @click="goToPage(currentPage - 1)"
+                        :disabled="currentPage === 1"
+
+                        type="button"
+
+                        class="
+                            w-9 h-9
+
+                            flex
+                            items-center
+                            justify-center
+
+                            rounded-lg
+
+                            border
+                            border-white/10
+
+                            text-gray-400
+
+                            hover:bg-white/10
+                            hover:text-white
+
+                            disabled:opacity-30
+                            disabled:cursor-not-allowed
+
+                            transition
+                        "
+                    >
+                        <ChevronLeft :size="17" />
+                    </button>
+
+
+                    <!-- Page Numbers -->
+
+                    <button
+                        v-for="page in visiblePages"
+                        :key="page"
+
+                        @click="goToPage(page)"
+
+                        type="button"
+
+                        class="
+                            w-9 h-9
+
+                            flex
+                            items-center
+                            justify-center
+
+                            rounded-lg
+
+                            text-sm
+
+                            transition-all
+                            duration-300
+                        "
+
+                        :class="
+                            currentPage === page
+                                ? `
+                                    bg-cyan-400
+                                    text-slate-950
+                                    shadow-lg
+                                    shadow-cyan-500/20
+                                `
+                                : `
+                                    text-gray-400
+                                    hover:bg-white/10
+                                    hover:text-white
+                                `
+                        "
+                    >
+                        {{ page }}
+                    </button>
+
+
+                    <!-- Next -->
+
+                    <button
+                        @click="goToPage(currentPage + 1)"
+                        :disabled="currentPage === totalPages"
+
+                        type="button"
+
+                        class="
+                            w-9 h-9
+
+                            flex
+                            items-center
+                            justify-center
+
+                            rounded-lg
+
+                            border
+                            border-white/10
+
+                            text-gray-400
+
+                            hover:bg-white/10
+                            hover:text-white
+
+                            disabled:opacity-30
+                            disabled:cursor-not-allowed
+
+                            transition
+                        "
+                    >
+                        <ChevronRight :size="17" />
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
 
-        <!-- Name -->
-        <h3
+        <!-- ================================= -->
+        <!-- Mobile Cards -->
+        <!-- ================================= -->
+
+        <div
             class="
-                mt-3
-                text-base
-                font-semibold
-                text-white
+                sm:hidden
+                space-y-3
             "
         >
-            {{ member.name }}
-        </h3>
+
+            <div
+                v-for="(member, index) in paginatedMembers"
+                :key="member.id"
+
+                class="
+                    relative
+
+                    p-4
+
+                    rounded-2xl
+
+                    bg-white/5
+                    backdrop-blur-xl
+
+                    border border-white/10
+
+                    hover:bg-white/10
+                    hover:border-cyan-400/20
+
+                    transition-all
+                    duration-300
+                "
+            >
+
+                <!-- Top -->
+
+                <div
+                    class="
+                        flex
+                        items-center
+                        justify-between
+                    "
+                >
+
+                    <!-- Number -->
+
+                    <span
+                        class="
+                            text-xs
+                            font-semibold
+
+                            text-cyan-400
+
+                            tracking-wider
+                        "
+                    >
+                        {{
+                            props.pagination
+                                ? String(
+                                    (currentPage - 1) *
+                                    props.perPage +
+                                    index +
+                                    1
+                                ).padStart(2, "0")
+                                : String(index + 1).padStart(2, "0")
+                        }}
+                    </span>
 
 
-        <!-- Designation -->
-        <p
-            class="
-                mt-1
-                text-sm
-                text-gray-400
-            "
-        >
-            {{ member.designation }}
-        </p>
+                    <!-- Action -->
 
-    </div>
+                    <button
+                        @click="openModal(member)"
+                        type="button"
+                        title="View Details"
+
+                        class="
+                            w-9 h-9
+
+                            flex
+                            items-center
+                            justify-center
+
+                            rounded-xl
+
+                            bg-cyan-400/10
+
+                            border
+                            border-cyan-400/20
+
+                            text-cyan-400
+
+                            hover:bg-cyan-400
+                            hover:text-slate-950
+
+                            transition-all
+                            duration-300
+                        "
+                    >
+                        <Eye :size="17" />
+                    </button>
+
+                </div>
 
 
-    <!-- Empty -->
-    <div
-        v-if="!members.length"
-        class="
-            py-10
-            text-center
-            text-sm
-            text-gray-500
-        "
-    >
-        No data available
-    </div>
+                <!-- Name -->
 
-</div>
+                <h3
+                    class="
+                        mt-3
 
-    <!-- Modal -->
-    <MemberDetailsModal
-      v-if="selectedMember"
-      :member="selectedMember"
-      @close="closeModal"
-    />
-  </section>
+                        text-base
+                        font-semibold
+
+                        text-white
+                    "
+                >
+                    {{ member.name }}
+                </h3>
+
+
+                <!-- Designation -->
+
+                <p
+                    class="
+                        mt-1
+
+                        text-sm
+                        text-gray-400
+                    "
+                >
+                    {{ member.designation }}
+                </p>
+
+            </div>
+
+
+            <!-- Mobile Empty -->
+
+            <div
+                v-if="!paginatedMembers.length"
+
+                class="
+                    py-10
+
+                    text-center
+
+                    text-sm
+                    text-gray-500
+                "
+            >
+                No data available
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- Mobile Pagination -->
+            <!-- ================================= -->
+
+            <div
+                v-if="
+                    props.pagination &&
+                    totalPages > 1
+                "
+
+                class="
+                    flex
+                    items-center
+                    justify-center
+
+                    gap-1
+
+                    pt-3
+                "
+            >
+
+                <!-- Previous -->
+
+                <button
+                    @click="goToPage(currentPage - 1)"
+                    :disabled="currentPage === 1"
+
+                    type="button"
+
+                    class="
+                        w-9 h-9
+
+                        flex
+                        items-center
+                        justify-center
+
+                        rounded-lg
+
+                        border
+                        border-white/10
+
+                        text-gray-400
+
+                        hover:bg-white/10
+                        hover:text-white
+
+                        disabled:opacity-30
+                        disabled:cursor-not-allowed
+
+                        transition
+                    "
+                >
+                    <ChevronLeft :size="17" />
+                </button>
+
+
+                <!-- Pages -->
+
+                <button
+                    v-for="page in visiblePages"
+                    :key="page"
+
+                    @click="goToPage(page)"
+
+                    type="button"
+
+                    class="
+                        w-9 h-9
+
+                        flex
+                        items-center
+                        justify-center
+
+                        rounded-lg
+
+                        text-sm
+
+                        transition-all
+                        duration-300
+                    "
+
+                    :class="
+                        currentPage === page
+                            ? `
+                                bg-cyan-400
+                                text-slate-950
+                            `
+                            : `
+                                text-gray-400
+                                hover:bg-white/10
+                                hover:text-white
+                            `
+                    "
+                >
+                    {{ page }}
+                </button>
+
+
+                <!-- Next -->
+
+                <button
+                    @click="goToPage(currentPage + 1)"
+                    :disabled="currentPage === totalPages"
+
+                    type="button"
+
+                    class="
+                        w-9 h-9
+
+                        flex
+                        items-center
+                        justify-center
+
+                        rounded-lg
+
+                        border
+                        border-white/10
+
+                        text-gray-400
+
+                        hover:bg-white/10
+                        hover:text-white
+
+                        disabled:opacity-30
+                        disabled:cursor-not-allowed
+
+                        transition
+                    "
+                >
+                    <ChevronRight :size="17" />
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================= -->
+        <!-- Modal -->
+        <!-- ================================= -->
+
+        <MemberDetailsModal
+            v-if="selectedMember"
+            :member="selectedMember"
+            @close="closeModal"
+        />
+
+    </section>
+
 </template>

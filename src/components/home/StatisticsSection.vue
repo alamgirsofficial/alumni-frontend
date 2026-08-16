@@ -1,5 +1,5 @@
 <script setup>
-import { statistics } from "@/constrants/statistics";
+import { statistics } from "@/constants/statistics";
 </script>
 
 <template>

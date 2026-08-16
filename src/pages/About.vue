@@ -449,7 +449,7 @@
 import { Users, Phone, CodeXml } from "@lucide/vue";
 import SectionTitle from "@/components/common/SectionTitle.vue";
 import SocialLinks from "@/components/common/SocialLinks.vue";
-import { executiveMembers } from "@/constrants/executiveMembers.js";
+import { executiveMembers } from "@/constants/executiveMembers.js";
 
 import {
   aboutIntro,
@@ -457,5 +457,5 @@ import {
   timeline,
   missionVision,
   technicalTeam,
-} from "@/constrants/about.js";
+} from "@/constants/about.js";
 </script>

@@ -94,7 +94,7 @@
 </template>
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { testimonials } from '@/constrants/testimonial.js'
+import { testimonials } from '@/constants/testimonial.js'
 
 // Slider container
 const slider = ref(null);

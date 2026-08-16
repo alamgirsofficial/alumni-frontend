@@ -6,7 +6,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import MainLayout from "@/layouts/MainLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
-
+import AdminLayout from "@/layouts/AdminLayout.vue";
 
 // =========================
 // Public Pages
@@ -23,7 +23,6 @@ import Gallery from "@/pages/Gallery.vue";
 import Members from "@/pages/Members.vue";
 import Committee from "@/pages/ExecutiveCommitee.vue";
 
-
 // =========================
 // Authentication Pages
 // =========================
@@ -34,133 +33,151 @@ import ForgotPassword from "@/pages/auth/ForgotPassword.vue";
 import VerifyEmail from "@/pages/auth/VerifyEmail.vue";
 
 
+import UserProfile from "@/pages/profile/UserProfile.vue";
+
+// ================ Dashboard Routes
+import Dashboard from "../pages/admin/Dashboard.vue";
 
 // =========================
 // Routes
 // =========================
 
 const routes = [
+  // =========================
+  // Main Website
+  // =========================
 
-    // =========================
-    // Main Website
-    // =========================
+  {
+    path: "/",
+    component: MainLayout,
 
-    {
-        path: '/',
-        component: MainLayout,
+    children: [
+      {
+        path: "",
+        name: "Home",
+        component: Home,
+      },
 
-        children: [
+      {
+        path: "about",
+        name: "About",
+        component: About,
+      },
+      {
+        path: "/events",
+        name: "events",
+        component: Events,
+      },
+      {
+        path: "/events/:slug",
+        name: "event-details",
+        component: EventDetails,
+      },
+      {
+        path: "blogs",
+        name: "Blogs",
+        component: Blogs,
+      },
 
-            {
-                path: '',
-                name: 'Home',
-                component: Home,
-            },
+      {
+        path: "blog/:id",
+        name: "blog.details",
+        component: BlogDetails,
+      },
 
-            {
-                path: 'about',
-                name: 'About',
-                component: About,
-            },
-             {
-            path: '/events',
-            name: 'events',
-            component: Events,
-        },
-        {
-            path: '/events/:slug',
-            name: 'event-details',
-            component: EventDetails,
-        },
-            {
-                path: 'blogs',
-                name: 'Blogs',
-                component: Blogs,
-            },
+      {
+        path: "contact",
+        name: "Contact",
+        component: Contact,
+      },
 
-            {
-                path: 'blog/:id',
-                name: 'blog.details',
-                component: BlogDetails,
-            },
+      {
+        path: "gallery",
+        name: "Gallery",
+        component: Gallery,
+      },
+      {
+        path: "members",
+        name: "Member",
+        component: Members,
+      },
+      {
+        path: "committee",
+        name: "Committee",
+        component: Committee,
+      },
+      
+    ],
+  },
 
-            {
-                path: 'contact',
-                name: 'Contact',
-                component: Contact,
-            },
+  // =========================
+  // Authentication
+  // =========================
 
-            {
-                path: 'gallery',
-                name: 'Gallery',
-                component: Gallery,
-            },
-            {
-                path: 'members',
-                name:'Member',
-                component: Members
-            },
-            {
-                path:'committee',
-                name: 'Committee',
-                component:Committee
-            }
+  {
+    path: "/auth/",
+    component: AuthLayout,
 
-        ],
+    children: [
+      {
+        path: "login",
+        name: "login",
+        component: Login,
+      },
+
+      {
+        path: "register",
+        name: "register",
+        component: Register,
+      },
+
+      {
+        path: "verify-email",
+        name: "VerifyEmail",
+        component: VerifyEmail,
+      },
+
+      {
+        path: "forgot-password",
+        name: "ForgotPassword",
+        component: ForgotPassword,
+      },
+    ],
+  },
+
+
+
+  //============= User Profile
+  {
+    path: "/profile",
+    name: "profile",
+    component: UserProfile,
+    meta: {
+        requiresAuth: true,
     },
+},
+  {
+    path:"/admin/",
+    component: AdminLayout,
+    children: [
+      {
+        path:"dashboard",
+        name: "Dashboard",
+        component: Dashboard
+      }
 
-
-    // =========================
-    // Authentication
-    // =========================
-
-    {
-        path: '/auth/',
-        component: AuthLayout,
-
-        children: [
-
-            {
-                path: 'login',
-                name: 'login',
-                component: Login,
-            },
-
-            {
-                path: 'register',
-                name: 'register',
-                component: Register,
-            },
-
-            {
-                path: 'verify-email',
-                name: 'VerifyEmail',
-                component: VerifyEmail,
-            },
-
-            {
-                path: 'forgot-password',
-                name: 'ForgotPassword',
-                component: ForgotPassword,
-            },
-
-        ],
-    },
-
+    ],
+  },
 ];
-
 
 // =========================
 // Router
 // =========================
 
 const router = createRouter({
+  history: createWebHistory(),
 
-    history: createWebHistory(),
-
-    routes,
-
+  routes,
 });
-
 
 export default router;

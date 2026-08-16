@@ -179,7 +179,7 @@ import {
   FileQuestion,
 } from "@lucide/vue";
 
-import { blogs } from "@/constrants/blogData";
+import { blogs } from "@/constants/blogData";
 
 const route = useRoute();
 

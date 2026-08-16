@@ -8,7 +8,7 @@ import {
     quickLinks,
     supportLinks,
     footerSocials,
-} from "@/constrants/footer.js";
+} from "@/constants/footer.js";
 </script>
 
 <template>

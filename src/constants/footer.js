@@ -83,23 +83,23 @@ export const quickLinks =[
 export const supportLinks = [
     {
         name: "Career Development",
-        to: "/career-development",
+        to: "/",
     },
     {
         name: "Technical Skills",
-        to: "/technical-skills",
+        to: "/",
     },
     {
         name: "Scholarship",
-        to: "/scholarship",
+        to: "/",
     },
     {
         name: "Training",
-        to: "/training",
+        to: "/",
     },
     {
         name: "Consultation",
-        to: "/consultation",
+        to: "/",
     },
 ]
 

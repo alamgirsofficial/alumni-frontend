@@ -12,7 +12,7 @@ import {
 
 import { useRoute } from "vue-router";
 
-import { events } from "@/constrants/events";
+import { events } from "@/constants/events";
 
 const route = useRoute();
 

@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { ArrowRight, Images, Maximize2 } from "@lucide/vue";
 
-import { galleries } from "@/constrants/gallery";
+import { galleries } from "@/constants/gallery";
 
 const emit = defineEmits(["open"]);
 

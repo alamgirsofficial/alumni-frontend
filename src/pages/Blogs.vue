@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { blogs } from "@/constrants/blogData";
+import { blogs } from "@/constants/blogData";
 import BlogHeader from "@/components/blog/BlogHeader.vue";
 import BlogCard from "@/components/blog/BlogCard.vue";
 </script>

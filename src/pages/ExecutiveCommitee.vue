@@ -2,7 +2,7 @@
 import { ref, computed } from "vue";
 import CommitteeTable from "@/components/members/CommitteeTable.vue";
 
-import { committees } from "@/constrants/committeeData.js";
+import { committees } from "@/constants/committeeData.js";
 
 // ------------------------------------
 // Selected Committee Year

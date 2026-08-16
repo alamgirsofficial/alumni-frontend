@@ -56,7 +56,7 @@ import { computed } from 'vue'
 
 import { ArrowRight } from '@lucide/vue'
 
-import { blogs } from '@/constrants/blogData'
+import { blogs } from '@/constants/blogData'
 
 import BlogHeader from '@/components/blog/BlogHeader.vue'
 import BlogCard from '@/components/blog/BlogCard.vue'

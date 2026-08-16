@@ -8,7 +8,7 @@ import {
 
 import EventCard from "@/components/event/EventCard.vue";
 
-import { events } from "@/constrants/events";
+import { events } from "@/constants/events";
 
 const displayedEvents = computed(() => {
     return [...events]

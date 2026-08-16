@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 import { Search, ChevronRight } from "@lucide/vue";
 
-import { members } from "@/constrants/members.js";
+import { members } from "@/constants/members.js";
 import MemberCard from "@/components/members/MemberCard.vue";
 
 // Search

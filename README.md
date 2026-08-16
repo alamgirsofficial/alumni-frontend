@@ -35,13 +35,88 @@
 
 ```
 [[[[[[[[  Main Structure  ]]]]]]]]
-src
- ├── assets
- ├── components
- ├── pages
- ├── router
- ├── App.vue
- └── main.js
+src/
+│
+├── assets/
+│
+├── components/
+│   │
+│   ├── blog/
+│   ├── common/
+│   ├── event/
+│   ├── footer/
+│   ├── gallery/
+│   ├── home/
+│   ├── layout/
+│   ├── members/
+│   │
+│   └── admin/                  ← NEW
+│       ├── AdminSidebar.vue
+│       ├── AdminNavbar.vue
+│       ├── AdminBreadcrumb.vue
+│       └── AdminUserMenu.vue
+│
+├── constrants/
+│
+├── layouts/
+│   ├── AuthLayout.vue
+│   ├── MainLayout.vue
+│   └── AdminLayout.vue         ← NEW
+│
+├── pages/
+│   │
+│   ├── auth/
+│   │
+│   ├── admin/                  ← NEW
+│   │   ├── Dashboard.vue
+│   │   │
+│   │   ├── members/
+│   │   │   ├── Members.vue
+│   │   │   ├── MemberCreate.vue
+│   │   │   └── MemberDetails.vue
+│   │   │
+│   │   ├── events/
+│   │   │   ├── Events.vue
+│   │   │   ├── EventCreate.vue
+│   │   │   ├── EventEdit.vue
+│   │   │   ├── EventDetails.vue
+│   │   │   └── EventRegistrations.vue
+│   │   │
+│   │   ├── blogs/
+│   │   │   ├── Blogs.vue
+│   │   │   ├── BlogCreate.vue
+│   │   │   └── BlogEdit.vue
+│   │   │
+│   │   ├── gallery/
+│   │   │   └── Gallery.vue
+│   │   │
+│   │   ├── committee/
+│   │   │   └── Committee.vue
+│   │   │
+│   │   ├── messages/
+│   │   │   └── Messages.vue
+│   │   │
+│   │   ├── reports/
+│   │   │   └── Reports.vue
+│   │   │
+│   │   └── settings/
+│   │       ├── Settings.vue
+│   │       └── Profile.vue
+│   │
+│   ├── About.vue
+│   ├── BlogDetails.vue
+│   ├── Blogs.vue
+│   ├── Contact.vue
+│   ├── EventDetails.vue
+│   ├── Events.vue
+│   ├── ExecutiveCommittee.vue
+│   ├── Gallery.vue
+│   ├── Home.vue
+│   └── Members.vue
+│
+├── router/
+│
+└── App.vue
 
 [[[[[ Page Structure ]]]]]
 
@@ -72,20 +147,41 @@ components/
 │   ├── CTASection.vue
 │   └── FooterSection.vue
 
+//====================== Common Components
+components/common/
+├── LoadingSpinner.vue
+├── Pagination.vue
+├── BaseModal.vue
+├── ConfirmDialog.vue
+├── EmptyState.vue
+├── SearchInput.vue
+├── BaseButton.vue
+└── ...
 
-src/
-├── layouts/
-│   └── MainLayout.vue
-│
-├── views/
-│   ├── Home.vue
-│   ├── About.vue
-│   ├── Login.vue
-│   └── Register.vue
-│
-└── router/
-    └── index.js
+//========================== Constants
 
+constrants/
+├── about.js
+    ├── blogData.js
+    ├── committeeData.js
+    ├── events.js
+    ├── executiveMembers.js
+    ├── footer.js
+    ├── gallery.js
+    ├── members.js
+    ├── socialPlatforms.js
+    ├── statistics.js
+    └── testimonial.js
+    │
+    └── admin/
+        ├── dashboardData.js
+        ├── memberData.js
+        ├── eventData.js
+        └── registrationData.js
+
+
+
+// ==================== Gallery 
 
 └── gallery/
 │       ├── GalleryHero.vue
@@ -95,6 +191,38 @@ src/
 │       ├── GalleryCard.vue
 │       └── GalleryLightbox.vue
 ```
+
+//======================= User Profile View
+User Profile
+│
+├── Profile
+│   ├── name
+│   ├── avatar
+│   ├── batch
+│   ├── designation
+│   └── bio
+│
+├── Personal Information
+│
+├── Educations[]
+│
+├── Professional Information
+│
+├── Skills[]
+│
+├── Social Links
+│
+└── Account
+    ├── member_id
+    ├── role
+    ├── status
+    ├── email_verified
+    └── phone_verified
+
+
+
+
+
 ---
 
 # 🚀 Development Flow

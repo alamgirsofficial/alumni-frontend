@@ -12,7 +12,7 @@ import FeaturedGallery from "@/components/gallery/FeaturedGallery.vue";
 import GalleryGrid from "@/components/gallery/GalleryGrid.vue";
 import GalleryLightbox from "@/components/gallery/GalleryLightbox.vue";
 
-import { galleries } from "@/constrants/gallery";
+import { galleries } from "@/constants/gallery";
 
 /*
 |--------------------------------------------------------------------------

@@ -1,63 +1,6 @@
 import { socialPlatforms } from './socialPlatforms'
 
 
-
-// view import method 
-// <SocialLinks :social-links="president.social" />
-//<SocialLinks :social-links="secretary.social" />
-//<SocialLinks :social-links="member.social" />
-
-// export const executiveMembers = [
-//     {
-//         id: 1,
-//         name: 'Mr. Abdul Jabbar',
-//         designation: 'সভাপতি',
-//         image: '/images/members/president.jpg',
-
-//         social: [
-//             {
-//                 id: 1,
-//                 ...socialPlatforms.facebook,
-//                 url: 'https://facebook.com/abduljabbar',
-//             },
-
-//             {
-//                 id: 2,
-//                 ...socialPlatforms.linkedin,
-//                 url: 'https://linkedin.com/in/abduljabbar',
-//             },
-
-//             {
-//                 id: 3,
-//                 ...socialPlatforms.whatsapp,
-//                 url: 'https://wa.me/8801XXXXXXXXX',
-//             },
-//         ],
-//     },
-
-//     {
-//         id: 2,
-//         name: 'Mr. XYZ',
-//         designation: 'সাধারণ সম্পাদক',
-//         image: '/images/members/secretary.jpg',
-
-//         social: [
-//             {
-//                 id: 1,
-//                 ...socialPlatforms.facebook,
-//                 url: 'https://facebook.com/xyz',
-//             },
-
-//             {
-//                 id: 2,
-//                 ...socialPlatforms.youtube,
-//                 url: 'https://youtube.com/@xyz',
-//             },
-//         ],
-//     },
-// ]
-
-
 import presidentImage from '@/assets/icon/logo.png'
 import secretaryImage from '@/assets/icon/logo.png'
 

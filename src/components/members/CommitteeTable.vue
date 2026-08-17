@@ -154,8 +154,7 @@ watch(
         <!-- Desktop Table -->
         <!-- ================================= -->
 
-        <div
-            class="
+        <div class="
                 hidden
                 sm:block
 
@@ -171,32 +170,26 @@ watch(
 
                 shadow-xl
                 shadow-black/10
-            "
-        >
+            ">
 
-            <table
-                class="
+            <table class="
                     w-full
                     text-left
-                "
-            >
+                ">
 
                 <!-- ========================= -->
                 <!-- Table Header -->
                 <!-- ========================= -->
 
-                <thead
-                    class="
+                <thead class="
                         bg-blue-500/10
-                    "
-                >
+                    ">
 
                     <tr>
 
                         <!-- Number -->
 
-                        <th
-                            class="
+                        <th class="
                                 w-16
                                 px-5 py-4
 
@@ -209,16 +202,14 @@ watch(
 
                                 uppercase
                                 tracking-wide
-                            "
-                        >
+                            ">
                             #
                         </th>
 
 
                         <!-- Name -->
 
-                        <th
-                            class="
+                        <th class="
                                 px-5 py-4
 
                                 text-left
@@ -230,16 +221,14 @@ watch(
 
                                 uppercase
                                 tracking-wide
-                            "
-                        >
+                            ">
                             Name
                         </th>
 
 
                         <!-- Designation -->
 
-                        <th
-                            class="
+                        <th class="
                                 px-5 py-4
 
                                 text-left
@@ -251,16 +240,14 @@ watch(
 
                                 uppercase
                                 tracking-wide
-                            "
-                        >
+                            ">
                             Designation
                         </th>
 
 
                         <!-- Action -->
 
-                        <th
-                            class="
+                        <th class="
                                 w-24
                                 px-5 py-4
 
@@ -273,8 +260,7 @@ watch(
 
                                 uppercase
                                 tracking-wide
-                            "
-                        >
+                            ">
                             Action
                         </th>
 
@@ -289,11 +275,7 @@ watch(
 
                 <tbody>
 
-                    <tr
-                        v-for="(member, index) in paginatedMembers"
-                        :key="member.id"
-
-                        class="
+                    <tr v-for="(member, index) in paginatedMembers" :key="member.id" class="
                             group
 
                             border-t
@@ -303,19 +285,16 @@ watch(
 
                             transition-all
                             duration-300
-                        "
-                    >
+                        ">
 
                         <!-- Number -->
 
-                        <td
-                            class="
+                        <td class="
                                 px-5 py-4
 
                                 text-sm
                                 text-gray-500
-                            "
-                        >
+                            ">
                             {{
                                 props.pagination
                                     ? String(
@@ -331,22 +310,18 @@ watch(
 
                         <!-- Name -->
 
-                        <td
-                            class="
+                        <td class="
                                 px-5 py-4
-                            "
-                        >
+                            ">
 
-                            <span
-                                class="
+                            <span class="
                                     font-medium
                                     text-gray-200
 
                                     group-hover:text-white
 
                                     transition-colors
-                                "
-                            >
+                                ">
                                 {{ member.name }}
                             </span>
 
@@ -355,8 +330,7 @@ watch(
 
                         <!-- Designation -->
 
-                        <td
-                            class="
+                        <td class="
                                 px-5 py-4
 
                                 text-sm
@@ -365,33 +339,23 @@ watch(
                                 group-hover:text-gray-300
 
                                 transition-colors
-                            "
-                        >
+                            ">
                             {{ member.designation }}
                         </td>
 
 
                         <!-- Action -->
 
-                        <td
-                            class="
+                        <td class="
                                 px-5 py-4
-                            "
-                        >
+                            ">
 
-                            <div
-                                class="
+                            <div class="
                                     flex
                                     justify-center
-                                "
-                            >
+                                ">
 
-                                <button
-                                    @click="openModal(member)"
-                                    type="button"
-                                    title="View Details"
-
-                                    class="
+                                <button @click="openModal(member)" type="button" title="View Details" class="
                                         w-9 h-9
 
                                         flex
@@ -416,8 +380,7 @@ watch(
 
                                         transition-all
                                         duration-300
-                                    "
-                                >
+                                    ">
                                     <Eye :size="17" />
                                 </button>
 
@@ -432,22 +395,16 @@ watch(
                     <!-- Empty State -->
                     <!-- ========================= -->
 
-                    <tr
-                        v-if="!paginatedMembers.length"
-                    >
+                    <tr v-if="!paginatedMembers.length">
 
-                        <td
-                            colspan="4"
-
-                            class="
+                        <td colspan="4" class="
                                 px-5 py-12
 
                                 text-center
 
                                 text-sm
                                 text-gray-500
-                            "
-                        >
+                            ">
                             No data available
                         </td>
 
@@ -462,13 +419,10 @@ watch(
             <!-- Desktop Pagination -->
             <!-- ================================= -->
 
-            <div
-                v-if="
-                    props.pagination &&
-                    totalPages > 1
-                "
-
-                class="
+            <div v-if="
+                props.pagination &&
+                totalPages > 1
+            " class="
                     flex
                     items-center
                     justify-between
@@ -480,20 +434,17 @@ watch(
 
                     border-t
                     border-white/10
-                "
-            >
+                ">
 
                 <!-- Showing -->
 
-                <p
-                    class="
+                <p class="
                         hidden
                         sm:block
 
                         text-xs
                         text-gray-500
-                    "
-                >
+                    ">
                     Showing
 
                     <span class="text-gray-300">
@@ -525,25 +476,17 @@ watch(
 
                 <!-- Pagination -->
 
-                <div
-                    class="
+                <div class="
                         flex
                         items-center
                         gap-1
                         mx-auto
                         sm:mx-0
-                    "
-                >
+                    ">
 
                     <!-- Previous -->
 
-                    <button
-                        @click="goToPage(currentPage - 1)"
-                        :disabled="currentPage === 1"
-
-                        type="button"
-
-                        class="
+                    <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" type="button" class="
                             w-9 h-9
 
                             flex
@@ -564,23 +507,14 @@ watch(
                             disabled:cursor-not-allowed
 
                             transition
-                        "
-                    >
+                        ">
                         <ChevronLeft :size="17" />
                     </button>
 
 
                     <!-- Page Numbers -->
 
-                    <button
-                        v-for="page in visiblePages"
-                        :key="page"
-
-                        @click="goToPage(page)"
-
-                        type="button"
-
-                        class="
+                    <button v-for="page in visiblePages" :key="page" @click="goToPage(page)" type="button" class="
                             w-9 h-9
 
                             flex
@@ -593,35 +527,26 @@ watch(
 
                             transition-all
                             duration-300
-                        "
-
-                        :class="
-                            currentPage === page
-                                ? `
+                        " :class="currentPage === page
+                            ? `
                                     bg-cyan-400
                                     text-slate-950
                                     shadow-lg
                                     shadow-cyan-500/20
                                 `
-                                : `
+                            : `
                                     text-gray-400
                                     hover:bg-white/10
                                     hover:text-white
                                 `
-                        "
-                    >
+                            ">
                         {{ page }}
                     </button>
 
 
                     <!-- Next -->
 
-                    <button
-                        @click="goToPage(currentPage + 1)"
-                        :disabled="currentPage === totalPages"
-
-                        type="button"
-
+                    <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages" type="button"
                         class="
                             w-9 h-9
 
@@ -643,8 +568,7 @@ watch(
                             disabled:cursor-not-allowed
 
                             transition
-                        "
-                    >
+                        ">
                         <ChevronRight :size="17" />
                     </button>
 
@@ -659,18 +583,12 @@ watch(
         <!-- Mobile Cards -->
         <!-- ================================= -->
 
-        <div
-            class="
+        <div class="
                 sm:hidden
                 space-y-3
-            "
-        >
+            ">
 
-            <div
-                v-for="(member, index) in paginatedMembers"
-                :key="member.id"
-
-                class="
+            <div v-for="(member, index) in paginatedMembers" :key="member.id" class="
                     relative
 
                     p-4
@@ -687,31 +605,26 @@ watch(
 
                     transition-all
                     duration-300
-                "
-            >
+                ">
 
                 <!-- Top -->
 
-                <div
-                    class="
+                <div class="
                         flex
                         items-center
                         justify-between
-                    "
-                >
+                    ">
 
                     <!-- Number -->
 
-                    <span
-                        class="
+                    <span class="
                             text-xs
                             font-semibold
 
                             text-cyan-400
 
                             tracking-wider
-                        "
-                    >
+                        ">
                         {{
                             props.pagination
                                 ? String(
@@ -727,12 +640,7 @@ watch(
 
                     <!-- Action -->
 
-                    <button
-                        @click="openModal(member)"
-                        type="button"
-                        title="View Details"
-
-                        class="
+                    <button @click="openModal(member)" type="button" title="View Details" class="
                             w-9 h-9
 
                             flex
@@ -753,8 +661,7 @@ watch(
 
                             transition-all
                             duration-300
-                        "
-                    >
+                        ">
                         <Eye :size="17" />
                     </button>
 
@@ -763,30 +670,26 @@ watch(
 
                 <!-- Name -->
 
-                <h3
-                    class="
+                <h3 class="
                         mt-3
 
                         text-base
                         font-semibold
 
                         text-white
-                    "
-                >
+                    ">
                     {{ member.name }}
                 </h3>
 
 
                 <!-- Designation -->
 
-                <p
-                    class="
+                <p class="
                         mt-1
 
                         text-sm
                         text-gray-400
-                    "
-                >
+                    ">
                     {{ member.designation }}
                 </p>
 
@@ -795,18 +698,14 @@ watch(
 
             <!-- Mobile Empty -->
 
-            <div
-                v-if="!paginatedMembers.length"
-
-                class="
+            <div v-if="!paginatedMembers.length" class="
                     py-10
 
                     text-center
 
                     text-sm
                     text-gray-500
-                "
-            >
+                ">
                 No data available
             </div>
 
@@ -815,13 +714,10 @@ watch(
             <!-- Mobile Pagination -->
             <!-- ================================= -->
 
-            <div
-                v-if="
-                    props.pagination &&
-                    totalPages > 1
-                "
-
-                class="
+            <div v-if="
+                props.pagination &&
+                totalPages > 1
+            " class="
                     flex
                     items-center
                     justify-center
@@ -829,23 +725,11 @@ watch(
                     gap-1
 
                     pt-3
-                "
-            >
+                ">
 
                 <!-- Previous -->
 
-                <button
-                    @click="goToPage(currentPage - 1)"
-                    :disabled="currentPage === 1"
-
-                    type="button"
-
-                    class="
-                        w-9 h-9
-
-                        flex
-                        items-center
-                        justify-center
+                <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1" type="button" class="     w-9 h-9  flex  items-center   justify-center
 
                         rounded-lg
 
@@ -861,23 +745,14 @@ watch(
                         disabled:cursor-not-allowed
 
                         transition
-                    "
-                >
+                    ">
                     <ChevronLeft :size="17" />
                 </button>
 
 
                 <!-- Pages -->
 
-                <button
-                    v-for="page in visiblePages"
-                    :key="page"
-
-                    @click="goToPage(page)"
-
-                    type="button"
-
-                    class="
+                <button v-for="page in visiblePages" :key="page" @click="goToPage(page)" type="button" class="
                         w-9 h-9
 
                         flex
@@ -890,34 +765,24 @@ watch(
 
                         transition-all
                         duration-300
-                    "
-
-                    :class="
-                        currentPage === page
-                            ? `
+                    " :class="currentPage === page
+                        ? `
                                 bg-cyan-400
                                 text-slate-950
                             `
-                            : `
+                        : `
                                 text-gray-400
                                 hover:bg-white/10
                                 hover:text-white
                             `
-                    "
-                >
+                        ">
                     {{ page }}
                 </button>
 
 
                 <!-- Next -->
 
-                <button
-                    @click="goToPage(currentPage + 1)"
-                    :disabled="currentPage === totalPages"
-
-                    type="button"
-
-                    class="
+                <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages" type="button" class="
                         w-9 h-9
 
                         flex
@@ -938,8 +803,7 @@ watch(
                         disabled:cursor-not-allowed
 
                         transition
-                    "
-                >
+                    ">
                     <ChevronRight :size="17" />
                 </button>
 
@@ -952,11 +816,7 @@ watch(
         <!-- Modal -->
         <!-- ================================= -->
 
-        <MemberDetailsModal
-            v-if="selectedMember"
-            :member="selectedMember"
-            @close="closeModal"
-        />
+        <MemberDetailsModal v-if="selectedMember" :member="selectedMember" @close="closeModal" />
 
     </section>
 

@@ -71,6 +71,14 @@ export const quickLinks =[
         name: "যোগাযোগ",
         to: "/contact",
     },
+    {
+        name: "Profile",
+        to: "/profile",
+    },
+    {
+        name: "dashboard",
+        to: "/admin/dashboard",
+    },
 ];
 
 

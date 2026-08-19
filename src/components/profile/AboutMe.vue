@@ -102,12 +102,12 @@ defineProps({
           class="
             mt-4
             mx-auto
-            text-xl
+            text-sm
             leading-7
             text-slate-400
           "
         >
-          {{ bio || "No introduction has been added yet." }}
+          {{ bio || "No introduction has been added yet. PLease Contact me....." }}
         </p>
 
       </div>

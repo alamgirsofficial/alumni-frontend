@@ -34,6 +34,7 @@ import VerifyEmail from "@/pages/auth/VerifyEmail.vue";
 
 
 import UserProfile from "@/pages/profile/UserProfile.vue";
+import ProfileEdit from "@/pages/profile/EditProfile.vue";
 
 // ================ Dashboard Routes
 import Dashboard from "../pages/admin/Dashboard.vue";
@@ -155,6 +156,11 @@ const routes = [
     meta: {
         requiresAuth: true,
     },
+},
+{
+  path:"/profile/edit",
+  name: "profile.edit",
+  component: ProfileEdit,
 },
   {
     path:"/admin/",

@@ -1,4 +1,5 @@
 <script setup>
+import SocialLinks from "@/components/common/SocialLinks.vue";
 import {
   GraduationCap,
   Building2,
@@ -15,7 +16,6 @@ defineProps({
     type: Object,
     required: true,
   },
-
   initials: {
     type: String,
     default: "",
@@ -169,38 +169,15 @@ defineProps({
       <!-- Member Information -->
 
       <div
-        class="mt-6 flex flex-wrap items-center gap-2.5 border-t border-white/5 pt-5"
+        class="mt-4 ml-4 flex flex-wrap items-center gap-2.5 border-t border-white/5 pt-5"
       >
-        <div
-          class="inline-flex items-center gap-2 rounded-full border border-white/7 bg-white/2.5 px-3 py-1.5"
-        >
-          <Hash :size="12" class="text-cyan-400" />
 
-          <span class="text-xs text-emerald-400"> Member ID : </span>
-
-          <span class="text-xs font-semibold text-slate-300">
-            {{ profile.account.memberId }}
-          </span>
-        </div>
-
-        <div
-          v-if="profile.emailVerified"
-          class="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/10 bg-emerald-400/3.5 px-3 py-1.5 text-xs text-emerald-400"
-        >
-          <CheckCircle2 :size="11" />
-
-          Email Verified
-        </div>
-
-        <div
-          v-if="profile.phoneVerified"
-          class="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/10 bg-emerald-400/3.5 px-3 py-1.5 text-xs text-emerald-400"
-        >
-          <CheckCircle2 :size="11" />
-
-          Phone Verified
-        </div>
+      <SocialLinks
+        :social-links="profile.social"
+      />
       </div>
+
+      
     </div>
   </section>
 </template>

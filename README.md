@@ -219,7 +219,19 @@ User Profile
     ├── email_verified
     └── phone_verified
 
-
+components/
+└── profile/
+    └── edit/
+        ├── ProfileEditHeader.vue
+        ├── ProfilePhotoEditor.vue
+        ├── PersonalInfoForm.vue
+        ├── ContactInfoForm.vue
+        ├── ProfessionalInfoForm.vue
+        ├── EducationForm.vue
+        ├── ExperienceForm.vue
+        ├── SkillsForm.vue
+        ├── SocialLinksForm.vue
+        └── ProfileEditSidebar.vue
 
 
 

@@ -30,27 +30,32 @@ export const profile = ref({
   designation: "Full Stack Web Developer",
   company: "Tech Solutions Ltd.",
 
-  location: "Chattogram, Bangladesh",
+  presentAddress: "Bahaddarhat,Chattogram, Bangladesh",
 
   bio: "Passionate software engineer and proud member of the alumni community. I enjoy building meaningful products, mentoring young developers and staying connected with fellow alumni.",
 
-  // Profile Status
+  // ===================== Profile Status
   profileCompletion: 92,
   emailVerified: true,
   phoneVerified: true,
   accountStatus: "Active",
 
-  // Personal Information
+  // ================= Personal Information
   personal: {
     fullName: "Kabir Mahmud",
+    father_name: "Mahmud Kabir",
+    mother_name: "Misses kabir",
     dateOfBirth: "15 March 1994",
+    nid: "1234567890",
+    religion: "Islam",
     gender: "Male",
-    bloodGroup: "O+",
-    nationality: "Bangladeshi",
-    address: "Mirpur, Dhaka, Bangladesh",
+    bloodGroup: "O+ (Positive)",
+    maritalStatus: "Single",
+    nationality: "Bangladeshi by Birth",
+    permanentAddress: "Anowara, Chattogram, Bangladesh",
   },
 
-  // Education
+  // ==================== Educational Information
   education: [
     {
       id: 1,
@@ -70,17 +75,61 @@ export const profile = ref({
       endYear: "2012",
       result: "GPA 5.00",
     },
+     {
+      id: 3,
+      degree: " Secondary School Certificate",
+      institution: "Dhaka College",
+      field: "Science",
+      startYear: "2008",
+      endYear: "2010",
+      result: "GPA 5.00",
+    },
   ],
 
   // Professional Information
-  professional: {
-    currentPosition: "Senior Software Engineer",
+  experiences: [
+  {
+    id: 1,
+    position: "Senior Software Engineer",
     company: "Tech Solutions Ltd.",
     industry: "Software & Technology",
-    experience: "8 Years",
-    workLocation: "Dhaka, Bangladesh",
+    location: "Dhaka, Bangladesh",
     employmentType: "Full Time",
+    startDate: "January 2022",
+    endDate: null,
+    isCurrent: true,
+    description:
+      "Leading software development teams and building scalable web applications.",
   },
+
+  {
+    id: 2,
+    position: "Software Engineer",
+    company: "ABC Technologies",
+    industry: "Software & Technology",
+    location: "Dhaka, Bangladesh",
+    employmentType: "Full Time",
+    startDate: "July 2018",
+    endDate: "December 2021",
+    isCurrent: false,
+    description:
+      "Developed and maintained Laravel and Vue.js based web applications.",
+  },
+
+  {
+    id: 3,
+    position: "Junior Software Developer",
+    company: "XYZ Solutions",
+    industry: "Software & Technology",
+    location: "Chattogram, Bangladesh",
+    employmentType: "Full Time",
+    startDate: "January 2017",
+    endDate: "June 2018",
+    isCurrent: false,
+    description:
+      "Worked on backend APIs and database-driven applications.",
+  },
+],
 
   // Skills
   skills: [

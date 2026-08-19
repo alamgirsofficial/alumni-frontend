@@ -1,7 +1,5 @@
 <script setup>
-import {
-  ShieldCheck,
-} from "@lucide/vue";
+import { ShieldCheck } from "@lucide/vue";
 
 import ProfileSectionHeader from "@/components/common/ProfileSectionHeader.vue";
 
@@ -14,7 +12,20 @@ defineProps({
 </script>
 
 <template>
-  <section class="profile-card">
+  <section
+    class="
+      rounded-2xl
+      border border-white/10
+      bg-white/3
+      p-5
+      backdrop-blur-xl
+      transition-all duration-300
+      hover:border-white/12
+      hover:bg-white/3
+      sm:p-6
+    "
+  >
+    <!-- Header -->
 
     <ProfileSectionHeader
       title="Account Information"
@@ -23,138 +34,155 @@ defineProps({
       icon-class="bg-violet-500/10 text-violet-400"
     />
 
-    <div class="mt-6 space-y-4">
+    <!-- Account Details -->
+
+    <div class="mt-6 space-y-3">
 
       <!-- Member ID -->
 
-      <div class="account-row">
-
-        <span>
+      <div
+        class="
+          flex items-center justify-between
+          gap-4
+          border-b border-white/4
+          pb-3
+        "
+      >
+        <span class="text-xs text-slate-400">
           Member ID
         </span>
 
-        <strong>
+        <strong
+          class="
+            max-w-[65%]
+            text-right
+            text-xs
+            font-medium
+            text-slate-400
+          "
+        >
           {{ account.memberId }}
         </strong>
-
       </div>
 
       <!-- Role -->
 
-      <div class="account-row">
-
-        <span>
+      <div
+        class="
+          flex items-center justify-between
+          gap-4
+          border-b border-white/4
+          pb-3
+        "
+      >
+        <span class="text-xs text-slate-400">
           Role
         </span>
 
-        <strong
-          class="rounded-full bg-blue-400/10 px-2.5 py-1 text-[9px] font-medium text-blue-400"
+        <span
+          class="
+            max-w-[65%]
+            rounded-full
+            bg-blue-400/10
+            px-2.5
+            py-1
+            text-right
+            text-xs
+            font-medium
+            text-blue-400
+          "
         >
           {{ account.role }}
-        </strong>
-
+        </span>
       </div>
 
       <!-- Status -->
 
-      <div class="account-row">
-
-        <span>
+      <div
+        class="
+          flex items-center justify-between
+          gap-4
+          border-b border-white/4
+          pb-3
+        "
+      >
+        <span class="text-xs text-slate-400">
           Status
         </span>
 
-        <strong
-          class="inline-flex items-center gap-1.5 text-emerald-400"
+        <span
+          class="
+            inline-flex
+            max-w-[65%]
+            items-center
+            gap-1.5
+            text-right
+            text-xs
+            font-medium
+            text-emerald-400
+          "
         >
           <span
-            class="h-1.5 w-1.5 rounded-full bg-emerald-400"
+            class="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400"
           />
 
           {{ account.status }}
-        </strong>
-
+        </span>
       </div>
 
       <!-- Joined -->
 
-      <div class="account-row">
-
-        <span>
+      <div
+        class="
+          flex items-center justify-between
+          gap-4
+          border-b border-white/4
+          pb-3
+        "
+      >
+        <span class="text-xs text-slate-400">
           Joined
         </span>
 
-        <strong>
+        <strong
+          class="
+            max-w-[65%]
+            text-right
+            text-xs
+            font-medium
+            text-slate-400
+          "
+        >
           {{ account.registrationDate }}
         </strong>
-
       </div>
 
       <!-- Last Login -->
 
-      <div class="account-row">
-
-        <span>
+      <div
+        class="
+          flex items-center justify-between
+          gap-4
+        "
+      >
+        <span class="text-xs text-slate-400">
           Last Login
         </span>
 
-        <strong>
+        <strong
+          class="
+            max-w-[65%]
+            text-right
+            text-xs
+            font-medium
+            leading-5
+            text-slate-400
+          "
+        >
           {{ account.lastLogin }}
         </strong>
-
       </div>
 
     </div>
   </section>
 </template>
-
-<style scoped>
-.profile-card {
-  border-radius: 1rem;
-  border: 1px solid rgb(255 255 255 / 0.1);
-  background: rgb(255 255 255 / 0.025);
-  padding: 1.25rem;
-  backdrop-filter: blur(20px);
-
-  transition:
-    border-color 300ms ease,
-    background 300ms ease;
-}
-
-.profile-card:hover {
-  border-color: rgb(255 255 255 / 0.12);
-  background: rgb(255 255 255 / 0.03);
-}
-
-.account-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  border-bottom: 1px solid rgb(255 255 255 / 0.04);
-  padding-bottom: 0.75rem;
-}
-
-.account-row:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.account-row > span {
-  font-size: 9px;
-  color: rgb(71 85 105);
-}
-
-.account-row > strong {
-  max-width: 65%;
-  text-align: right;
-  font-size: 10px;
-  font-weight: 500;
-  color: rgb(148 163 184);
-}
-
-@media (min-width: 640px) {
-  .profile-card {
-    padding: 1.5rem;
-  }
-}
-</style>

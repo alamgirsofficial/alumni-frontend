@@ -13,7 +13,7 @@ import ProfileCompletion from "@/components/profile/ProfileCompletion.vue";
 
 import PersonalInfo from "@/components/profile/PersonalInfo.vue";
 import EducationSection from "@/components/profile/EducationSection.vue";
-import ProfessionalInfo from "@/components/profile/ProfessionalInfo.vue";
+import ProfessionalExperience from "@/components/profile/ProfessionalExperience.vue";
 import SkillsSection from "@/components/profile/SkillsSection.vue";
 
 import ContactInfo from "@/components/profile/ContactInfo.vue";
@@ -29,7 +29,7 @@ import AboutMe from "@/components/profile/AboutMe.vue";
          AMBIENT BACKGROUND
     ========================================================== -->
 
-   
+
 
     <!-- =========================================================
          MAIN CONTENT
@@ -39,24 +39,15 @@ import AboutMe from "@/components/profile/AboutMe.vue";
 
       <!-- PAGE HEADER -->
 
-      <ProfileHeader
-        @edit-profile="editProfile"
-        @change-password="changePassword"
-      />
+      <ProfileHeader @edit-profile="editProfile" @change-password="changePassword" />
 
       <!-- PROFILE HERO -->
 
-      <ProfileHero
-        :profile="profile"
-        :initials="initials"
-      />
+      <ProfileHero :profile="profile" :initials="initials" />
 
       <!-- PROFILE COMPLETION -->
 
-      <ProfileCompletion
-        :profile="profile"
-        :completion-color="completionColor"
-      />
+      <ProfileCompletion :profile="profile" :completion-color="completionColor" />
 
       <!-- =======================================================
            MAIN GRID
@@ -70,21 +61,13 @@ import AboutMe from "@/components/profile/AboutMe.vue";
 
         <div class="space-y-6 xl:col-span-2">
 
-          <PersonalInfo
-            :profile="profile"
-          />
+          <PersonalInfo :profile="profile" />
 
-          <EducationSection
-            :education="profile.education"
-          />
+          <EducationSection :education="profile.education" />
 
-          <ProfessionalInfo
-            :professional="profile.professional"
-          />
+          <ProfessionalExperience :experiences="profile.experiences" />
 
-          <SkillsSection
-            :skills="profile.skills"
-          />
+         
 
         </div>
 
@@ -94,26 +77,19 @@ import AboutMe from "@/components/profile/AboutMe.vue";
 
         <div class="space-y-6">
 
-          <ContactInfo
-            :profile="profile"
-          />
+          <ContactInfo :profile="profile" />
 
-          <SocialLinksCard
-            :social="profile.social"
-          />
+          <SocialLinksCard :social="profile.social" />
 
-          <AccountInfo
-            :account="profile.account"
-          />
+          <AccountInfo :account="profile.account" />
+           <SkillsSection :skills="profile.skills" />
 
         </div>
       </section>
 
       <!-- ABOUT ME -->
 
-      <AboutMe
-        :bio="profile.bio"
-      />
+      <AboutMe :bio="profile.bio" />
 
     </div>
   </div>

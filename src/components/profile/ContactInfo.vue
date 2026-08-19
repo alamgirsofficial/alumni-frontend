@@ -17,143 +17,223 @@ defineProps({
 </script>
 
 <template>
-  <section class="profile-card">
+  <section class="
+      rounded-2xl
+      border border-white/10
+      bg-white/[0.025]
+      p-5
+      backdrop-blur-xl
+      transition-all duration-300
+      hover:border-white/[0.12]
+      hover:bg-white/[0.03]
+      sm:p-6
+    ">
+    <!-- Header -->
+    <ProfileSectionHeader title="Contact Information" description="My contact details" icon="Mail"
+      icon-class="bg-blue-500/10 text-blue-400" />
 
-    <ProfileSectionHeader
-      title="Contact Information"
-      description="Your contact details"
-      icon="Mail"
-      icon-class="bg-blue-500/10 text-blue-400"
-    />
+    <!-- Contact Items -->
+    <div class="mt-6 space-y-4">
 
-    <div class="mt-6 space-y-5">
+      <!-- =====================================================
+           EMAIL
+      ====================================================== -->
 
-      <!-- Email -->
-
-      <div class="flex gap-3">
-
-        <div class="contact-icon">
-          <Mail :size="14" />
+      <div class="
+          group flex gap-3
+          rounded-xl
+          border border-white/5
+          bg-white/[0.015]
+          p-3.5
+          transition-all duration-300
+          hover:border-blue-400/10
+          hover:bg-blue-400/[0.025]
+        ">
+        <!-- Icon -->
+        <div class="
+            flex h-9 w-9 shrink-0
+            items-center justify-center
+            rounded-lg
+            bg-blue-500/10
+            text-blue-400
+            transition-transform duration-300
+            group-hover:scale-105
+          ">
+          <Mail :size="15" />
         </div>
 
-        <div class="min-w-0">
-
-          <p class="detail-label">
+        <!-- Content -->
+        <div class="min-w-0 flex-1">
+          <p class="
+              text-xs
+              font-medium
+              uppercase
+              tracking-[0.08em]
+              text-slate-400
+            ">
             Email
           </p>
 
-          <p class="mt-1 truncate text-xs text-slate-300">
+          <p class="
+              mt-1.5
+              truncate
+              text-sm
+              font-medium
+              text-slate-300
+            ">
             {{ profile.email }}
           </p>
 
-          <span
-            v-if="profile.emailVerified"
-            class="mt-1.5 inline-flex items-center gap-1 text-[9px] text-emerald-400"
-          >
+          <!-- Verification -->
+          <span v-if="profile.emailVerified" class="
+              mt-1.5
+              inline-flex
+              items-center
+              gap-1
+              text-xs
+              font-medium
+              text-emerald-400
+            ">
             <CheckCircle2 :size="10" />
-
             Verified
           </span>
-
         </div>
       </div>
 
-      <!-- Phone -->
+      <!-- =====================================================
+           PHONE
+      ====================================================== -->
 
-      <div class="flex gap-3">
-
-        <div class="contact-icon">
-          <Phone :size="14" />
+      <div class="
+          group flex gap-3
+          rounded-xl
+          border border-white/5
+          bg-white/[0.015]
+          p-3.5
+          transition-all duration-300
+          hover:border-cyan-400/10
+          hover:bg-cyan-400/[0.025]
+        ">
+        <!-- Icon -->
+        <div class="
+            flex h-9 w-9 shrink-0
+            items-center justify-center
+            rounded-lg
+            bg-cyan-500/10
+            text-cyan-400
+            transition-transform duration-300
+            group-hover:scale-105
+          ">
+          <Phone :size="15" />
         </div>
 
-        <div>
-
-          <p class="detail-label">
+        <!-- Content -->
+        <div class="min-w-0 flex-1">
+          <p class="
+              text-xs
+              font-medium
+              uppercase
+              tracking-[0.08em]
+              text-slate-400
+            ">
             Phone
           </p>
 
-          <p class="mt-1 text-xs text-slate-300">
+          <p class="
+              mt-1.5
+              text-sm
+              font-medium
+              text-slate-300
+            ">
             {{ profile.phone }}
           </p>
 
-          <span
-            v-if="profile.phoneVerified"
-            class="mt-1.5 inline-flex items-center gap-1 text-[9px] text-emerald-400"
-          >
+          <!-- Verification -->
+          <span v-if="profile.phoneVerified" class="
+              mt-1.5
+              inline-flex
+              items-center
+              gap-1
+              text-xs
+              font-medium
+              text-emerald-400
+            ">
             <CheckCircle2 :size="10" />
-
             Verified
           </span>
-
         </div>
       </div>
 
-      <!-- Location -->
+      <!-- =====================================================
+           PRESENT ADDRESS
+      ====================================================== -->
 
-      <div class="flex gap-3">
-
-        <div class="contact-icon">
-          <MapPin :size="14" />
+      <div class="
+          group flex gap-3
+          rounded-xl
+          border border-white/5
+          bg-white/[0.015]
+          p-3.5
+          transition-all duration-300
+          hover:border-amber-400/10
+          hover:bg-amber-400/[0.025]
+        ">
+        <!-- Icon -->
+        <div class="
+            flex h-9 w-9 shrink-0
+            items-center justify-center
+            rounded-lg
+            bg-amber-500/10
+            text-amber-400
+            transition-transform duration-300
+            group-hover:scale-105
+          ">
+          <MapPin :size="15" />
         </div>
 
-        <div>
-
-          <p class="detail-label">
-            Location
+        <!-- Content -->
+        <div class="min-w-0 flex-1">
+          <p class="
+              text-xs
+              font-medium
+              uppercase
+              tracking-[0.08em]
+              text-slate-400
+            ">
+            Present Address
           </p>
 
-          <p class="mt-1 text-xs text-slate-300">
-            {{ profile.location }}
+          <p class="
+              mt-1.5
+              text-sm
+              font-medium
+              leading-5
+              text-slate-300
+            ">
+            {{ profile.presentAddress }}
           </p>
-
         </div>
+      </div>
+
+      <!-- =====================================================
+           EMPTY STATE
+      ====================================================== -->
+
+      <div v-if="
+        !profile.email &&
+        !profile.phone &&
+        !profile.presentAddress
+      " class="
+          rounded-xl
+          border border-dashed border-white/10
+          p-5
+          text-center
+          text-xl
+          text-slate-400
+        ">
+        No contact information available.
       </div>
 
     </div>
   </section>
 </template>
-
-<style scoped>
-.profile-card {
-  border-radius: 1rem;
-  border: 1px solid rgb(255 255 255 / 0.1);
-  background: rgb(255 255 255 / 0.025);
-  padding: 1.25rem;
-  backdrop-filter: blur(20px);
-
-  transition:
-    border-color 300ms ease,
-    background 300ms ease;
-}
-
-.profile-card:hover {
-  border-color: rgb(255 255 255 / 0.12);
-  background: rgb(255 255 255 / 0.03);
-}
-
-.contact-icon {
-  display: flex;
-  height: 2rem;
-  width: 2rem;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.625rem;
-  background: rgb(255 255 255 / 0.03);
-  color: rgb(100 116 139);
-}
-
-.detail-label {
-  font-size: 9px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: rgb(71 85 105);
-}
-
-@media (min-width: 640px) {
-  .profile-card {
-    padding: 1.5rem;
-  }
-}
-</style>

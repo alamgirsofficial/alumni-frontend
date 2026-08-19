@@ -133,7 +133,7 @@ defineProps({
               <span class="inline-flex items-center gap-1.5">
                 <MapPin :size="13" />
 
-                {{ profile.location }}
+                {{ profile.presentAddress }}
               </span>
             </div>
           </div>

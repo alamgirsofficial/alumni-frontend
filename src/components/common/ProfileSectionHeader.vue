@@ -67,14 +67,14 @@ const currentIcon = computed(() => {
       </p>
 
       <h2
-        class="text-sm font-semibold text-white"
+        class="text-xl font-semibold text-white"
       >
         {{ title }}
       </h2>
 
       <p
         v-if="description"
-        class="mt-1 text-xs text-slate-400"
+        class="mt-1 text-sm text-slate-400"
       >
         {{ description }}
       </p>

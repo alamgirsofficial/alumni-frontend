@@ -1,7 +1,14 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 
-import { profile } from "@/constants/profileData.js";
+import { 
+        profile,
+        loadProfile, 
+        saveProfile,
+        calculateProfileCompletion,
+         } from "@/constants/profileData.js";
+
+import { useToast } from "@/composables/useToast.js";
 
 import ProfileEditHeader from "@/components/profile/edit/ProfileEditHeader.vue";
 import ProfilePhotoEditor from "@/components/profile/edit/ProfilePhotoEditor.vue";
@@ -11,12 +18,12 @@ import ContactInfoForm from "@/components/profile/edit/ContactInfoForm.vue";
 import ProfessionalInfoForm from "@/components/profile/edit/ProfessionalInfoForm.vue";
 
 import EducationForm from "@/components/profile/edit/EducationForm.vue";
-import ExperienceForm from "@/components/profile/edit/ExperienceForm.vue";
-
 import SkillsForm from "@/components/profile/edit/SkillsForm.vue";
 import SocialLinksForm from "@/components/profile/edit/SocialLinksForm.vue";
 
 import ProfileEditSidebar from "@/components/profile/edit/ProfileEditSidebar.vue";
+
+const { success, error } = useToast();
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +31,7 @@ import ProfileEditSidebar from "@/components/profile/edit/ProfileEditSidebar.vue
 |--------------------------------------------------------------------------
 */
 
-const form = reactive(
-    JSON.parse(JSON.stringify(profile.value))
-);
+const form = reactive(JSON.parse(JSON.stringify(profile.value)));
 
 /*
 |--------------------------------------------------------------------------
@@ -38,150 +43,167 @@ const saving = ref(false);
 
 /*
 |--------------------------------------------------------------------------
+| Active Section
+|--------------------------------------------------------------------------
+*/
+const activeSection = ref("personal");
+
+/*
+|--------------------------------------------------------------------------
+| Navigation
+|--------------------------------------------------------------------------
+*/
+
+const handleNavigate = (section) => {
+  activeSection.value = section;
+
+  const element = document.getElementById(`profile-section-${section}`);
+
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
+
+// for Profile Completion 
+
+const completion = computed(() =>
+calculateProfileCompletion(form)
+);
+/*
+|--------------------------------------------------------------------------
+| Load Profile
+|--------------------------------------------------------------------------
+*/
+
+onMounted(() => {
+  loadProfile();
+
+  Object.assign(form, JSON.parse(JSON.stringify(profile.value)));
+});
+
+/*
+|--------------------------------------------------------------------------
 | Save Profile
 |--------------------------------------------------------------------------
 */
 
 const handleSave = async () => {
-    saving.value = true;
+  saving.value = true;
 
-    try {
-        console.log("Profile data:", form);
+  try {
+    await new Promise((resolve) => {
+      setTimeout(resolve, 800);
+    });
 
-        /*
-        |--------------------------------------------------------------------------
-        | Later Laravel API
-        |--------------------------------------------------------------------------
-        |
-        | await axios.put('/api/profile', form);
-        |
-        |--------------------------------------------------------------------------
-        */
+    /*
+    |--------------------------------------------------------------------------
+    | Update Runtime Profile
+    |--------------------------------------------------------------------------
+    */
 
-        // Temporary
-        await new Promise((resolve) => {
-            setTimeout(resolve, 800);
-        });
+    Object.assign(profile.value, JSON.parse(JSON.stringify(form)));
 
-        Object.assign(
-            profile.value,
-            JSON.parse(JSON.stringify(form))
-        );
+    /*
+    |--------------------------------------------------------------------------
+    | Save to LocalStorage
+    |--------------------------------------------------------------------------
+    */
 
-        console.log("Profile Update successfully.");
+    saveProfile();
 
-    } catch (error) {
-        console.error("Failed to update profile:", error);
+    success("Profile saved successfully.");
+  } catch (err) {
+    error("Failed to save profile.");
 
-    } finally {
-        saving.value = false;
-    }
+    console.error(err);
+  } finally {
+    saving.value = false;
+  }
 };
 </script>
 
 <template>
+  <div class="min-h-screen p-4 lg:p-6">
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-    <div class="min-h-screen">
+    <ProfileEditHeader
+      title="Edit Profile"
+      description="Update your personal and professional information"
+      :saving="saving"
+      @save="handleSave"
+    />
 
-        <!-- =====================================================
-             HEADER
-        ====================================================== -->
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
 
-        <ProfileEditHeader
-            title="Edit Profile"
-            description="Update your personal and professional information"
-        />
+    <div class="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-3">
+      <!-- =================================================
+           MAIN CONTENT
+      ================================================== -->
 
-        <!-- =====================================================
-             CONTENT
-        ====================================================== -->
+      <main class="space-y-6 xl:col-span-2">
+        <!-- Profile Photo -->
 
-        <div
-            class="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-3"
-        >
+        <ProfilePhotoEditor :profile="form" />
 
-            <!-- =================================================
-                 MAIN CONTENT
-            ================================================== -->
+        <!-- Personal Information -->
 
-            <main
-                class="space-y-6 xl:col-span-2"
-            >
+        <section id="profile-section-personal">
+          <PersonalInfoForm v-model="form.personal" />
+          
+          <ContactInfoForm v-model="form" />
+        </section>
 
-                <!-- Profile Photo -->
+        <!-- Contact Information -->
 
-                <ProfilePhotoEditor
-                    :profile="form"
-                />
 
-                <!-- Personal Information -->
+        <!-- Education -->
 
-                <PersonalInfoForm
-                    v-model="form.personal"
-                />
+        <section id="profile-section-education">
+          <EducationForm v-model="form.education" />
+        </section>
 
-                <!-- Contact Information -->
+        <!-- Professional Information -->
 
-                <ContactInfoForm
-                    v-model="form"
-                />
+        <section id="profile-section-experience">
+          <ProfessionalInfoForm v-model="form.experiences" />
+        </section>
 
-                <!-- Professional Information -->
+        <!-- Skills -->
 
-                <ProfessionalInfoForm
-                    v-model="form"
-                />
+        <section id="profile-section-skills">
+          <SkillsForm v-model="form.skills" />
+        </section>
 
-                <!-- Education -->
+        <!-- Social Links -->
 
-                <EducationForm
-                    v-model="form.education"
-                />
+        <section id="profile-section-social">
+          <SocialLinksForm v-model="form.social" />
+        </section>
+      </main>
 
-                <!-- Professional Experience -->
+      <!-- =================================================
+           SIDEBAR
+      ================================================== -->
 
-                <ExperienceForm
-                    v-model="form.experiences"
-                />
-
-                <!-- Skills -->
-
-                <SkillsForm
-                    v-model="form.skills"
-                />
-
-                <!-- Social Links -->
-
-                <SocialLinksForm
-                    v-model="form.social"
-                />
-
-            </main>
-
-            <!-- =================================================
-                 SIDEBAR
-            ================================================== -->
-
-            <aside
-                class="xl:col-span-1"
-            >
-
-                <div
-                    class="sticky top-24"
-                >
-
-                    <ProfileEditSidebar
-                        :profile="form"
-                        :saving="saving"
-                        @save="handleSave"
-                    />
-
-                </div>
-
-            </aside>
-
+      <aside class="xl:col-span-1">
+        <div class="sticky top-24">
+            
+          <ProfileEditSidebar
+            :completion="completion"
+            :active-section="activeSection"
+            :saving="saving"
+            @navigate="handleNavigate"
+            @save="handleSave"
+          />
         </div>
-
+      </aside>
     </div>
-
+  </div>
 </template>

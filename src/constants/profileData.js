@@ -35,10 +35,10 @@ export const profile = ref({
   bio: "Passionate software engineer and proud member of the alumni community. I enjoy building meaningful products, mentoring young developers and staying connected with fellow alumni.",
 
   // ===================== Profile Status
-  profileCompletion: 92,
-  emailVerified: true,
-  phoneVerified: true,
-  accountStatus: "Active",
+  // profileCompletion: 92,
+  // emailVerified: true,
+  // phoneVerified: true,
+  // accountStatus: "Active",
 
   // ================= Personal Information
   personal: {
@@ -149,7 +149,7 @@ export const profile = ref({
       id: 1,
       name: "Website",
       icon: "lucide:globe",
-      url: "https://example.com",
+      url: "https://abcdxyz.com",
       color: "#0ea5e9",
     },
 
@@ -157,7 +157,7 @@ export const profile = ref({
       id: 2,
       name: "LinkedIn",
       icon: "mdi:linkedin",
-      url: "https://linkedin.com",
+      url: "https://linkedin.com/123",
       color: "#0a66c2",
     },
 
@@ -222,6 +222,46 @@ export const completionColor = computed(() => {
   return "text-amber-400";
 });
 
+export function calculateProfileCompletion(data) {
+  let completed = 0;
+  const total = 5;
+
+    // Personal
+  if (
+    data.name?.trim() ||
+    data.personal?.fullName?.trim()
+  ) {
+    completed++;
+  }
+
+
+    // Education
+  if (data.education?.length > 0) {
+    completed++;
+  }
+
+   // Experience
+  if (data.experiences?.length > 0) {
+    completed++;
+  }
+
+  // Skills
+  if (data.skills?.length > 0) {
+    completed++;
+  }
+
+  // Social
+  if (
+    data.social?.some(
+      (item) => item.url?.trim()
+    )
+  ) {
+    completed++;
+  }
+
+  return Math.round((completed / total) * 100);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Actions
@@ -239,3 +279,49 @@ export const changePassword = () => {
   console.log("Change password");
 };
 
+/*
+|--------------------------------------------------------------------------
+| Local Storage
+|--------------------------------------------------------------------------
+*/
+
+const PROFILE_STORAGE_KEY = "alumni_profile";
+
+
+export const loadProfile = () => {
+
+  const savedProfile = localStorage.getItem(PROFILE_STORAGE_KEY);
+
+  if (savedProfile) {
+    try {
+      profile.value = JSON.parse(savedProfile);
+    } catch (error) {
+      console.error("Failed to load profile:", error);
+    }
+  }
+
+};
+
+
+export const saveProfile = () => {
+
+  localStorage.setItem(
+    PROFILE_STORAGE_KEY,
+    JSON.stringify(profile.value)
+  );
+
+};
+
+
+export const resetProfile = () => {
+
+  localStorage.removeItem(PROFILE_STORAGE_KEY);
+
+  window.location.reload();
+
+};
+
+
+// ===================
+//   Profile Completion 
+// ===============

@@ -18,7 +18,7 @@ defineProps({
 
 <template>
   <section
-    class="rounded-2xl border border-white/10 bg-white/[0.025] p-5 backdrop-blur-xl transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.03] sm:p-6"
+    class="rounded-2xl border border-white/10 bg-white/3 p-5 backdrop-blur-xl transition-all duration-300 hover:border-white/2 hover:bg-white/3 sm:p-6"
   >
 
     <ProfileSectionHeader
@@ -44,12 +44,12 @@ defineProps({
 
         <!-- Dot -->
         <div
-          class="absolute -left-[4px] top-1.5 h-2.5 w-2.5 rounded-full bg-blue-400 ring-4 ring-blue-400/5"
+          class="absolute -left-1 top-1.5 h-2.5 w-2.5 rounded-full bg-blue-400 ring-4 ring-blue-400/5"
         />
 
         <!-- Experience Card -->
         <div
-          class="rounded-xl border border-white/5 bg-white/[0.015] p-4 transition-all duration-300 hover:border-blue-400/10 hover:bg-blue-400/[0.02]"
+          class="rounded-xl border border-white/5 bg-white/2 p-4 transition-all duration-300 hover:border-blue-400/10 hover:bg-blue-400/2"
         >
 
           <!-- Header -->

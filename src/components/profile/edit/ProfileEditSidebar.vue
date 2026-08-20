@@ -12,6 +12,12 @@ import {
   X,
 } from "@lucide/vue";
 
+/*
+|--------------------------------------------------------------------------
+| Props
+|--------------------------------------------------------------------------
+*/
+
 defineProps({
   completion: {
     type: Number,
@@ -23,17 +29,25 @@ defineProps({
     default: "personal",
   },
 
-  isSaving: {
+  saving: {
     type: Boolean,
     default: false,
   },
 });
 
-const emit = defineEmits([
-  "navigate",
-  "save",
-  "cancel",
-]);
+/*
+|--------------------------------------------------------------------------
+| Emits
+|--------------------------------------------------------------------------
+*/
+
+const emit = defineEmits(["navigate", "save", "cancel"]);
+
+/*
+|--------------------------------------------------------------------------
+| Edit Sections
+|--------------------------------------------------------------------------
+*/
 
 const sections = [
   {
@@ -66,12 +80,12 @@ const sections = [
 
 <template>
   <aside class="space-y-4">
-    <!-- ================================================
+    <!-- =====================================================
          PROFILE COMPLETION
-    ================================================= -->
+    ====================================================== -->
 
     <div
-      class="rounded-2xl border border-white/10 bg-white/[0.025] p-5 backdrop-blur-xl"
+      class="rounded-2xl border border-white/10 bg-white/3 p-5 backdrop-blur-xl"
     >
       <div class="flex items-center justify-between">
         <div>
@@ -81,9 +95,7 @@ const sections = [
             Profile Completion
           </p>
 
-          <p class="mt-1 text-lg font-semibold text-white">
-            {{ completion }}%
-          </p>
+          <p class="mt-1 text-lg font-semibold text-white">{{ completion }}%</p>
         </div>
 
         <div
@@ -97,13 +109,13 @@ const sections = [
 
       <!-- Progress -->
 
-      <div
-        class="mt-4 h-1.5 overflow-hidden rounded-full bg-white/5"
-      >
+      <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-white/5">
         <div
           class="h-full rounded-full bg-linear-to-r from-blue-500 to-cyan-400 transition-all duration-500"
-          :style="{ width: `${completion}%` }"
-        />
+          :style="{
+            width: `${completion}%`,
+          }"
+        ></div>
       </div>
 
       <p class="mt-3 text-[10px] leading-4 text-slate-600">
@@ -111,15 +123,15 @@ const sections = [
       </p>
     </div>
 
-    <!-- ================================================
+    <!-- =====================================================
          QUICK NAVIGATION
-    ================================================= -->
+    ====================================================== -->
 
     <div
-      class="rounded-2xl border border-white/10 bg-white/[0.025] p-3 backdrop-blur-xl"
+      class="rounded-2xl border border-white/10 bg-white/3 p-3 backdrop-blur-xl"
     >
       <p
-        class="px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-600"
+        class="px-3 py-2 text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-400"
       >
         Edit Sections
       </p>
@@ -134,7 +146,7 @@ const sections = [
           :class="
             activeSection === section.id
               ? 'bg-cyan-400/10 text-cyan-400'
-              : 'text-slate-500 hover:bg-white/[0.03] hover:text-slate-300'
+              : 'text-slate-400 hover:bg-white/3 hover:text-slate-300'
           "
         >
           <component
@@ -143,7 +155,7 @@ const sections = [
             :class="
               activeSection === section.id
                 ? 'text-cyan-400'
-                : 'text-slate-600 group-hover:text-slate-400'
+                : 'text-slate-400 group-hover:text-slate-400'
             "
           />
 
@@ -157,21 +169,17 @@ const sections = [
             class="text-cyan-400"
           />
 
-          <Circle
-            v-else
-            :size="12"
-            class="text-slate-700"
-          />
+          <Circle v-else :size="12" class="text-slate-700" />
         </button>
       </nav>
     </div>
 
-    <!-- ================================================
+    <!-- =====================================================
          PRIVACY
-    ================================================= -->
+    ====================================================== -->
 
     <div
-      class="rounded-2xl border border-white/10 bg-white/[0.025] p-4 backdrop-blur-xl"
+      class="rounded-2xl border border-white/10 bg-white/3 p-4 backdrop-blur-xl"
     >
       <div class="flex items-start gap-3">
         <div
@@ -181,9 +189,7 @@ const sections = [
         </div>
 
         <div>
-          <p class="text-xs font-medium text-slate-300">
-            Privacy Settings
-          </p>
+          <p class="text-xs font-medium text-slate-300">Privacy Settings</p>
 
           <p class="mt-1 text-[10px] leading-4 text-slate-600">
             You can control who can view your profile after saving your changes.
@@ -192,9 +198,9 @@ const sections = [
       </div>
     </div>
 
-    <!-- ================================================
+    <!-- =====================================================
          ACTIONS
-    ================================================= -->
+    ====================================================== -->
 
     <div
       class="sticky bottom-4 rounded-2xl border border-white/10 bg-[#0b1424]/95 p-3 shadow-2xl shadow-black/20 backdrop-blur-xl"
@@ -217,20 +223,17 @@ const sections = [
         <button
           type="button"
           @click="emit('save')"
-          :disabled="isSaving"
+          :disabled="saving"
           class="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-cyan-400 px-3 py-2.5 text-[10px] font-semibold text-white shadow-lg shadow-blue-500/10 transition-all duration-200 hover:from-blue-400 hover:to-cyan-300 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <Save
-            :size="14"
-            v-if="!isSaving"
-          />
+          <Save v-if="!saving" :size="14" />
 
           <span
-            v-if="isSaving"
+            v-else
             class="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/30 border-t-white"
-          />
+          ></span>
 
-          {{ isSaving ? "Saving..." : "Save Changes" }}
+          {{ saving ? "Saving..." : "Save Changes" }}
         </button>
       </div>
     </div>

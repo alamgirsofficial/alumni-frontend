@@ -1,25 +1,34 @@
 <script setup>
 import {
   profile,
+  loadProfile,
   initials,
   completionColor,
   editProfile,
   changePassword,
 } from "@/constants/profileData.js";
 
-import ProfileHeader from "@/components/profile/ProfileHeader.vue";
-import ProfileHero from "@/components/profile/ProfileHero.vue";
-import ProfileCompletion from "@/components/profile/ProfileCompletion.vue";
+import { onMounted } from "vue";
+import { useToast } from "@/composables/useToast";
 
-import PersonalInfo from "@/components/profile/PersonalInfo.vue";
-import EducationSection from "@/components/profile/EducationSection.vue";
-import ProfessionalExperience from "@/components/profile/ProfessionalExperience.vue";
-import SkillsSection from "@/components/profile/SkillsSection.vue";
+import ProfileHeader from "@/components/profile/view/ProfileHeader.vue";
+import ProfileHero from "@/components/profile/view/ProfileHero.vue";
+import ProfileCompletion from "@/components/profile/view/ProfileCompletion.vue";
 
-import ContactInfo from "@/components/profile/ContactInfo.vue";
-import SocialLinksCard from "@/components/profile/SocialLinksCard.vue";
-import AccountInfo from "@/components/profile/AccountInfo.vue";
-import AboutMe from "@/components/profile/AboutMe.vue";
+import PersonalInfo from "@/components/profile/view/PersonalInfo.vue";
+import EducationSection from "@/components/profile/view/EducationSection.vue";
+import ProfessionalExperience from "@/components/profile/view/ProfessionalExperience.vue";
+import SkillsSection from "@/components/profile/view/SkillsSection.vue";
+
+import ContactInfo from "@/components/profile/view/ContactInfo.vue";
+import SocialLinksCard from "@/components/profile/view/SocialLinksCard.vue";
+import AccountInfo from "@/components/profile/view/AccountInfo.vue";
+import AboutMe from "@/components/profile/view/AboutMe.vue";
+
+
+onMounted(()=>{
+  loadProfile();
+});
 </script>
 
 <template>

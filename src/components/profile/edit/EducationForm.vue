@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue";
 import {
   GraduationCap,
   Plus,
@@ -12,16 +11,18 @@ import {
 import ProfileSectionHeader from "@/components/common/ProfileSectionHeader.vue";
 
 const props = defineProps({
-  education: {
+  modelValue: {
     type: Array,
     default: () => [],
   },
 });
 
-const emit = defineEmits(["update:education"]);
+const emit = defineEmits(["update:modelValue"]);
 
 const addEducation = () => {
-  props.education.push({
+  emit("update:modelValue",[
+    ...props.modelValue,
+  { 
     id: Date.now(),
     degree: "",
     institution: "",
@@ -29,17 +30,21 @@ const addEducation = () => {
     startYear: "",
     endYear: "",
     result: "",
-  });
+  },
+]);
 };
 
 const removeEducation = (index) => {
-  props.education.splice(index, 1);
+  emit( 
+    "update:modelValue",
+    props.modelValue.filter((_,i)=>i !==index)
+  );
 };
 </script>
 
 <template>
   <section
-    class="rounded-2xl border border-white/10 bg-white/[0.025]
+    class="rounded-2xl border border-white/10 bg-white/3
            p-5 backdrop-blur-xl transition-all duration-300
            hover:border-white/15 sm:p-6"
   >
@@ -56,22 +61,7 @@ const removeEducation = (index) => {
         icon-class="bg-cyan-500/10 text-cyan-400"
       />
 
-      <!-- Add -->
-      <button
-        type="button"
-        @click="addEducation"
-        class="inline-flex shrink-0 items-center gap-1.5
-               rounded-lg border border-cyan-400/10
-               bg-cyan-400/10 px-3 py-2
-               text-[10px] font-semibold text-cyan-400
-               transition-all duration-200
-               hover:border-cyan-400/20
-               hover:bg-cyan-400/15
-               hover:text-cyan-300"
-      >
-        <Plus :size="13" />
-        Add Education
-      </button>
+   
     </div>
 
     <!-- =====================================================
@@ -83,13 +73,13 @@ const removeEducation = (index) => {
       <!-- Education Item -->
 
       <div
-        v-for="(item, index) in education"
+        v-for="(item, index) in modelValue"
         :key="item.id"
         class="group rounded-xl border border-white/5
-               bg-white/[0.015] p-4
+               bg-white/2 p-4
                transition-all duration-300
                hover:border-cyan-400/10
-               hover:bg-cyan-400/[0.02]"
+               hover:bg-cyan-400/2"
       >
 
         <!-- Item Header -->
@@ -120,17 +110,13 @@ const removeEducation = (index) => {
           <!-- Remove -->
 
           <button
-            v-if="education.length > 1"
+            v-if="modelValue.length > 1"
             type="button"
             @click="removeEducation(index)"
-            class="flex h-8 w-8 items-center justify-center
-                   rounded-lg text-slate-600
-                   transition-all duration-200
-                   hover:bg-red-400/10
-                   hover:text-red-400"
-            title="Remove education"
+           class="inline-flex items-center justify-center gap-2 rounded-lg border border-red-400/10 bg-red-400/5 px-3 py-2 text-xs font-medium text-red-400 transition hover:border-red-400/20 hover:bg-red-400/50"
           >
             <Trash2 :size="14" />
+            Remove
           </button>
 
         </div>
@@ -161,12 +147,12 @@ const removeEducation = (index) => {
                 type="text"
                 placeholder="e.g. Bachelor of Science in Computer Science"
                 class="w-full rounded-lg border border-white/7
-                       bg-white/[0.025] py-2.5 pl-9 pr-3
+                       bg-white/3 py-2.5 pl-9 pr-3
                        text-xs text-slate-200 outline-none
                        placeholder:text-slate-700
                        transition-all duration-200
                        focus:border-cyan-400/30
-                       focus:bg-cyan-400/[0.025]
+                       focus:bg-cyan-400/3
                        focus:ring-2 focus:ring-cyan-400/5"
               />
             </div>
@@ -194,11 +180,11 @@ const removeEducation = (index) => {
                 type="text"
                 placeholder="University / College"
                 class="w-full rounded-lg border border-white/7
-                       bg-white/[0.025] py-2.5 pl-9 pr-3
+                       bg-white/3 py-2.5 pl-9 pr-3
                        text-xs text-slate-200 outline-none
                        placeholder:text-slate-700
                        focus:border-cyan-400/30
-                       focus:bg-cyan-400/[0.025]
+                       focus:bg-cyan-400/3
                        focus:ring-2 focus:ring-cyan-400/5"
               />
             </div>
@@ -219,11 +205,11 @@ const removeEducation = (index) => {
               type="text"
               placeholder="e.g. Computer Science"
               class="w-full rounded-lg border border-white/7
-                     bg-white/[0.025] px-3 py-2.5
+                     bg-white/3 px-3 py-2.5
                      text-xs text-slate-200 outline-none
                      placeholder:text-slate-700
                      focus:border-cyan-400/30
-                     focus:bg-cyan-400/[0.025]
+                     focus:bg-cyan-400/3
                      focus:ring-2 focus:ring-cyan-400/5"
             />
           </div>
@@ -250,7 +236,7 @@ const removeEducation = (index) => {
                 type="text"
                 placeholder="2012"
                 class="w-full rounded-lg border border-white/7
-                       bg-white/[0.025] py-2.5 pl-9 pr-3
+                       bg-white/3 py-2.5 pl-9 pr-3
                        text-xs text-slate-200 outline-none
                        placeholder:text-slate-700
                        focus:border-cyan-400/30
@@ -281,7 +267,7 @@ const removeEducation = (index) => {
                 type="text"
                 placeholder="2016"
                 class="w-full rounded-lg border border-white/7
-                       bg-white/[0.025] py-2.5 pl-9 pr-3
+                       bg-white/3 py-2.5 pl-9 pr-3
                        text-xs text-slate-200 outline-none
                        placeholder:text-slate-700
                        focus:border-cyan-400/30
@@ -312,7 +298,7 @@ const removeEducation = (index) => {
                 type="text"
                 placeholder="e.g. CGPA 3.65 / 4.00"
                 class="w-full rounded-lg border border-white/7
-                       bg-white/[0.025] py-2.5 pl-9 pr-3
+                       bg-white/3 py-2.5 pl-9 pr-3
                        text-xs text-slate-200 outline-none
                        placeholder:text-slate-700
                        focus:border-cyan-400/30
@@ -327,7 +313,7 @@ const removeEducation = (index) => {
       <!-- Empty -->
 
       <div
-        v-if="!education.length"
+        v-if="!modelValue.length"
         class="rounded-xl border border-dashed
                border-white/10 p-6 text-center"
       >
@@ -351,5 +337,15 @@ const removeEducation = (index) => {
       </div>
 
     </div>
+     
+      <!-- Add More -->
+    <button
+      type="button"
+      @click="addEducation"
+      class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-violet-400/20 bg-violet-400/5 px-4 py-3 text-sm font-medium text-violet-300 transition hover:border-violet-400/30 hover:bg-violet-400/10"
+    >
+      <Plus :size="17" />
+      Add More Education info
+    </button>
   </section>
 </template>

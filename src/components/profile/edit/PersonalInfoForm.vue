@@ -24,7 +24,7 @@ defineEmits(["update:modelValue"]);
 
 <template>
   <section
-    class="rounded-2xl border border-white/10 bg-white/[0.025] p-5 backdrop-blur-xl sm:p-6"
+    class="rounded-2xl border border-white/10 bg-white/2 p-5 backdrop-blur-xl sm:p-6"
   >
     <ProfileSectionHeader
       kicker="Personal"

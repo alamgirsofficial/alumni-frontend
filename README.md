@@ -249,6 +249,8 @@ components/
 - [x] Folder Structure Ready
 - [x] Navbar Design
 - [x] Header Design
+- [x] install vue-toastification
+
 
 ---
 
@@ -333,3 +335,9 @@ components/
 - [ ] Pagination
 
 
+
+
+
+<!-- Fo Clean LocalStorage data  -->
+localStorage.removeItem("alumni_profile");
+localStorage.getItem("alumni_profile");

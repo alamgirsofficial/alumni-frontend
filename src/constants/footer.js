@@ -77,7 +77,7 @@ export const quickLinks =[
     },
     {
         name: "dashboard",
-        to: "/admin/dashboard",
+        to: "/dashboard",
     },
 ];
 

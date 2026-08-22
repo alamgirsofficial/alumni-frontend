@@ -11,7 +11,7 @@ defineProps({
 
 <template>
   <div
-    class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-cyan-400/20 hover:bg-white/[0.04]"
+    class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-cyan-400/20 hover:bg-white/4"
   >
     <div
       aria-hidden="true"
@@ -22,7 +22,7 @@ defineProps({
     <div class="relative">
       <div class="flex items-start justify-between">
         <div
-          class="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]"
+          class="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/4"
         >
           <component
             :is="stat.icon"

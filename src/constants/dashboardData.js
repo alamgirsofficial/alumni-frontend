@@ -1,6 +1,6 @@
 // src/constants/dashboardData.js
 
-import { markRaw } from "vue";
+import { computed, markRaw } from "vue";
 
 import {
   Users,
@@ -12,17 +12,22 @@ import {
   Image,
 } from "@lucide/vue";
 
+
+import { users } from "@/constants/users";
+import { events } from "@/constants/events";
+ import { blogs } from "@/constants/blogData";
+
 /*
 |--------------------------------------------------------------------------
 | Dashboard Statistics
 |--------------------------------------------------------------------------
 */
 
-export const statistics = [
+export const statistics =computed(() =>  [
   {
     id: 1,
     title: "Total Members",
-    value: "1,250",
+    value: users.length,    //dynamic data insert from localStorage
     change: "12.5%",
     description: "vs last month",
     icon: markRaw(Users),
@@ -33,7 +38,7 @@ export const statistics = [
   {
     id: 2,
     title: "Total Events",
-    value: "24",
+    value: events.length,     //dynamic data insert from localStorage
     change: "8.2%",
     description: "vs last month",
     icon: markRaw(CalendarDays),
@@ -41,16 +46,16 @@ export const statistics = [
     glowClass: "bg-cyan-500/20",
   },
 
-  {
-    id: 3,
-    title: "Registrations",
-    value: "856",
-    change: "15.8%",
-    description: "vs last month",
-    icon: markRaw(UserCheck),
-    iconClass: "text-sky-400",
-    glowClass: "bg-sky-500/20",
-  },
+ {
+        id: 3,
+        title: "Blog Posts",
+        value: blogs.value.length, //dynamic Data inser from localStorage
+        change: "15.8%",
+        description: "published posts",
+        icon: markRaw(FileText),
+        iconClass: "text-sky-400",
+        glowClass: "bg-sky-500/20",
+    },
 
   {
     id: 4,
@@ -62,7 +67,7 @@ export const statistics = [
     iconClass: "text-amber-400",
     glowClass: "bg-amber-500/20",
   },
-];
+]);
 
 /*
 |--------------------------------------------------------------------------

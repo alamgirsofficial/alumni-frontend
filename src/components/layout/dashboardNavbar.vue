@@ -149,7 +149,7 @@ const handleLogout = () => {
             </RouterLink>
 
             <RouterLink
-              to="/admin/settings"
+              to="/settings"
               class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs text-slate-400 transition hover:bg-white/5 hover:text-white"
             >
               <Settings :size="16" />

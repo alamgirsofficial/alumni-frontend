@@ -6,7 +6,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import MainLayout from "@/layouts/MainLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
-import AdminLayout from "@/layouts/AdminLayout.vue";
+import DashboardLayout from "@/layouts/DashboradLayout.vue";
 
 // =========================
 // Public Pages
@@ -37,10 +37,17 @@ import UserProfile from "@/pages/profile/UserProfile.vue";
 import ProfileEdit from "@/pages/profile/EditProfile.vue";
 
 // ================ Dashboard Routes
-import Dashboard from "@/pages/admin/Dashboard.vue";
+import Dashboard from "@/pages/dashboard/Dashboard.vue";
+
+
+import alumni from "@/components/dashboard/alumni/Alumni_list.vue";
+
+
+import EventsShow from "@/components/dashboard/event/event_show.vue";
+
 
 // =========================
-// Routes
+//  Routes
 // =========================
 
 const routes = [
@@ -66,7 +73,7 @@ const routes = [
       },
       {
         path: "/events",
-        name: "events",
+        name: "public.events",
         component: Events,
       },
       {
@@ -112,7 +119,7 @@ const routes = [
   },
 
   // =========================
-  // Authentication
+  // Authentication route 
   // =========================
 
   {
@@ -145,10 +152,7 @@ const routes = [
       },
     ],
   },
-
-
-
-  //============= User Profile
+  //======================== User Profile
   {
     path: "/profile",
     name: "profile",
@@ -162,22 +166,52 @@ const routes = [
   name: "profile.edit",
   component: ProfileEdit,
 },
-  {
-    path:"/admin/",
-    component: AdminLayout,
-    children: [
-      {
-        path: "/dashboard",
-        name: "dashboard",
-        component: Dashboard,
 
-        meta: {
-            requiresAuth: true,
-        },
-      },
 
-    ],
+
+
+// Dashboarad Releted Route 
+
+{
+  path: "/dashboard",
+  component: DashboardLayout,
+  meta: {
+    requiresAuth: true,
   },
+  children: [
+    {
+      path: "",
+      name: "dashboard",
+      component: Dashboard,
+    },
+    {
+      path: "alumni",
+      name: "alumni.list",
+      component: alumni,
+    },
+    
+    {
+      path: "events",
+      name: "dashboard.events",
+      component: EventsShow,
+    },
+    {
+      path: "blogs",
+      name: "blogs",
+      component: Blogs,
+    },
+    {
+      path: "gallery",
+      name: "gallery",
+      component: Gallery,
+    },
+    {
+      path: "committee",
+      name: "committee",
+      component: Committee,
+    },
+  ],
+}
 ];
 
 // =========================

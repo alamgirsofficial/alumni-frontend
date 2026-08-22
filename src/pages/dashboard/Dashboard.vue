@@ -1,12 +1,12 @@
 <script setup>
-import DashboardHeader from "@/components/admin/dashboard/DashboardHeader.vue";
-import DashboardStats from "@/components/admin/dashboard/DashboardStats.vue";
-import MemberGrowthChart from "@/components/admin/dashboard/MemberGrowthChart.vue";
-import QuickActions from "@/components/admin/dashboard/QuickActions.vue";
-import UpcomingEvents from "@/components/admin/dashboard/UpcomingEvents.vue";
-import RecentRegistrations from "@/components/admin/dashboard/RecentRegistrations.vue";
-import RecentActivities from "@/components/admin/dashboard/RecentActivities.vue";
-import DashboardFooter from "@/components/admin/dashboard/DashboardFooter.vue";
+import DashboardHeader from "@/components/dashboard/component/DashboardHeader.vue";
+import DashboardStats from "@/components/dashboard/component/DashboardStats.vue";
+import MemberGrowthChart from "@/components/dashboard/component/MemberGrowthChart.vue";
+import QuickActions from "@/components/dashboard/component/QuickActions.vue";
+import UpcomingEvents from "@/components/dashboard/component/UpcomingEvents.vue";
+import RecentRegistrations from "@/components/dashboard/component/RecentRegistrations.vue";
+import RecentActivities from "@/components/dashboard/component/RecentActivities.vue";
+import DashboardFooter from "@/components/dashboard/component/DashboardFooter.vue";
 
 import {
   statistics,

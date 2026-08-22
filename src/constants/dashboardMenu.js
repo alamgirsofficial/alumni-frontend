@@ -9,60 +9,96 @@ import {
   BarChart3,
   Settings,
   UserCircle,
+  PlusCircle,
+  List,
+  Pencil,
 } from "@lucide/vue";
 
-export const adminMenuItems = [
+export const dashboardMenu = [
   {
     title: "Dashboard",
-    route: "/admin/dashboard",
+    route: "/dashboard",
     icon: LayoutDashboard,
   },
 
   {
-    title: "Members",
-    route: "/admin/members",
+    title: "Alumni",
     icon: Users,
+    children: [
+      {
+        title: "Create Alumni",
+        route: "/dashboard/alumni/create",
+        icon: PlusCircle,
+      },
+      {
+        title: "Alumni List",
+        route: "/dashboard/alumni",
+        icon: List,
+      },
+    ],
   },
 
   {
     title: "Events",
-    route: "/admin/events",
     icon: CalendarDays,
+    children: [
+      {
+        title: "Create Event",
+        route: "/dashboard/events/create",
+        icon: PlusCircle,
+      },
+      {
+        title: "Event List",
+        route: "/dashboard/events",
+        icon: List,
+      },
+    ],
   },
 
   {
     title: "Blogs",
-    route: "/admin/blogs",
     icon: FileText,
+    children: [
+      {
+        title: "Create Blog",
+        route: "/dashboard/blogs/create",
+        icon: PlusCircle,
+      },
+      {
+        title: "Blog List",
+        route: "/dashboard/blogs",
+        icon: List,
+      },
+    ],
   },
 
   {
     title: "Gallery",
-    route: "/admin/gallery",
+    route: "/dashboard/gallery",
     icon: Images,
   },
 
   {
     title: "Committee",
-    route: "/admin/committee",
+    route: "/dashboard/committee",
     icon: UserRoundCog,
   },
 
   {
     title: "Messages",
-    route: "/admin/messages",
+    route: "/dashboard/messages",
     icon: Mail,
   },
 
   {
     title: "Reports",
-    route: "/admin/reports",
+    route: "/dashboard/reports",
     icon: BarChart3,
   },
 
   {
     title: "Settings",
-    route: "/admin/settings",
+    route: "/dashboard/settings",
     icon: Settings,
   },
 

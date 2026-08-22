@@ -37,7 +37,7 @@ import UserProfile from "@/pages/profile/UserProfile.vue";
 import ProfileEdit from "@/pages/profile/EditProfile.vue";
 
 // ================ Dashboard Routes
-import Dashboard from "../pages/admin/Dashboard.vue";
+import Dashboard from "@/pages/admin/Dashboard.vue";
 
 // =========================
 // Routes
@@ -167,10 +167,14 @@ const routes = [
     component: AdminLayout,
     children: [
       {
-        path:"dashboard",
-        name: "Dashboard",
-        component: Dashboard
-      }
+        path: "/dashboard",
+        name: "dashboard",
+        component: Dashboard,
+
+        meta: {
+            requiresAuth: true,
+        },
+      },
 
     ],
   },

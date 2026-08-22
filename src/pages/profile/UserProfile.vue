@@ -6,9 +6,11 @@ import {
   completionColor,
   editProfile,
   changePassword,
+  calculateProfileCompletion,
 } from "@/constants/profileData.js";
 
-import { onMounted } from "vue";
+import {  computed, onMounted } from "vue";
+
 import { useToast } from "@/composables/useToast";
 
 import ProfileHeader from "@/components/profile/view/ProfileHeader.vue";
@@ -25,6 +27,9 @@ import SocialLinksCard from "@/components/profile/view/SocialLinksCard.vue";
 import AccountInfo from "@/components/profile/view/AccountInfo.vue";
 import AboutMe from "@/components/profile/view/AboutMe.vue";
 
+const completion = computed(() => {
+  return calculateProfileCompletion(profile.value);
+});
 
 onMounted(()=>{
   loadProfile();
@@ -56,7 +61,10 @@ onMounted(()=>{
 
       <!-- PROFILE COMPLETION -->
 
-      <ProfileCompletion :profile="profile" :completion-color="completionColor" />
+   <ProfileCompletion
+  :completion="completion"
+  :completion-color="completionColor"
+/>
 
       <!-- =======================================================
            MAIN GRID

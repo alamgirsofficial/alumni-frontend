@@ -140,17 +140,20 @@
         </li>
       </ul>
       <RouterLink
-        :to="{ name: 'login' }"
-        class="mt-8 md:mt-0 md:ml-6 px-6 py-2 bg-linear-to-r from-blue-500 to-cyan-500 text-white rounded-full hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
-      >
-        লগ ইন
-      </RouterLink>
+    :to="authUser.isAuthenticated
+        ? { name: 'dashboard' }
+        : { name: 'login' }"
+    class="mt-8 md:mt-0 md:ml-6 px-6 py-2 bg-linear-to-r from-blue-500 to-cyan-500 text-white rounded-full hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
+>
+    {{ authUser.isAuthenticated ? 'ড্যাশবোর্ড' : 'লগ ইন' }}
+</RouterLink>
     </nav>
   </header>
 </template>
 <script setup>
 import { ref } from "vue";
-import iconImage from "../../assets/icon/logo.png";
+import iconImage from "@/assets/icon/logo.png";
+import { authUser } from "@/constants/auth.js";
 
 const Menu = ref([
   {

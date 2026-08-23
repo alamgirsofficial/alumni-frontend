@@ -1,34 +1,43 @@
 <script setup>
 import {
-  Menu,
-  Bell,
-  ChevronDown,
-  UserCircle,
-  Settings,
-  LogOut,
+    Menu,
+    Bell,
+    ChevronDown,
+    UserCircle,
+    Settings,
+    LogOut,
 } from "@lucide/vue";
 
-defineProps({
-  user: {
-    type: Object,
-    default: () => ({
-      name: "Admin User",
-      role: "Administrator",
-    }),
-  },
-});
+import { useRouter } from "vue-router";
+import { 
+    authUser, logout } from "@/constants/auth.js";
+
+const router = useRouter();
+
+// defineProps({
+//     user: {
+//         type: Object,
+//         default: () => ({
+//             name: "Admin User",
+//             role: "Administrator",
+//         }),
+//     },
+// });
 
 const emit = defineEmits([
-  "toggle-sidebar",
-  "logout",
+    "toggle-sidebar",
 ]);
 
 const toggleSidebar = () => {
-  emit("toggle-sidebar");
+    emit("toggle-sidebar");
 };
 
 const handleLogout = () => {
-  emit("logout");
+    logout();
+
+    router.push({
+        name: "login",
+    });
 };
 </script>
 
@@ -116,11 +125,11 @@ const handleLogout = () => {
               <p
                 class="max-w-32 truncate text-xs font-semibold text-white"
               >
-                {{ user.name }}
+                 {{ authUser.user?.name || "User" }}
               </p>
 
               <p class="text-[10px] text-slate-500">
-                {{ user.role }}
+                 {{ authUser.user?.name || "User" }}
               </p>
 
             </div>

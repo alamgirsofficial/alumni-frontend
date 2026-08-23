@@ -1,5 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+// For dashboard Gurd 
+import { authUser, loadAuthUser } from "@/constants/auth.js";
+import { useToast } from "@/composables/useToast.js";
+const { warning } = useToast();
+
+
 // =========================
 // Layouts
 // =========================
@@ -131,6 +137,9 @@ const routes = [
         path: "login",
         name: "login",
         component: Login,
+        meta:{
+          guest: true,
+        }
       },
 
       {
@@ -224,4 +233,33 @@ const router = createRouter({
   routes,
 });
 
+loadAuthUser();
+
+router.beforeEach((to) => {
+    const isLoggedIn = authUser.isAuthenticated;
+
+    // Login না করলে protected page-এ যেতে পারবে না
+    if (to.meta.requiresAuth && !isLoggedIn) {
+        warning(
+            "এই পেজটি দেখতে আপনার অ্যাকাউন্টে লগইন করতে হবে।"
+        );
+
+        return {
+            name: "login",
+            query: {
+                redirect: to.fullPath,
+            },
+        };
+    }
+
+    // Already logged in হলে login page-এ যেতে পারবে না
+    if (to.meta.guest && isLoggedIn) {
+        return {
+            name: "dashboard",
+        };
+    }
+
+    // Navigation allow
+    return true;
+});
 export default router;

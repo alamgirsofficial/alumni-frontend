@@ -1,3 +1,5 @@
+// authUser.js 
+
 import { reactive } from "vue";
 
 const DEMO_USERS = [
@@ -10,10 +12,17 @@ const DEMO_USERS = [
     },
     {
         id: 2,
-        name: "Kabir Mahmud",
+        name: "alumni User",
         email: "user@alumni.com",
         password: "12345678",
         role: "user",
+    },
+    {
+        id: 3,
+        name: "Alumni Modarator",
+        email: "modarator@alumni.com",
+        password: "12345678",
+        role: "modarator",
     },
 ];
 
@@ -68,10 +77,17 @@ export const loadAuthUser = () => {
     try {
         const user = JSON.parse(storedUser);
 
+        if(!user || !user.id || !user.name || !user.email || !user.role) {
+            localStorage.removeItem("auth_user");
+            return;
+        }
+
         authUser.user = user;
         authUser.isAuthenticated = true;
     } catch (error) {
         localStorage.removeItem("auth_user");
+        authUser.user =null;
+        authUser.isAuthenticated = false;
     }
 };
 

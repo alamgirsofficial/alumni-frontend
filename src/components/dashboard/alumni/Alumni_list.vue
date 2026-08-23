@@ -180,7 +180,7 @@ const deleteAlumni = (user) => {
         <h1
           class="text-2xl font-bold tracking-tight text-white"
         >
-          Alumni
+          Total Registered Alumni <span> : {{ filteredAlumni.length }} </span>
         </h1>
 
         <p class="mt-1 text-sm text-slate-400">
@@ -191,7 +191,7 @@ const deleteAlumni = (user) => {
       <!-- Add Alumni -->
       <button
         type="button"
-        class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-blue-500/30"
+        class="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-blue-500/30"
       >
         <UserPlus :size="17" />
 
@@ -201,45 +201,18 @@ const deleteAlumni = (user) => {
       </button>
     </div>
 
+
     <!-- ==========================================
-         Stats
+        state,  Search & Filters
     =========================================== -->
 
     <div
-      class="rounded-2xl border border-white/10 bg-white/[0.03] p-5"
-    >
-      <div class="flex items-center justify-between">
-        <div>
-          <p class="text-sm text-slate-400">
-            Total Alumni
-          </p>
-
-          <p
-            class="mt-1 text-2xl font-bold text-white"
-          >
-            {{ filteredAlumni.length }}
-          </p>
-        </div>
-
-        <div
-          class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400"
-        >
-          <SlidersHorizontal :size="20" />
-        </div>
-      </div>
-    </div>
-
-    <!-- ==========================================
-         Search & Filters
-    =========================================== -->
-
-    <div
-      class="rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+      class="rounded-2xl border border-white/10 bg-white/3 p-4"
     >
       <div
         class="flex flex-col gap-3 lg:flex-row"
       >
-
+      
         <!-- Search -->
         <div class="relative flex-1">
           <Search

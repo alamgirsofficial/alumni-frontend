@@ -7,24 +7,25 @@ export const users = [
         email: "admin@alumni.com",
         role: "admin",
         batch: null,
+        mobile: "0123456789",
         status: "active",
     },
 
     {
         id: 2,
-        name: "Kabir Mahmud",
+        name: "Alumni User",
         email: "user@alumni.com",
         role: "user",
-        batch: "2018",
+        batch: null,
         status: "active",
     },
 
     {
         id: 3,
-        name: "Rahim Ahmed",
-        email: "rahim.ahmed@alumni.com",
-        role: "user",
-        batch: "2015",
+        name: "Alumni Modarator",
+        email: "modarator@alumni.com",
+        role: "modarator",
+        batch: null,
         status: "active",
     },
 
@@ -141,7 +142,7 @@ export const users = [
         name: "Shakil Ahmed",
         email: "shakil.ahmed@alumni.com",
         role: "user",
-        batch: "2012",
+        batch: "1989",
         status: "inactive",
     },
 

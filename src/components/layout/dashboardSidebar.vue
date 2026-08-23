@@ -1,12 +1,14 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 
 import { X, UserCircle, LogOut, ChevronDown } from "@lucide/vue";
 
 import { dashboardMenu } from "@/constants/dashboardMenu.js";
+import { logout } from "@/constants/auth.js";
 
 const route = useRoute();
+const router = useRouter();
 
 defineProps({
   open: {
@@ -23,14 +25,18 @@ defineProps({
   },
 });
 
-const emit = defineEmits(["close", "logout"]);
+const emit = defineEmits(["close"]);
 
 const closeSidebar = () => {
   emit("close");
 };
 
 const handleLogout = () => {
-  emit("logout");
+    logout();
+
+    router.push({
+        name: "login",
+    });
 };
 
 const openMenus = ref({});

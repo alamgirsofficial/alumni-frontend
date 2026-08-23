@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-// For dashboard Gurd 
+// For dashboard Gurd
 import { authUser, loadAuthUser } from "@/constants/auth.js";
 import { useToast } from "@/composables/useToast.js";
 const { warning } = useToast();
-
 
 // =========================
 // Layouts
@@ -38,19 +37,16 @@ import Register from "@/pages/auth/Register.vue";
 import ForgotPassword from "@/pages/auth/ForgotPassword.vue";
 import VerifyEmail from "@/pages/auth/VerifyEmail.vue";
 
-
 import UserProfile from "@/pages/profile/UserProfile.vue";
 import ProfileEdit from "@/pages/profile/EditProfile.vue";
 
 // ================ Dashboard Routes
 import Dashboard from "@/pages/dashboard/Dashboard.vue";
 
-
 import alumni from "@/components/dashboard/alumni/Alumni_list.vue";
+import alumniCreate from "@/components/dashboard/alumni/Alumni_Create.vue";
 
-
-import EventsShow from "@/components/dashboard/event/event_show.vue";
-
+import EventList from "@/components/dashboard/event/EventList.vue";
 
 // =========================
 //  Routes
@@ -120,12 +116,11 @@ const routes = [
         name: "Committee",
         component: Committee,
       },
-      
     ],
   },
 
   // =========================
-  // Authentication route 
+  // Authentication route
   // =========================
 
   {
@@ -137,9 +132,9 @@ const routes = [
         path: "login",
         name: "login",
         component: Login,
-        meta:{
+        meta: {
           guest: true,
-        }
+        },
       },
 
       {
@@ -167,60 +162,78 @@ const routes = [
     name: "profile",
     component: UserProfile,
     meta: {
-        requiresAuth: true,
+      requiresAuth: true,
     },
-},
-{
-  path:"/profile/edit",
-  name: "profile.edit",
-  component: ProfileEdit,
-},
-
-
-
-
-// Dashboarad Releted Route 
-
-{
-  path: "/dashboard",
-  component: DashboardLayout,
-  meta: {
-    requiresAuth: true,
   },
-  children: [
-    {
-      path: "",
-      name: "dashboard",
-      component: Dashboard,
+  {
+    path: "/profile/edit",
+    name: "profile.edit",
+    component: ProfileEdit,
+  },
+
+  // Dashboarad Releted Route
+
+  {
+    path: "/dashboard",
+    component: DashboardLayout,
+    meta: {
+      requiresAuth: true,
     },
-    {
-      path: "alumni",
-      name: "alumni.list",
-      component: alumni,
-    },
-    
-    {
-      path: "events",
-      name: "dashboard.events",
-      component: EventsShow,
-    },
-    {
-      path: "blogs",
-      name: "blogs",
-      component: Blogs,
-    },
-    {
-      path: "gallery",
-      name: "gallery",
-      component: Gallery,
-    },
-    {
-      path: "committee",
-      name: "committee",
-      component: Committee,
-    },
-  ],
-}
+    children: [
+      {
+        path: "",
+        name: "dashboard",
+        component: Dashboard,
+      },
+      {
+        path: "alumni",
+        name: "alumni.list",
+        component: alumni,
+      },
+      {
+        path: "alumni/create",
+        name: "alumni.create",
+        component: alumniCreate,
+      },
+
+      {
+        path: "events",
+        name: "EventList",
+        component: EventList,
+      },
+      {
+        path: "events/create",
+        name: "EventCreate",
+        component: () => import("@/components/dashboard/event/EventCreate.vue"),
+      },
+      {
+    path: "events/:id/edit",
+    name: "EventEdit",
+    component: () => import("@/components/dashboard/event/EventEdit.vue"),
+},
+{
+    path: "events/registrations",
+    name: "EventRegistrations",
+    component: () => import("@/components/dashboard/event/EventRegistrations.vue"),
+},
+
+      {
+        path: "blogs",
+        name: "blogs",
+        component: Blogs,
+      },
+      {
+        path: "gallery",
+        name: "gallery",
+        component: Gallery,
+      },
+      {
+        path: "committee",
+        name: "committee",
+        component: Committee,
+      },
+    ],
+  },
 ];
 
 // =========================
@@ -236,30 +249,28 @@ const router = createRouter({
 loadAuthUser();
 
 router.beforeEach((to) => {
-    const isLoggedIn = authUser.isAuthenticated;
+  const isLoggedIn = authUser.isAuthenticated;
 
-    // Login না করলে protected page-এ যেতে পারবে না
-    if (to.meta.requiresAuth && !isLoggedIn) {
-        warning(
-            "এই পেজটি দেখতে আপনার অ্যাকাউন্টে লগইন করতে হবে।"
-        );
+  // Login না করলে protected page-এ যেতে পারবে না
+  if (to.meta.requiresAuth && !isLoggedIn) {
+    warning("এই পেজটি দেখতে আপনার অ্যাকাউন্টে লগইন করতে হবে।");
 
-        return {
-            name: "login",
-            query: {
-                redirect: to.fullPath,
-            },
-        };
-    }
+    return {
+      name: "login",
+      query: {
+        redirect: to.fullPath,
+      },
+    };
+  }
 
-    // Already logged in হলে login page-এ যেতে পারবে না
-    if (to.meta.guest && isLoggedIn) {
-        return {
-            name: "dashboard",
-        };
-    }
+  // Already logged in হলে login page-এ যেতে পারবে না
+  if (to.meta.guest && isLoggedIn) {
+    return {
+      name: "dashboard",
+    };
+  }
 
-    // Navigation allow
-    return true;
+  // Navigation allow
+  return true;
 });
 export default router;

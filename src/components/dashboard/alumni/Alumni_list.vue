@@ -31,9 +31,7 @@ const perPage = ref(10);
 // ==========================================
 
 const batches = computed(() => {
-  const uniqueBatches = [
-    ...new Set(users.map((user) => user.batch)),
-  ];
+  const uniqueBatches = [...new Set(users.map((user) => user.batch))];
 
   return uniqueBatches.sort((a, b) => b - a);
 });
@@ -58,14 +56,9 @@ const filteredAlumni = computed(() => {
 
     const matchesStatus =
       selectedStatus.value === "all" ||
-      user.status?.toLowerCase() ===
-        selectedStatus.value.toLowerCase();
+      user.status?.toLowerCase() === selectedStatus.value.toLowerCase();
 
-    return (
-      matchesSearch &&
-      matchesBatch &&
-      matchesStatus
-    );
+    return matchesSearch && matchesBatch && matchesStatus;
   });
 });
 
@@ -74,14 +67,11 @@ const filteredAlumni = computed(() => {
 // ==========================================
 
 const totalPages = computed(() =>
-  Math.ceil(
-    filteredAlumni.value.length / perPage.value
-  )
+  Math.ceil(filteredAlumni.value.length / perPage.value),
 );
 
 const paginatedAlumni = computed(() => {
-  const start =
-    (currentPage.value - 1) * perPage.value;
+  const start = (currentPage.value - 1) * perPage.value;
 
   const end = start + perPage.value;
 
@@ -93,15 +83,13 @@ const startItem = computed(() => {
     return 0;
   }
 
-  return (
-    (currentPage.value - 1) * perPage.value + 1
-  );
+  return (currentPage.value - 1) * perPage.value + 1;
 });
 
 const endItem = computed(() => {
   return Math.min(
     currentPage.value * perPage.value,
-    filteredAlumni.value.length
+    filteredAlumni.value.length,
   );
 });
 
@@ -110,10 +98,7 @@ const endItem = computed(() => {
 // ==========================================
 
 const goToPage = (page) => {
-  if (
-    page < 1 ||
-    page > totalPages.value
-  ) {
+  if (page < 1 || page > totalPages.value) {
     return;
   }
 
@@ -156,9 +141,7 @@ const editAlumni = (user) => {
 };
 
 const deleteAlumni = (user) => {
-  const confirmed = confirm(
-    `Are you sure you want to delete ${user.name}?`
-  );
+  const confirmed = confirm(`Are you sure you want to delete ${user.name}?`);
 
   if (!confirmed) return;
 
@@ -168,7 +151,6 @@ const deleteAlumni = (user) => {
 
 <template>
   <div class="space-y-6">
-
     <!-- ==========================================
          Page Header
     =========================================== -->
@@ -177,42 +159,31 @@ const deleteAlumni = (user) => {
       class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
     >
       <div>
-        <h1
-          class="text-2xl font-bold tracking-tight text-white"
-        >
+        <h1 class="text-2xl font-bold tracking-tight text-white">
           Total Registered Alumni <span> : {{ filteredAlumni.length }} </span>
         </h1>
 
-        <p class="mt-1 text-sm text-slate-400">
-          Manage all alumni members
-        </p>
+        <p class="mt-1 text-sm text-slate-400">Manage all alumni members</p>
       </div>
 
       <!-- Add Alumni -->
-      <button
-        type="button"
+      <!-- Add Alumni -->
+      <RouterLink
+        :to="{ name: 'alumni.create' }"
         class="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-blue-500/30"
       >
         <UserPlus :size="17" />
 
-        <span>
-          Add Alumni
-        </span>
-      </button>
+        <span>Add Alumni</span>
+      </RouterLink>
     </div>
-
 
     <!-- ==========================================
         state,  Search & Filters
     =========================================== -->
 
-    <div
-      class="rounded-2xl border border-white/10 bg-white/3 p-4"
-    >
-      <div
-        class="flex flex-col gap-3 lg:flex-row"
-      >
-      
+    <div class="rounded-2xl border border-white/10 bg-white/3 p-4">
+      <div class="flex flex-col gap-3 lg:flex-row">
         <!-- Search -->
         <div class="relative flex-1">
           <Search
@@ -235,15 +206,9 @@ const deleteAlumni = (user) => {
           class="rounded-xl border border-white/10 bg-slate-900/70 px-4 py-2.5 text-sm text-slate-300 outline-none transition focus:border-blue-500/50"
           @change="changeFilter"
         >
-          <option value="all">
-            All Batches
-          </option>
+          <option value="all">All Batches</option>
 
-          <option
-            v-for="batch in batches"
-            :key="batch"
-            :value="batch"
-          >
+          <option v-for="batch in batches" :key="batch" :value="batch">
             Batch {{ batch }}
           </option>
         </select>
@@ -254,29 +219,19 @@ const deleteAlumni = (user) => {
           class="rounded-xl border border-white/10 bg-slate-900/70 px-4 py-2.5 text-sm text-slate-300 outline-none transition focus:border-blue-500/50"
           @change="changeFilter"
         >
-          <option value="all">
-            All Status
-          </option>
+          <option value="all">All Status</option>
 
-          <option value="active">
-            Active
-          </option>
+          <option value="active">Active</option>
 
-          <option value="pending">
-            Pending
-          </option>
+          <option value="pending">Pending</option>
 
-          <option value="inactive">
-            Inactive
-          </option>
+          <option value="inactive">Inactive</option>
         </select>
 
         <!-- Reset -->
         <button
           v-if="
-            searchQuery ||
-            selectedBatch !== 'all' ||
-            selectedStatus !== 'all'
+            searchQuery || selectedBatch !== 'all' || selectedStatus !== 'all'
           "
           type="button"
           class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm text-slate-400 transition hover:bg-white/5 hover:text-white"
@@ -286,7 +241,6 @@ const deleteAlumni = (user) => {
 
           Reset
         </button>
-
       </div>
     </div>
 
@@ -294,18 +248,17 @@ const deleteAlumni = (user) => {
          Alumni Table
     =========================================== -->
 
-    <div
-      class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
-    >
+    <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/3">
       <div class="overflow-x-auto">
-
-        <table class="w-full min-w-[900px]">
-
+        <table class="w-full min-w-225">
           <!-- Table Header -->
-          <thead
-            class="border-b border-white/10 bg-white/[0.02]"
-          >
+          <thead class="border-b border-white/10 bg-white/8">
             <tr>
+              <th
+                class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+              >
+                #
+              </th>
 
               <th
                 class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
@@ -342,30 +295,28 @@ const deleteAlumni = (user) => {
               >
                 Actions
               </th>
-
             </tr>
           </thead>
 
           <!-- Table Body -->
-          <tbody
-            class="divide-y divide-white/5"
-          >
-
+          <tbody class="divide-y divide-white/5">
             <!-- Data -->
+
             <tr
-              v-for="user in paginatedAlumni"
+              v-for="(user, index) in paginatedAlumni"
               :key="user.id"
-              class="transition-colors duration-200 hover:bg-white/[0.025]"
+              class="transition-colors duration-200 hover:bg-white/3"
             >
-
+              <!-- Serial -->
+              <td class="px-2 py-2 text-sm text-slate-400">
+                {{ (currentPage - 1) * perPage + index + 1 }}
+              </td>
               <!-- Alumni -->
-              <td class="px-6 py-4">
-
+              <td class="px-2 py-2">
                 <div class="flex items-center gap-3">
-
                   <!-- Avatar -->
                   <div
-                    class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 text-sm font-bold text-white"
+                    class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 text-sm font-bold text-white"
                   >
                     <img
                       v-if="user.avatar"
@@ -375,58 +326,35 @@ const deleteAlumni = (user) => {
                     />
 
                     <span v-else>
-                      {{
-                        user.name
-                          ?.charAt(0)
-                          ?.toUpperCase()
-                      }}
+                      {{ user.name?.charAt(0)?.toUpperCase() }}
                     </span>
                   </div>
 
                   <div class="min-w-0">
-
-                    <p
-                      class="truncate text-sm font-semibold text-white"
-                    >
+                    <p class="truncate text-sm font-semibold text-white">
                       {{ user.name }}
                     </p>
-
-                    <p
-                      class="text-xs text-slate-500"
-                    >
-                      ID: #{{ user.id }}
-                    </p>
-
                   </div>
-
                 </div>
-
               </td>
 
               <!-- Batch -->
-              <td
-                class="whitespace-nowrap px-6 py-4 text-sm text-slate-300"
-              >
+              <td class="whitespace-nowrap px-4 py-2 text-sm text-slate-300">
                 {{ user.batch }}
               </td>
 
               <!-- Email -->
-              <td
-                class="whitespace-nowrap px-6 py-4 text-sm text-slate-400"
-              >
+              <td class="whitespace-nowrap px-4 py-2 text-sm text-slate-400">
                 {{ user.email }}
               </td>
 
               <!-- Phone -->
-              <td
-                class="whitespace-nowrap px-6 py-4 text-sm text-slate-400"
-              >
-                {{ user.phone }}
+              <td class="whitespace-nowrap px-4 py-2 text-sm text-slate-400">
+                {{ user.mobile }}
               </td>
 
               <!-- Status -->
-              <td class="px-6 py-4">
-
+              <td class="px-3 py-3">
                 <span
                   class="inline-flex rounded-full px-2.5 py-1 text-xs font-medium"
                   :class="{
@@ -442,16 +370,11 @@ const deleteAlumni = (user) => {
                 >
                   {{ user.status }}
                 </span>
-
               </td>
 
               <!-- Actions -->
-              <td class="px-6 py-4">
-
-                <div
-                  class="flex items-center justify-end gap-1"
-                >
-
+              <td class="px-3 py-3">
+                <div class="flex items-center justify-end gap-1">
                   <!-- View -->
                   <button
                     type="button"
@@ -469,7 +392,7 @@ const deleteAlumni = (user) => {
                     class="rounded-lg p-2 text-slate-500 transition hover:bg-yellow-500/10 hover:text-yellow-400"
                     @click="editAlumni(user)"
                   >
-                    <Pencil :size="17" />
+                    <Pencil :size="15" />
                   </button>
 
                   <!-- Delete -->
@@ -479,50 +402,34 @@ const deleteAlumni = (user) => {
                     class="rounded-lg p-2 text-slate-500 transition hover:bg-red-500/10 hover:text-red-400"
                     @click="deleteAlumni(user)"
                   >
-                    <Trash2 :size="17" />
+                    <Trash2 :size="15" />
                   </button>
-
                 </div>
-
               </td>
-
             </tr>
 
             <!-- Empty State -->
-            <tr
-              v-if="paginatedAlumni.length === 0"
-            >
-              <td
-                colspan="6"
-                class="px-6 py-16 text-center"
-              >
-                <div
-                  class="flex flex-col items-center"
-                >
+            <tr v-if="paginatedAlumni.length === 0">
+              <td colspan="7" class="px-4 py-10 text-center">
+                <div class="flex flex-col items-center">
                   <div
-                    class="flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-slate-500"
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-slate-500"
                   >
                     <Search :size="20" />
                   </div>
 
-                  <p
-                    class="mt-4 text-sm font-medium text-white"
-                  >
+                  <p class="mt-4 text-sm font-medium text-white">
                     No alumni found
                   </p>
 
-                  <p
-                    class="mt-1 text-xs text-slate-500"
-                  >
+                  <p class="mt-1 text-xs text-slate-500">
                     Try changing your search or filters.
                   </p>
                 </div>
               </td>
             </tr>
-
           </tbody>
         </table>
-
       </div>
 
       <!-- ==========================================
@@ -530,11 +437,10 @@ const deleteAlumni = (user) => {
       =========================================== -->
 
       <div
-        class="flex flex-col gap-4 border-t border-white/10 px-6 py-4 sm:flex-row sm:items-center sm:justify-between"
+        class="flex flex-col gap-4 border-t border-white/10 px-3 py-3 sm:flex-row sm:items-center sm:justify-between"
       >
-
         <!-- Result Info -->
-        <p class="text-xs text-slate-500">
+        <p class="text-xs text-slate-400">
           Showing
           <span class="font-medium text-slate-300">
             {{ startItem }}
@@ -551,19 +457,15 @@ const deleteAlumni = (user) => {
         </p>
 
         <!-- Pagination -->
-        <div
-          v-if="totalPages > 1"
-          class="flex items-center gap-1"
-        >
-
+        <div v-if="totalPages > 1" class="flex items-center gap-1">
           <!-- Previous -->
           <button
             type="button"
             :disabled="currentPage === 1"
-            class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+            class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
             @click="previousPage"
           >
-            <ChevronLeft :size="17" />
+            <ChevronLeft :size="15" />
           </button>
 
           <!-- Pages -->
@@ -571,7 +473,7 @@ const deleteAlumni = (user) => {
             v-for="page in totalPages"
             :key="page"
             type="button"
-            class="flex h-9 min-w-9 items-center justify-center rounded-lg px-2 text-xs font-medium transition"
+            class="flex h-8 min-w-9 items-center justify-center rounded-lg px-2 text-xs font-medium transition"
             :class="
               currentPage === page
                 ? 'bg-blue-500 text-white'
@@ -585,19 +487,14 @@ const deleteAlumni = (user) => {
           <!-- Next -->
           <button
             type="button"
-            :disabled="
-              currentPage === totalPages
-            "
-            class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
+            :disabled="currentPage === totalPages"
+            class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
             @click="nextPage"
           >
-            <ChevronRight :size="17" />
+            <ChevronRight :size="15" />
           </button>
-
         </div>
-
       </div>
     </div>
-
   </div>
 </template>

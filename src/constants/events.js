@@ -73,8 +73,8 @@ export const events = [
 
     image: '/images/events/event_poster.jpg',
 
-    status: 'completed',
-    registration_open: false,
+    status: 'upcoming',
+    registration_open: true,
 
     organizer: 'Alumni Forum',
 },
@@ -99,7 +99,7 @@ export const events = [
 
         image: '/images/events/ifter_2026.jpg',
 
-        status: 'upcoming',
+        status: 'completed',
 
         registration_open: true,
 

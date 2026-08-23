@@ -11,7 +11,7 @@ import {
   UserCircle,
   PlusCircle,
   List,
-  Pencil,
+  ClipboardList  ,
 } from "@lucide/vue";
 
 export const dashboardMenu = [
@@ -43,14 +43,19 @@ export const dashboardMenu = [
     icon: CalendarDays,
     children: [
       {
+        title: "Event List",
+        route: "/dashboard/events",
+        icon: List,
+      },
+        {
         title: "Create Event",
         route: "/dashboard/events/create",
         icon: PlusCircle,
       },
       {
-        title: "Event List",
-        route: "/dashboard/events",
-        icon: List,
+        title: "Event Registrations",
+        route: "/dashboard/events/registrations",
+        icon: ClipboardList  ,
       },
     ],
   },

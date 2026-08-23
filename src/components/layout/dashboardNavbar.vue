@@ -10,7 +10,9 @@ import {
 
 import { useRouter } from "vue-router";
 import { 
-    authUser, logout } from "@/constants/auth.js";
+      authUser,
+     logout 
+    } from "@/constants/auth.js";
 
 const router = useRouter();
 

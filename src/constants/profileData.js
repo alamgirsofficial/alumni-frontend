@@ -34,11 +34,6 @@ export const profile = ref({
 
   bio: "Passionate software engineer and proud member of the alumni community. I enjoy building meaningful products, mentoring young developers and staying connected with fellow alumni.",
 
-  // ===================== Profile Status
-  // profileCompletion: 92,
-  // emailVerified: true,
-  // phoneVerified: true,
-  // accountStatus: "Active",
 
   // ================= Personal Information
   personal: {
@@ -322,6 +317,140 @@ export const resetProfile = () => {
 };
 
 
-// ===================
-//   Profile Completion 
-// ===============
+
+
+//  For Data table structure in backend 
+/*
+|--------------------------------------------------------------------------
+
+| user: {
+    id,
+    name,
+    email,
+    phone,
+    memberId,
+    batch,
+    role,
+    status
+},
+
+profile: {
+    avatar,
+    bio,
+    presentAddress,
+    permanentAddress,
+    fatherName,
+    motherName,
+    dateOfBirth,
+    gender,
+    bloodGroup,
+    nid,
+    maritalStatus,
+    nationality
+},
+
+education: [],
+
+experiences: [],
+
+skills: [],
+
+social: []
+
+
+
+
+
+
+
+
+users
+│
+├── id
+├── name
+├── email
+├── phone
+├── password
+├── member_id
+├── batch
+├── role
+├── status
+├── email_verified_at
+├── created_at
+└── updated_at
+
+
+user_profiles
+│
+├── id
+├── user_id
+├── father_name
+├── mother_name
+├── date_of_birth
+├── nid
+├── gender
+├── blood_group
+├── marital_status
+├── nationality
+├── present_address
+├── permanent_address
+├── bio
+├── avatar
+├── created_at
+└── updated_at
+
+
+user_educations
+│
+├── id
+├── user_id
+├── degree
+├── institution
+├── field
+├── start_year
+├── end_year
+├── result
+├── created_at
+└── updated_at
+
+
+user_experiences
+│
+├── id
+├── user_id
+├── position
+├── company
+├── industry
+├── location
+├── employment_type
+├── start_date
+├── end_date
+├── is_current
+├── description
+├── created_at
+└── updated_at
+
+
+user_skills
+│
+├── id
+├── user_id
+├── skill
+└── timestamps
+
+
+user_social_links
+│
+├── id
+├── user_id
+├── platform
+├── url
+└── timestamps
+|--------------------------------------------------------------------------
+*/
+
+
+
+
+
+

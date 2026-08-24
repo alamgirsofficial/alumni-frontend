@@ -90,6 +90,10 @@ export const quickLinks =[
 
 export const supportLinks = [
     {
+        name: "Ebook Collection",
+        to: "/ebookCollection",
+    },
+    {
         name: "Career Development",
         to: "/",
     },

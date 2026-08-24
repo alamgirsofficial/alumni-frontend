@@ -116,6 +116,11 @@ const routes = [
         name: "Committee",
         component: Committee,
       },
+      {
+        path:"ebookCollection",
+        name:"ebookCollection",
+        component: () => import("@/pages/EbookCollection.vue")
+      },
     ],
   },
 

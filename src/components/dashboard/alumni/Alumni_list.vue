@@ -155,9 +155,7 @@ const deleteAlumni = (user) => {
          Page Header
     =========================================== -->
 
-    <div
-      class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
-    >
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <h1 class="text-2xl font-bold tracking-tight text-white">
           Total Registered Alumni <span> : {{ filteredAlumni.length }} </span>
@@ -168,10 +166,8 @@ const deleteAlumni = (user) => {
 
       <!-- Add Alumni -->
       <!-- Add Alumni -->
-      <RouterLink
-        :to="{ name: 'alumni.create' }"
-        class="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-blue-500/30"
-      >
+      <RouterLink :to="{ name: 'alumni.create' }"
+        class="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-200 hover:scale-[1.02] hover:shadow-blue-500/30">
         <UserPlus :size="17" />
 
         <span>Add Alumni</span>
@@ -186,26 +182,17 @@ const deleteAlumni = (user) => {
       <div class="flex flex-col gap-3 lg:flex-row">
         <!-- Search -->
         <div class="relative flex-1">
-          <Search
-            :size="18"
-            class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"
-          />
+          <Search :size="18" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
 
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="Search by name, email or phone..."
+          <input v-model="searchQuery" type="text" placeholder="Search by name, email or phone..."
             class="w-full rounded-xl border border-white/10 bg-slate-900/70 py-2.5 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/10"
-            @input="changeFilter"
-          />
+            @input="changeFilter" />
         </div>
 
         <!-- Batch -->
-        <select
-          v-model="selectedBatch"
+        <select v-model="selectedBatch"
           class="rounded-xl border border-white/10 bg-slate-900/70 px-4 py-2.5 text-sm text-slate-300 outline-none transition focus:border-blue-500/50"
-          @change="changeFilter"
-        >
+          @change="changeFilter">
           <option value="all">All Batches</option>
 
           <option v-for="batch in batches" :key="batch" :value="batch">
@@ -214,11 +201,9 @@ const deleteAlumni = (user) => {
         </select>
 
         <!-- Status -->
-        <select
-          v-model="selectedStatus"
+        <select v-model="selectedStatus"
           class="rounded-xl border border-white/10 bg-slate-900/70 px-4 py-2.5 text-sm text-slate-300 outline-none transition focus:border-blue-500/50"
-          @change="changeFilter"
-        >
+          @change="changeFilter">
           <option value="all">All Status</option>
 
           <option value="active">Active</option>
@@ -229,14 +214,11 @@ const deleteAlumni = (user) => {
         </select>
 
         <!-- Reset -->
-        <button
-          v-if="
-            searchQuery || selectedBatch !== 'all' || selectedStatus !== 'all'
-          "
-          type="button"
+        <button v-if="
+          searchQuery || selectedBatch !== 'all' || selectedStatus !== 'all'
+        " type="button"
           class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm text-slate-400 transition hover:bg-white/5 hover:text-white"
-          @click="resetFilters"
-        >
+          @click="resetFilters">
           <X :size="16" />
 
           Reset
@@ -254,45 +236,31 @@ const deleteAlumni = (user) => {
           <!-- Table Header -->
           <thead class="border-b border-white/10 bg-white/8">
             <tr>
-              <th
-                class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
-              >
+              <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                 #
               </th>
 
-              <th
-                class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
-              >
+              <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Alumni
               </th>
 
-              <th
-                class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
-              >
+              <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Batch
               </th>
 
-              <th
-                class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
-              >
+              <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Email
               </th>
 
-              <th
-                class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
-              >
+              <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Phone
               </th>
 
-              <th
-                class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
-              >
+              <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Status
               </th>
 
-              <th
-                class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-slate-500"
-              >
+              <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Actions
               </th>
             </tr>
@@ -302,11 +270,8 @@ const deleteAlumni = (user) => {
           <tbody class="divide-y divide-white/5">
             <!-- Data -->
 
-            <tr
-              v-for="(user, index) in paginatedAlumni"
-              :key="user.id"
-              class="transition-colors duration-200 hover:bg-white/3"
-            >
+            <tr v-for="(user, index) in paginatedAlumni" :key="user.id"
+              class="transition-colors duration-200 hover:bg-white/3">
               <!-- Serial -->
               <td class="px-2 py-2 text-sm text-slate-400">
                 {{ (currentPage - 1) * perPage + index + 1 }}
@@ -316,14 +281,8 @@ const deleteAlumni = (user) => {
                 <div class="flex items-center gap-3">
                   <!-- Avatar -->
                   <div
-                    class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 text-sm font-bold text-white"
-                  >
-                    <img
-                      v-if="user.avatar"
-                      :src="user.avatar"
-                      :alt="user.name"
-                      class="h-full w-full object-cover"
-                    />
+                    class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full bg-linear-to-br from-blue-500 to-cyan-400 text-sm font-bold text-white">
+                    <img v-if="user.avatar" :src="user.avatar" :alt="user.name" class="h-full w-full object-cover" />
 
                     <span v-else>
                       {{ user.name?.charAt(0)?.toUpperCase() }}
@@ -355,19 +314,16 @@ const deleteAlumni = (user) => {
 
               <!-- Status -->
               <td class="px-3 py-3">
-                <span
-                  class="inline-flex rounded-full px-2.5 py-1 text-xs font-medium"
-                  :class="{
-                    'bg-emerald-500/10 text-emerald-400':
-                      user.status?.toLowerCase() === 'active',
+                <span class="inline-flex rounded-full px-2.5 py-1 text-xs font-medium" :class="{
+                  'bg-emerald-500/10 text-emerald-400':
+                    user.status?.toLowerCase() === 'active',
 
-                    'bg-yellow-500/10 text-yellow-400':
-                      user.status?.toLowerCase() === 'pending',
+                  'bg-yellow-500/10 text-yellow-400':
+                    user.status?.toLowerCase() === 'pending',
 
-                    'bg-red-500/10 text-red-400':
-                      user.status?.toLowerCase() === 'inactive',
-                  }"
-                >
+                  'bg-red-500/10 text-red-400':
+                    user.status?.toLowerCase() === 'inactive',
+                }">
                   {{ user.status }}
                 </span>
               </td>
@@ -376,32 +332,23 @@ const deleteAlumni = (user) => {
               <td class="px-3 py-3">
                 <div class="flex items-center justify-end gap-1">
                   <!-- View -->
-                  <button
-                    type="button"
-                    title="View"
+                  <button type="button" title="View"
                     class="rounded-lg p-2 text-slate-500 transition hover:bg-blue-500/10 hover:text-blue-400"
-                    @click="viewAlumni(user)"
-                  >
+                    @click="viewAlumni(user)">
                     <Eye :size="17" />
                   </button>
 
                   <!-- Edit -->
-                  <button
-                    type="button"
-                    title="Edit"
+                  <button type="button" title="Edit"
                     class="rounded-lg p-2 text-slate-500 transition hover:bg-yellow-500/10 hover:text-yellow-400"
-                    @click="editAlumni(user)"
-                  >
+                    @click="editAlumni(user)">
                     <Pencil :size="15" />
                   </button>
 
                   <!-- Delete -->
-                  <button
-                    type="button"
-                    title="Delete"
+                  <button type="button" title="Delete"
                     class="rounded-lg p-2 text-slate-500 transition hover:bg-red-500/10 hover:text-red-400"
-                    @click="deleteAlumni(user)"
-                  >
+                    @click="deleteAlumni(user)">
                     <Trash2 :size="15" />
                   </button>
                 </div>
@@ -412,9 +359,7 @@ const deleteAlumni = (user) => {
             <tr v-if="paginatedAlumni.length === 0">
               <td colspan="7" class="px-4 py-10 text-center">
                 <div class="flex flex-col items-center">
-                  <div
-                    class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-slate-500"
-                  >
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-slate-500">
                     <Search :size="20" />
                   </div>
 
@@ -437,8 +382,7 @@ const deleteAlumni = (user) => {
       =========================================== -->
 
       <div
-        class="flex flex-col gap-4 border-t border-white/10 px-3 py-3 sm:flex-row sm:items-center sm:justify-between"
-      >
+        class="flex flex-col gap-4 border-t border-white/10 px-3 py-3 sm:flex-row sm:items-center sm:justify-between">
         <!-- Result Info -->
         <p class="text-xs text-slate-400">
           Showing
@@ -459,38 +403,25 @@ const deleteAlumni = (user) => {
         <!-- Pagination -->
         <div v-if="totalPages > 1" class="flex items-center gap-1">
           <!-- Previous -->
-          <button
-            type="button"
-            :disabled="currentPage === 1"
+          <button type="button" :disabled="currentPage === 1"
             class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
-            @click="previousPage"
-          >
+            @click="previousPage">
             <ChevronLeft :size="15" />
           </button>
 
           <!-- Pages -->
-          <button
-            v-for="page in totalPages"
-            :key="page"
-            type="button"
-            class="flex h-8 min-w-9 items-center justify-center rounded-lg px-2 text-xs font-medium transition"
-            :class="
-              currentPage === page
+          <button v-for="page in totalPages" :key="page" type="button"
+            class="flex h-8 min-w-9 items-center justify-center rounded-lg px-2 text-xs font-medium transition" :class="currentPage === page
                 ? 'bg-blue-500 text-white'
                 : 'text-slate-400 hover:bg-white/5 hover:text-white'
-            "
-            @click="goToPage(page)"
-          >
+              " @click="goToPage(page)">
             {{ page }}
           </button>
 
           <!-- Next -->
-          <button
-            type="button"
-            :disabled="currentPage === totalPages"
+          <button type="button" :disabled="currentPage === totalPages"
             class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
-            @click="nextPage"
-          >
+            @click="nextPage">
             <ChevronRight :size="15" />
           </button>
         </div>

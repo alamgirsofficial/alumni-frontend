@@ -65,22 +65,34 @@ export const dashboardMenu = [
     icon: FileText,
     children: [
       {
-        title: "Create Blog",
-        route: "/dashboard/blogs/create",
-        icon: PlusCircle,
-      },
-      {
         title: "Blog List",
         route: "/dashboard/blogs",
         icon: List,
       },
+      {
+        title: "Create Blog",
+        route: "/dashboard/blogs/create",
+        icon: PlusCircle,
+      },
+      
     ],
   },
 
   {
     title: "Gallery",
-    route: "/dashboard/gallery",
     icon: Images,
+    children: [
+      {
+        title: "Gallery List",
+        route: "/dashboard/gallery",
+        icon: List,
+      },
+      {
+        title: "Create Gallery",
+        route: "/dashboard/gallery/create",
+        icon: PlusCircle,
+      },
+    ],
   },
 
   {

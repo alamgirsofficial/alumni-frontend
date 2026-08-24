@@ -1,8 +1,5 @@
 # Vue 3 + Vite
 
-
-
-
 📌 Project Overview
 📂 Folder Structure
 🚀 Development Flow

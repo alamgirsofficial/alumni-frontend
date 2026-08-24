@@ -26,3 +26,15 @@ export function useToast() {
     info,
   };
 }
+
+
+// যেকোনো component-এ:
+
+
+//  import { useToast } from "@/composables/useToast";
+
+// const { success, warning, error } = useToast();
+
+// success("Updated successfully!");
+// error("Failed to update.");
+// warning("Please check your input.");

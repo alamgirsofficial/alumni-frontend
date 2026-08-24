@@ -74,7 +74,7 @@ export const blogs = ref([
         image:image1,
         borderColor:'border-blue-500/20',
         publish_date: '২২ জুলাই ২০২২',
-        author:'সুজন রহমান',            
+        author:'সুজন রহমান',           
         categories:[ 
             {
                 name:'ক্যারিয়ার',
@@ -83,6 +83,7 @@ export const blogs = ref([
                 name:'স্মৃতিচারণ',
             }
         ],
+        status: "published",
     },
     {
         id:2,
@@ -150,6 +151,7 @@ export const blogs = ref([
                 name:'বৃত্তি কর্মসূচি',
             }
         ],
+        status: "published",
     },
     {
         id:3,
@@ -220,6 +222,7 @@ export const blogs = ref([
                 name:'সাক্ষাৎকার',
             }
         ],
+        status: "published",
     },
      {
         id:4,
@@ -284,6 +287,7 @@ export const blogs = ref([
                 name:'ক্যারিয়ার',
             },
         ],
+        status: "published",
     }, 
                             
 ]);

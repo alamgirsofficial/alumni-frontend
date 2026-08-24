@@ -117,9 +117,9 @@ const routes = [
         component: Committee,
       },
       {
-        path:"ebookCollection",
-        name:"ebookCollection",
-        component: () => import("@/pages/EbookCollection.vue")
+        path: "ebookCollection",
+        name: "ebookCollection",
+        component: () => import("@/pages/EbookCollection.vue"),
       },
     ],
   },
@@ -201,6 +201,7 @@ const routes = [
         component: alumniCreate,
       },
 
+      // Event CRUD  Related Route
       {
         path: "events",
         name: "EventList",
@@ -212,25 +213,57 @@ const routes = [
         component: () => import("@/components/dashboard/event/EventCreate.vue"),
       },
       {
-    path: "events/:id/edit",
-    name: "EventEdit",
-    component: () => import("@/components/dashboard/event/EventEdit.vue"),
-},
-{
-    path: "events/registrations",
-    name: "EventRegistrations",
-    component: () => import("@/components/dashboard/event/EventRegistrations.vue"),
-},
-
-      {
-        path: "blogs",
-        name: "blogs",
-        component: Blogs,
+        path: "events/:id/edit",
+        name: "EventEdit",
+        component: () => import("@/components/dashboard/event/EventEdit.vue"),
       },
       {
+        path: "events/registrations",
+        name: "EventRegistrations",
+        component: () =>
+          import("@/components/dashboard/event/EventRegistrations.vue"),
+      },
+
+      // Blog CRUD  Related Route
+      {
+        path: "blogs",
+        name: "BlogList",
+        component: () => import("@/components/dashboard/blog/BlogList.vue"),
+      },
+      {
+        path: "blogs/create",
+        name: "BlogCreate",
+        component: () => import("@/components/dashboard/blog/BlogCreate.vue"),
+      },
+      {
+        path: "blogs/:id",
+        name: "BlogView",
+        component: () => import("@/components/dashboard/blog/BlogView.vue"),
+
+      },
+      {
+        path: "blogs/:id/edit",
+        name: "BlogEdit",
+        component: () => import("@/components/dashboard/blog/BlogEdit.vue"),
+      },
+
+
+//  Gallery CRUD  Related Route
+
+      {
         path: "gallery",
-        name: "gallery",
-        component: Gallery,
+        name: "GalleryList",
+        component: () => import("@/components/dashboard/gallery/GalleryList.vue"),
+      },
+      {
+        path: "gallery/create",
+        name: "GalleryCreate",
+        component: () => import("@/components/dashboard/gallery/GalleryCreate.vue"),
+      },
+      {
+        path: "gallery/:id/edit",
+        name: "GalleryEdit",
+        component: () => import("@/components/dashboard/gallery/GalleryEdit.vue"),
       },
       {
         path: "committee",

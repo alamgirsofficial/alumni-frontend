@@ -265,10 +265,28 @@ const routes = [
         name: "GalleryEdit",
         component: () => import("@/components/dashboard/gallery/GalleryEdit.vue"),
       },
+
+      // Committee CRUD  Related Route
       {
         path: "committee",
-        name: "committee",
-        component: Committee,
+        name: "CommitteeList",
+        component: () => import("@/components/dashboard/committee/CommitteeList.vue"),
+      },
+      {
+        path:"committees/:committeeId/members",
+        name: "CommitteeMemberList",
+        component: () => import("@/components/dashboard/committee/CommitteeMemberList.vue"),
+
+      },
+      {
+        path: "committee/create",
+        name: "CommitteeCreate",
+        component: () => import("@/components/dashboard/committee/CommitteeCreate.vue"),
+      },
+      {
+        path: "committee/:committeeId/:type/:memberId/edit",
+        name: "CommitteeEdit",
+        component: () => import("@/components/dashboard/committee/CommitteeEdit.vue"),
       },
     ],
   },

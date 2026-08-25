@@ -65,14 +65,14 @@ const toggleMenu = (menu) => {
       class="flex h-20 shrink-0 items-center justify-between border-b border-white/10 px-6"
     >
       <RouterLink
-        to="/dashboard"
+        to="/"
         class="flex items-center gap-3"
         @click="closeSidebar"
       >
         <div
           class="flex h-8 w-8 items-center justify-center rounded-xl bg-linear-to-br from-blue-500 to-cyan-400 shadow-lg shadow-blue-500/20"
         >
-          <span class="text-lg font-bold text-white"> D </span>
+          <span class="text-lg font-bold text-white"> H </span>
         </div>
 
         <div>

@@ -1,3 +1,7 @@
+
+<!-- Pagination component for displaying pagination controls. -->
+
+
 <script setup>
 import { ChevronLeft, ChevronRight } from "@lucide/vue";
 

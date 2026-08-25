@@ -2,6 +2,7 @@ export const committees = [
     {
         id: 1,
         year: '2019-2020',
+        status: 'archived',
 
         advisors: [
 { id: 1, name: 'এডভোকেট আজিজুল হক চৌধুরী', designation: 'উপদেষ্টা', mobile: '০১৮১৯-৩৮৬২৪৪', address: null },
@@ -150,6 +151,7 @@ export const committees = [
     {
         id: 2,
         year: '2021-2022',
+        status: 'active',
 
         advisors: [
             { id: 1, name: 'কায়সার হামিদ-1', designation: 'উপদেষ্টা', mobile: '01700000000', address: 'ঢাকা, বাংলাদেশ',},

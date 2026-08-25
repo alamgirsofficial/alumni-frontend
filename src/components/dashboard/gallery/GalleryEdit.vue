@@ -243,7 +243,7 @@ onMounted(() => {
              Loading
         ====================================================== -->
 
-    <div v-if="loading" class="flex min-h-[400px] items-center justify-center">
+    <div v-if="loading" class="flex min-h-100 items-center justify-center">
       <div
         class="h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-blue-500"
       ></div>
@@ -267,7 +267,7 @@ onMounted(() => {
                 name: 'GalleryList',
               })
             "
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-slate-400 transition hover:bg-white/[0.06] hover:text-white"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/3 text-slate-400 transition hover:bg-white/6 hover:text-white"
           >
             <ArrowLeft :size="18" />
           </button>
@@ -287,9 +287,7 @@ onMounted(() => {
       <form @submit.prevent="submit" class="space-y-6">
         <!-- Information -->
 
-        <div
-          class="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6"
-        >
+        <div class="rounded-2xl border border-white/10 bg-white/3 p-5 sm:p-6">
           <div class="mb-6 border-b border-white/10 pb-5">
             <h2 class="text-base font-semibold text-white">
               Gallery Information
@@ -389,9 +387,7 @@ onMounted(() => {
 
         <!-- Image -->
 
-        <div
-          class="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6"
-        >
+        <div class="rounded-2xl border border-white/10 bg-white/3 p-5 sm:p-6">
           <div class="mb-6 border-b border-white/10 pb-5">
             <h2 class="text-base font-semibold text-white">Gallery Image</h2>
 
@@ -437,11 +433,11 @@ onMounted(() => {
             <img
               :src="imagePreview"
               alt="Gallery image"
-              class="max-h-[450px] w-full object-contain"
+              class="max-h-112 w-full object-contain"
             />
 
             <div
-              class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/80 to-transparent p-4 pt-12"
+              class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-linear-to-t from-black/80 to-transparent p-4 pt-12"
             >
               <label
                 for="gallery-image"
@@ -473,9 +469,7 @@ onMounted(() => {
 
         <!-- Featured -->
 
-        <div
-          class="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6"
-        >
+        <div class="rounded-2xl border border-white/10 bg-white/3 p-5 sm:p-6">
           <label class="flex cursor-pointer items-center justify-between gap-4">
             <div>
               <p class="text-sm font-semibold text-white">Featured Gallery</p>
@@ -508,7 +502,7 @@ onMounted(() => {
         <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <RouterLink
             to="{ name: 'GalleryList' }"
-            class="inline-flex h-11 items-center justify-center rounded-xl border border-white/10 px-5 text-sm font-medium text-slate-300 transition hover:bg-white/[0.05]"
+            class="inline-flex h-11 items-center justify-center rounded-xl border border-white/10 px-5 text-sm font-medium text-slate-300 transition hover:bg-white/5"
           >
             Cancel
           </RouterLink>

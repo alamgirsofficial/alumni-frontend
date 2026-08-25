@@ -226,7 +226,7 @@ const confirmDelete = async () => {
 
     // Remove item immediately from local list
     galleries.value = galleries.value.filter(
-      (gallery) => String(gallery.id) !== String(id)
+      (gallery) => String(gallery.id) !== String(id),
     );
 
     // Close modal manually
@@ -395,9 +395,7 @@ onMounted(() => {
              Table
         ====================================================== -->
 
-    <div
-      class="overflow-hidden rounded-2xl border border-white/10 bg-white/3"
-    >
+    <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/3">
       <!-- Desktop Table -->
 
       <div class="hidden overflow-x-auto lg:block">
@@ -530,18 +528,16 @@ onMounted(() => {
                   <RouterLink
                     :to="`/dashboard/gallery/${gallery.id}`"
                     class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition hover:border-blue-500/30 hover:bg-blue-500/10 hover:text-blue-400"
-                    
                   >
                     <Eye :size="16" />
                   </RouterLink>
 
                   <RouterLink
                     :to="{
-                        name: 'GalleryEdit',
-                        params: { id: gallery.id}
+                      name: 'GalleryEdit',
+                      params: { id: gallery.id },
                     }"
                     class="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition hover:border-amber-500/30 hover:bg-amber-500/10 hover:text-amber-400"
-                    
                   >
                     <Pencil :size="16" />
                   </RouterLink>
@@ -641,17 +637,17 @@ onMounted(() => {
                 <Eye :size="15" />
               </RouterLink>
 
-              <RouterLink 
-    :to="{
-        name: 'GalleryEdit',
-        params: {
-            id: gallery.id
-        }
-    }"
-    class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-slate-400"
->
-    <Pencil :size="15" />
-</RouterLink>
+              <RouterLink
+                :to="{
+                  name: 'GalleryEdit',
+                  params: {
+                    id: gallery.id,
+                  },
+                }"
+                class="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-slate-400"
+              >
+                <Pencil :size="15" />
+              </RouterLink>
 
               <button
                 type="button"

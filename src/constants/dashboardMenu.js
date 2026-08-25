@@ -97,8 +97,25 @@ export const dashboardMenu = [
 
   {
     title: "Committee",
-    route: "/dashboard/committee",
     icon: UserRoundCog,
+    children: [
+      {
+        title: "Committee List",
+        route: "/dashboard/committee",
+        icon: List,
+      },
+      {
+        title: "committee Members",
+        route: "/dashboard/committee/members",
+        icon: List,
+
+      },
+      {
+        title: "Create Member",
+        route: "/dashboard/committee/create",
+        icon: PlusCircle,
+      },
+    ],
   },
 
   {

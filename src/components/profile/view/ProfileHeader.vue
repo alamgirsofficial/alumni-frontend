@@ -6,7 +6,7 @@ import {
 } from "@lucide/vue";
 
 defineEmits([
-  "edit-profile",
+  "EditProfile",
   "change-password",
 ]);
 </script>
@@ -66,7 +66,7 @@ defineEmits([
       </button>
 
        <RouterLink
-    :to="{ name: 'profile.edit' }"
+    :to="{ name: 'EditProfile' }"
     class="inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-cyan-400 px-4 py-2.5 text-xs font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-blue-500/30"
   >
     <Edit3 :size="15" />

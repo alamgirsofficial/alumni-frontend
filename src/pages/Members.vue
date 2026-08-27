@@ -274,7 +274,7 @@ const changePage = (page) => {
 
             <template v-else>
               <!-- Batch Header -->
-              
+
               <div class="flex items-center justify-between">
                 <div>
                   <p class="text-xs text-cyan-400">শিক্ষার্থী তালিকা</p>
@@ -299,154 +299,88 @@ const changePage = (page) => {
               </div>
 
               <!-- Members Found -->
-<template v-if="batchMembers.length > 0">
+              <template v-if="batchMembers.length > 0">
+                <div class="space-y-3">
+                  <MemberCard
+                    v-for="(member, index) in paginatedMembers"
+                    :key="member.id"
+                    :member="member"
+                    :serial="(currentPage - 1) * perPage + index + 1"
+                  />
+                </div>
 
-    <div class="space-y-3">
+                <!-- Pagination -->
+                <div
+                  v-if="totalPages > 1"
+                  class="flex items-center justify-center flex-wrap gap-2 mt-7"
+                >
+                  <!-- Previous -->
+                  <button
+                    @click="changePage(currentPage - 1)"
+                    :disabled="currentPage === 1"
+                    class="px-3 py-2 rounded-lg border border-white/10 bg-white/5 text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-300 transition disabled:opacity-30 disabled:cursor-not-allowed"
+                  >
+                    ‹
+                  </button>
 
-        <MemberCard
-            v-for="(member, index) in paginatedMembers"
-            :key="member.id"
-            :member="member"
-            :serial="(currentPage - 1) * perPage + index + 1"
-        />
+                  <!-- Page Numbers -->
+                  <button
+                    v-for="page in totalPages"
+                    :key="page"
+                    @click="changePage(page)"
+                    class="min-w-9 h-9 px-3 rounded-lg border border-white/10 bg-white/5 text-sm text-gray-400 hover:bg-cyan-500/10 hover:text-cyan-300 transition"
+                    :class="{
+                      'bg-linear-to-r from-blue-500 to-cyan-500':
+                        currentPage === page,
 
-    </div>
+                      'text-white border-transparent': currentPage === page,
+                    }"
+                  >
+                    {{ page }}
+                  </button>
 
+                  <!-- Next -->
+                  <button
+                    @click="changePage(currentPage + 1)"
+                    :disabled="currentPage === totalPages"
+                    class="px-3 py-2 rounded-lg border border-white/10 bg-white/5 text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-300 transition disabled:opacity-30 disabled:cursor-not-allowed"
+                  >
+                    ›
+                  </button>
+                </div>
+              </template>
 
-    <!-- Pagination -->
-    <div
-        v-if="totalPages > 1"
-        class="flex items-center justify-center
-        flex-wrap gap-2 mt-7"
-    >
+              <!-- No Members -->
+              <div
+                v-else
+                class="py-12 px-5 rounded-2xl bg-white/5 border border-white/10 text-center"
+              >
+                <div
+                  class="w-14 h-14 mx-auto mb-4 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center"
+                >
+                  <Search class="w-6 h-6 text-cyan-400" />
+                </div>
 
-        <!-- Previous -->
-        <button
-            @click="changePage(currentPage - 1)"
-            :disabled="currentPage === 1"
-            class="px-3 py-2 rounded-lg
-            border border-white/10
-            bg-white/5
-            text-gray-300
-            hover:bg-cyan-500/10
-            hover:text-cyan-300
-            transition
-            disabled:opacity-30
-            disabled:cursor-not-allowed"
-        >
-            ‹
-        </button>
+                <h3 class="text-lg font-semibold text-white">
+                  এই ব্যাচের তথ্য এখনো যুক্ত করা হয়নি
+                </h3>
 
+                <p
+                  class="mt-2 max-w-md mx-auto text-sm leading-6 text-gray-400"
+                >
+                  এই ব্যাচের সদস্যদের তথ্য আমাদের ওয়েবসাইটে এখনো যুক্ত করা হয়নি।
+                  বিস্তারিত তথ্যের জন্য আমাদের সাথে যোগাযোগ করুন।
+                </p>
 
-        <!-- Page Numbers -->
-        <button
-            v-for="page in totalPages"
-            :key="page"
-            @click="changePage(page)"
-            class="min-w-9 h-9 px-3
-            rounded-lg
-            border border-white/10
-            bg-white/5
-            text-sm text-gray-400
-            hover:bg-cyan-500/10
-            hover:text-cyan-300
-            transition"
-            :class="{
-                'bg-linear-to-r from-blue-500 to-cyan-500':
-                    currentPage === page,
+                <RouterLink
+                  to="/contact"
+                  class="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-xl bg-linear-to-r from-blue-500 to-cyan-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
+                >
+                  যোগাযোগ করুন
 
-                'text-white border-transparent':
-                    currentPage === page
-            }"
-        >
-            {{ page }}
-        </button>
-
-
-        <!-- Next -->
-        <button
-            @click="changePage(currentPage + 1)"
-            :disabled="currentPage === totalPages"
-            class="px-3 py-2 rounded-lg
-            border border-white/10
-            bg-white/5
-            text-gray-300
-            hover:bg-cyan-500/10
-            hover:text-cyan-300
-            transition
-            disabled:opacity-30
-            disabled:cursor-not-allowed"
-        >
-            ›
-        </button>
-
-    </div>
-
-</template>
-
-
-<!-- No Members -->
-<div
-    v-else
-    class="py-12 px-5
-    rounded-2xl
-    bg-white/5
-    border border-white/10
-    text-center"
->
-
-    <div
-        class="w-14 h-14 mx-auto mb-4
-        rounded-2xl
-        bg-cyan-500/10
-        border border-cyan-400/20
-        flex items-center justify-center"
-    >
-
-        <Search
-            class="w-6 h-6 text-cyan-400"
-        />
-
-    </div>
-
-
-    <h3
-        class="text-lg font-semibold text-white"
-    >
-        এই ব্যাচের তথ্য এখনো যুক্ত করা হয়নি
-    </h3>
-
-
-    <p
-        class="mt-2 max-w-md mx-auto
-        text-sm leading-6 text-gray-400"
-    >
-        এই ব্যাচের সদস্যদের তথ্য আমাদের
-        ওয়েবসাইটে এখনো যুক্ত করা হয়নি।
-        বিস্তারিত তথ্যের জন্য আমাদের সাথে
-        যোগাযোগ করুন।
-    </p>
-
-
-    <RouterLink
-        to="/contact"
-        class="inline-flex items-center gap-2
-        mt-5 px-5 py-2.5
-        rounded-xl
-        bg-linear-to-r
-        from-blue-500 to-cyan-500
-        text-white text-sm font-medium
-        hover:shadow-lg
-        hover:shadow-cyan-500/20
-        transition-all duration-300"
-    >
-        যোগাযোগ করুন
-
-        <ChevronRight class="w-4 h-4" />
-    </RouterLink>
-
-</div>
-              
+                  <ChevronRight class="w-4 h-4" />
+                </RouterLink>
+              </div>
             </template>
           </div>
         </div>

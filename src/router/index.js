@@ -5,121 +5,98 @@ import { authUser, loadAuthUser } from "@/constants/auth.js";
 import { useToast } from "@/composables/useToast.js";
 const { warning } = useToast();
 
-// =========================
-// Layouts
-// =========================
-
-import MainLayout from "@/layouts/MainLayout.vue";
-import AuthLayout from "@/layouts/AuthLayout.vue";
-import DashboardLayout from "@/layouts/DashboradLayout.vue";
-
-// =========================
-// Public Pages
-// =========================
-
-import Home from "@/pages/Home.vue";
-import About from "@/pages/About.vue";
-import Events from "@/pages/Events.vue";
-import EventDetails from "@/pages/EventDetails.vue";
-import Blogs from "@/pages/Blogs.vue";
-import BlogDetails from "@/pages/BlogDetails.vue";
-import Contact from "@/pages/Contact.vue";
-import Gallery from "@/pages/Gallery.vue";
-import Members from "@/pages/Members.vue";
-import Committee from "@/pages/ExecutiveCommitee.vue";
-
-// =========================
-// Authentication Pages
-// =========================
-
-import Login from "@/pages/auth/Login.vue";
-import Register from "@/pages/auth/Register.vue";
-import ForgotPassword from "@/pages/auth/ForgotPassword.vue";
-import VerifyEmail from "@/pages/auth/VerifyEmail.vue";
-
-import UserProfile from "@/pages/profile/UserProfile.vue";
-import ProfileEdit from "@/pages/profile/EditProfile.vue";
-
-// ================ Dashboard Routes
-import Dashboard from "@/pages/dashboard/Dashboard.vue";
-
-import alumni from "@/components/dashboard/alumni/Alumni_list.vue";
-import alumniCreate from "@/components/dashboard/alumni/Alumni_Create.vue";
-
-import EventList from "@/components/dashboard/event/EventList.vue";
-
-// =========================
-//  Routes
-// =========================
-
 const routes = [
-  // =========================
-  // Main Website
-  // =========================
-
   {
     path: "/",
-    component: MainLayout,
+    component: () => import("@/layouts/MainLayout.vue"),
 
+    // =========================
+    //   Public page Routes
+    // =========================
     children: [
       {
         path: "",
         name: "Home",
-        component: Home,
+        component: () => import("@/pages/Home.vue"),
       },
-
       {
         path: "about",
         name: "About",
-        component: About,
+        component: () => import("@/pages/About.vue"),
       },
       {
-        path: "/events",
+        path: "events",
         name: "public.events",
-        component: Events,
+        component: () => import("@/pages/Events.vue"),
       },
       {
-        path: "/events/:slug",
+        path: "events/:slug",
         name: "event-details",
-        component: EventDetails,
+        component: () => import("@/pages/EventDetails.vue"),
       },
       {
         path: "blogs",
         name: "Blogs",
-        component: Blogs,
+        component: () => import("@/pages/Blogs.vue"),
       },
-
       {
         path: "blog/:id",
         name: "blog.details",
-        component: BlogDetails,
+        component: () => import("@/pages/BlogDetails.vue"),
       },
-
       {
         path: "contact",
         name: "Contact",
-        component: Contact,
+        component: () => import("@/pages/Contact.vue"),
       },
-
       {
         path: "gallery",
         name: "Gallery",
-        component: Gallery,
+        component: () => import("@/pages/Gallery.vue"),
       },
       {
         path: "members",
         name: "Member",
-        component: Members,
+        component: () => import("@/pages/Members.vue"),
       },
       {
         path: "committee",
         name: "Committee",
-        component: Committee,
+        component: () => import("@/pages/ExecutiveCommitee.vue"),
       },
+
+      //========================
+      // Footer Links Pages
+      //========================
       {
         path: "ebookCollection",
         name: "ebookCollection",
         component: () => import("@/pages/EbookCollection.vue"),
+      },
+      {
+        path: "careerDevelopment",
+        name: "careerDevelopment",
+        component: () => import("@/pages/CareerDevelopment.vue"),
+      },
+      {
+        path: "technicalSkills",
+        name: "technicalSkills",
+        component: () => import("@/pages/TechnicalSkills.vue"),
+      },
+      {
+        path: "scholarship",
+        name: "scholarship",
+        component: () => import("@/pages/Scholarship.vue"),
+      },
+      {
+        path: "training",
+        name: "training",
+        component: () => import("@/pages/Training.vue"),
+      },
+      {
+        path: "consultation",
+        name: "consultation",
+        component: () => import("@/pages/Consultation.vue"),
       },
     ],
   },
@@ -127,60 +104,62 @@ const routes = [
   // =========================
   // Authentication route
   // =========================
-
   {
-    path: "/auth/",
-    component: AuthLayout,
-
+    path: "/auth",
+    component: () => import("@/layouts/AuthLayout.vue"),
     children: [
       {
         path: "login",
         name: "login",
-        component: Login,
+        component: () => import("@/pages/auth/Login.vue"),
         meta: {
           guest: true,
         },
       },
-
       {
         path: "register",
         name: "register",
-        component: Register,
+        component: () => import("@/pages/auth/Register.vue"),
       },
-
       {
         path: "verify-email",
         name: "VerifyEmail",
-        component: VerifyEmail,
+        component: () => import("@/pages/auth/VerifyEmail.vue"),
       },
-
       {
         path: "forgot-password",
         name: "ForgotPassword",
-        component: ForgotPassword,
+        component: () => import("@/pages/auth/ForgotPassword.vue"),
       },
     ],
   },
-  //======================== User Profile
+  //========================
+  // User Profile
+  //========================
   {
     path: "/profile",
     name: "profile",
-    component: UserProfile,
+    component: () => import("@/pages/profile/UserProfile.vue"),
     meta: {
       requiresAuth: true,
     },
   },
   {
     path: "/profile/edit",
-    name: "profile.edit",
-    component: ProfileEdit,
+    name: "EditProfile",
+    component: () => import("@/pages/profile/EditProfile.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
 
-  // Dashboarad Releted Route
+  //========================
+  // Dashboard Related Routes
+  //========================
 
   {
     path: "/dashboard",
-    component: DashboardLayout,
+    component: () => import("@/layouts/DashboardLayout.vue"),
     meta: {
       requiresAuth: true,
     },
@@ -188,24 +167,27 @@ const routes = [
       {
         path: "",
         name: "dashboard",
-        component: Dashboard,
+        component: () => import("@/pages/dashboard/Dashboard.vue"),
       },
       {
         path: "alumni",
         name: "alumni.list",
-        component: alumni,
+        component: () => import("@/components/dashboard/alumni/AlumniList.vue"),
       },
       {
         path: "alumni/create",
         name: "alumni.create",
-        component: alumniCreate,
+        component: () =>
+          import("@/components/dashboard/alumni/AlumniCreate.vue"),
       },
 
+      //==================
       // Event CRUD  Related Route
+      //==================
       {
         path: "events",
         name: "EventList",
-        component: EventList,
+        component: () => import("@/components/dashboard/event/EventList.vue"),
       },
       {
         path: "events/create",
@@ -217,6 +199,10 @@ const routes = [
         name: "EventEdit",
         component: () => import("@/components/dashboard/event/EventEdit.vue"),
       },
+
+      //==================
+      // Event Registrations
+      //==================
       {
         path: "events/registrations",
         name: "EventRegistrations",
@@ -224,7 +210,9 @@ const routes = [
           import("@/components/dashboard/event/EventRegistrations.vue"),
       },
 
+      //==================
       // Blog CRUD  Related Route
+      //==================
       {
         path: "blogs",
         name: "BlogList",
@@ -239,7 +227,6 @@ const routes = [
         path: "blogs/:id",
         name: "BlogView",
         component: () => import("@/components/dashboard/blog/BlogView.vue"),
-
       },
       {
         path: "blogs/:id/edit",
@@ -247,46 +234,70 @@ const routes = [
         component: () => import("@/components/dashboard/blog/BlogEdit.vue"),
       },
 
-
-//  Gallery CRUD  Related Route
-
+      //==================
+      // Gallery CRUD  Related Route
+      //==================
       {
         path: "gallery",
         name: "GalleryList",
-        component: () => import("@/components/dashboard/gallery/GalleryList.vue"),
+        component: () =>
+          import("@/components/dashboard/gallery/GalleryList.vue"),
       },
       {
         path: "gallery/create",
         name: "GalleryCreate",
-        component: () => import("@/components/dashboard/gallery/GalleryCreate.vue"),
+        component: () =>
+          import("@/components/dashboard/gallery/GalleryCreate.vue"),
       },
       {
         path: "gallery/:id/edit",
         name: "GalleryEdit",
-        component: () => import("@/components/dashboard/gallery/GalleryEdit.vue"),
+        component: () =>
+          import("@/components/dashboard/gallery/GalleryEdit.vue"),
       },
 
-      // Committee CRUD  Related Route
+      //====================
+      //  Committee CRUD  Related Route
+      //====================
       {
         path: "committee",
         name: "CommitteeList",
-        component: () => import("@/components/dashboard/committee/CommitteeList.vue"),
-      },
-      {
-        path:"committees/:committeeId/members",
-        name: "CommitteeMemberList",
-        component: () => import("@/components/dashboard/committee/CommitteeMemberList.vue"),
-
+        component: () =>
+          import("@/components/dashboard/committee/CommitteeList.vue"),
       },
       {
         path: "committee/create",
         name: "CommitteeCreate",
-        component: () => import("@/components/dashboard/committee/CommitteeCreate.vue"),
+        component: () =>
+          import("@/components/dashboard/committee/CommitteeCreate.vue"),
       },
+      {
+        path: "committee/:committeeId/members",
+        name: "CommitteeMemberList",
+        component: () =>
+          import("@/components/dashboard/committee/CommitteeMemberList.vue"),
+      },
+
       {
         path: "committee/:committeeId/:type/:memberId/edit",
         name: "CommitteeEdit",
-        component: () => import("@/components/dashboard/committee/CommitteeEdit.vue"),
+        component: () =>
+          import("@/components/dashboard/committee/CommitteeEdit.vue"),
+      },
+      //====================
+      // Messages CRUD  Related Route
+
+      {
+        path: "messages",
+        name: "MessageList",
+        component: () =>
+          import("@/components/dashboard/messages/MessageList.vue"),
+      },
+      {
+        path: "messages/:messageId/details",
+        name: "MessageDetails",
+        component: () =>
+          import("@/components/dashboard/messages/MessageDetails.vue"),
       },
     ],
   },

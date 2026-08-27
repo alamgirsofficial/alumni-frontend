@@ -96,7 +96,7 @@ const emit = defineEmits(["close"]);
           <div class="min-w-0">
             <p class="text-xs text-gray-500">Short Address</p>
 
-            <p class="mt-1 font-medium text-gray-200 break-words">
+            <p class="mt-1 font-medium text-gray-200 wrap-break-words">
               {{ member.address }}
             </p>
           </div>

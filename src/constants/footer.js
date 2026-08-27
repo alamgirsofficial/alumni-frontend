@@ -95,23 +95,23 @@ export const supportLinks = [
     },
     {
         name: "Career Development",
-        to: "/",
+        to: "/careerDevelopment",
     },
     {
         name: "Technical Skills",
-        to: "/",
+        to: "/technicalSkills",
     },
     {
         name: "Scholarship",
-        to: "/",
+        to: "/scholarship",
     },
     {
         name: "Training",
-        to: "/",
+        to: "/training",
     },
     {
         name: "Consultation",
-        to: "/",
+        to: "/consultation",
     },
 ]
 

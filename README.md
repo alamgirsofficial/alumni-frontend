@@ -332,9 +332,28 @@ components/
 - [ ] Pagination
 
 
+Amar them color
+| ব্যবহার            | Tailwind Color                |
+| ------------------ | ----------------------------- |
+| **Primary**        | `cyan-500`                    |
+| Primary Hover      | `cyan-400`                    |
+| Primary Light      | `cyan-400`                    |
+| Primary Background | `cyan-500/10`                 |
+| Primary Border     | `cyan-500/20` / `cyan-500/30` |
+| Main Background    | `slate-950`                   |
+| Card Background    | `slate-900/60`                |
+| Input Background   | `slate-950/60`                |
+| Main Text          | `white`                       |
+| Secondary Text     | `slate-400`                   |
+| Muted Text         | `slate-500`                   |
+| Border             | `white/10`                    |
+| Success            | `emerald-500`                 |
+| Warning            | `amber-500`                   |
+| Error              | `red-400`                     |
 
 
 
 <!-- Fo Clean LocalStorage data  -->
 localStorage.removeItem("alumni_profile");
 localStorage.getItem("alumni_profile");
+

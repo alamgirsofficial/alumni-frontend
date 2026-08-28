@@ -232,6 +232,65 @@ components/
 
 
 
+src/
+├── components/
+│   └── dashboard/
+│       └── settings/
+│           ├── SettingsSidebar.vue
+│           ├── SettingsSection.vue
+│           ├── AccountSettings.vue
+│           ├── SecuritySettings.vue
+│           ├── NotificationSettings.vue
+│           ├── AppearanceSettings.vue
+│           └── OrganizationSettings.vue
+│
+├── pages/
+│   └── dashboard/
+│       └── Settings.vue
+│
+├── services/
+│   └── settingsService.js
+│
+└── constants/
+    └── settings.js
+
+
+
+
+    
+
+src/
+├── components/
+│   └── dashboard/
+│       └── settings/
+│           ├── SettingsSidebar.vue
+│           ├── SettingsHeader.vue
+│           ├── SettingsSection.vue
+│           │
+│           ├── AccountSettings.vue
+│           ├── SecuritySettings.vue
+│           ├── NotificationSettings.vue
+│           ├── AppearanceSettings.vue
+│           ├── OrganizationSettings.vue
+│           ├── EmailSettings.vue
+│           ├── EventSettings.vue
+│           ├── MemberSettings.vue
+│           ├── MediaSettings.vue
+│           └── SystemSettings.vue
+│
+├── pages/
+│   └── dashboard/
+│       └── Settings.vue
+│
+├── composables/
+│   └── useSettings.js
+│
+├── services/
+│   └── settingsService.js
+│
+└── constants/
+    └── settings.js
+
 ---
 
 # 🚀 Development Flow

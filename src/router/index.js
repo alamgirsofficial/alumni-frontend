@@ -294,10 +294,14 @@ const routes = [
           import("@/components/dashboard/messages/MessageList.vue"),
       },
       {
-        path: "messages/:messageId/details",
-        name: "MessageDetails",
-        component: () =>
-          import("@/components/dashboard/messages/MessageDetails.vue"),
+        path:"reports",
+        name:"Reports",
+        component:()=>import("@/pages/dashboard/Reports.vue")
+      },
+      {
+        path:"settings",
+        name:"Settings",
+        component:()=>import("@/pages/dashboard/Settings.vue")
       },
     ],
   },

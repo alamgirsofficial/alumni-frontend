@@ -1,3 +1,6 @@
+
+<!-- MessageStatusBadge.vue -->
+
 <script setup>
 import {
   Mail,
@@ -18,35 +21,35 @@ const statusMap = {
     label: "New",
     icon: Mail,
     class:
-      "bg-[var(--theme-primary)]/10 text-[var(--theme-primary)]",
+      "border-[var(--theme-primary)]/20 bg-[var(--theme-primary)]/10 text-[var(--theme-primary)]",
   },
 
   read: {
     label: "Read",
     icon: MailOpen,
     class:
-      "bg-slate-100 text-slate-600",
+      "border-slate-400/10 bg-slate-400/10 text-slate-400",
   },
 
   replied: {
     label: "Replied",
     icon: Reply,
     class:
-      "bg-emerald-50 text-emerald-600",
+      "border-emerald-400/20 bg-emerald-400/10 text-emerald-400",
   },
 
   archived: {
     label: "Archived",
     icon: Archive,
     class:
-      "bg-amber-50 text-amber-600",
+      "border-amber-400/20 bg-amber-400/10 text-amber-400",
   },
 };
 </script>
 
 <template>
   <span
-    class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold"
+    class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-bold tracking-wide"
     :class="
       statusMap[status]?.class ||
       statusMap.new.class
@@ -57,7 +60,7 @@ const statusMap = {
         statusMap[status]?.icon ||
         statusMap.new.icon
       "
-      class="h-3.5 w-3.5"
+      class="h-3 w-3"
     />
 
     {{

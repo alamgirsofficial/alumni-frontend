@@ -120,19 +120,8 @@ export const dashboardMenu = [
 
   {
     title: "Messages",
+    route: "/dashboard/messages",
     icon: Mail,
-    children: [ 
-      {
-        title: "Message List",
-        route: "/dashboard/messages",
-        icon: List,
-      },
-      {
-        title: "Message Details",
-        route: "/dashboard/messages/:messageId/details",
-        icon: PlusCircle,
-      },
-    ],
   },
 
   {

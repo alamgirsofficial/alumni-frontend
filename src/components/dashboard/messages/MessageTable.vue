@@ -1,3 +1,4 @@
+<!-- MessageTable.vue  -->
 <script setup>
 import {
   Eye,

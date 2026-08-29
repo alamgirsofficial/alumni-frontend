@@ -1,4 +1,4 @@
-
+```vue
 <!-- MessageStatusBadge.vue -->
 
 <script setup>
@@ -21,7 +21,7 @@ const statusMap = {
     label: "New",
     icon: Mail,
     class:
-      "border-[var(--theme-primary)]/20 bg-[var(--theme-primary)]/10 text-[var(--theme-primary)]",
+      "border-cyan-400/20 bg-cyan-400/10 text-cyan-400",
   },
 
   read: {
@@ -69,3 +69,4 @@ const statusMap = {
     }}
   </span>
 </template>
+```

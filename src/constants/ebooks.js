@@ -1,8 +1,8 @@
 // src/constants/ebooks.js
 
-import image from "../../public/images/ebooks/class-7-English.jpg";
-import coverImage from "../../public/images/ebooks/EbookCover.jpg";
-import mathImage from "../../public/images/ebooks/Class-7-Math.jpg";
+const image = "/images/ebooks/Class-7-English.jpg";
+const coverImage = "/images/ebooks/EbookCover.jpg";
+const mathImage = "/images/ebooks/Class-7-Math.jpg";
 
 export const ebooks = [
     // =====================================================

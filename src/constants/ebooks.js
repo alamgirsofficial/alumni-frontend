@@ -1,6 +1,6 @@
 // src/constants/ebooks.js
 
-import image from "../../public/images/ebooks/class-7-English.jpg";
+import englishImage from "../../public/images/ebooks/class-7-English.jpg";
 import coverImage from "../../public/images/ebooks/EbookCover.jpg";
 import mathImage from "../../public/images/ebooks/Class-7-Math.jpg";
 
@@ -15,7 +15,7 @@ export const ebooks = [
         class: "Class 6",
         classLabel: "ষষ্ঠ শ্রেণি",
         subject: "English",
-        cover: image,
+        cover: englishImage,
         file: "/ebooks/Class-7-English.pdf",
         pages: 124,
     },
@@ -63,7 +63,7 @@ export const ebooks = [
         class: "Class 7",
         classLabel: "সপ্তম শ্রেণি",
         subject: "English",
-        cover: image,
+        cover: englishImage,
         file: "/ebooks/Class-7-English.pdf",
         pages: 132,
     },
@@ -111,7 +111,7 @@ export const ebooks = [
         class: "Class 8",
         classLabel: "অষ্টম শ্রেণি",
         subject: "English",
-        cover: image,
+        cover: englishImage,
         file: "/ebooks/Class-7-English.pdf",
         pages: 144,
     },
@@ -159,7 +159,7 @@ export const ebooks = [
         class: "Class 9",
         classLabel: "নবম শ্রেণি",
         subject: "English",
-        cover: image,
+        cover: englishImage,
         file: "/ebooks/Class-7-English.pdf",
         pages: 152,
     },
@@ -207,7 +207,7 @@ export const ebooks = [
         class: "Class 10",
         classLabel: "দশম শ্রেণি",
         subject: "English",
-        cover: image,
+        cover: englishImage,
         file: "/ebooks/Class-7-English.pdf",
         pages: 160,
     },

@@ -1,31 +1,32 @@
-<!-- MessageList.vue  -->
+<!-- src/pages/dashboard/MessageList.vue -->
 
 <script setup>
-import {
-  computed,
-  onMounted,
-  ref,
-} from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import {
   Mail,
   MailOpen,
-  Reply,
-  Archive,
   Search,
   Star,
   RefreshCw,
   SlidersHorizontal,
   MessageSquare,
   CheckCircle2,
-  Clock3,
   ArchiveRestore,
   X,
 } from "@lucide/vue";
+import { useRouter } from "vue-router";
+import { useToast } from "@/composables/useToast";
+
+const router = useRouter();
+
+const { success, error } = useToast();
 
 import Pagination from "@/components/common/Pagination.vue";
+
 import MessageTable from "@/components/dashboard/messages/MessageTable.vue";
 import MessageDetails from "@/components/dashboard/messages/MessageDetails.vue";
+import MessageReply from "@/components/dashboard/messages/MessageReply.vue";
 
 import {
   getAllMessages,
@@ -38,7 +39,7 @@ import {
 } from "@/composables/messageService";
 
 /* =========================================================
-   State
+   STATE
 ========================================================= */
 
 const messages = ref([]);
@@ -48,13 +49,18 @@ const statusFilter = ref("all");
 const importantOnly = ref(false);
 
 const selectedMessage = ref(null);
+
 const showDetails = ref(false);
+const showReply = ref(false);
+
+const replyLoading = ref(false);
 
 const currentPage = ref(1);
+
 const perPage = 10;
 
 /* =========================================================
-   Load Messages
+   LOAD MESSAGES
 ========================================================= */
 
 const loadMessages = () => {
@@ -64,7 +70,7 @@ const loadMessages = () => {
 onMounted(loadMessages);
 
 /* =========================================================
-   Statistics
+   STATISTICS
 ========================================================= */
 
 const totalMessages = computed(() => {
@@ -72,43 +78,33 @@ const totalMessages = computed(() => {
 });
 
 const newMessages = computed(() => {
-  return messages.value.filter(
-    (message) => message.status === "new"
-  ).length;
+  return messages.value.filter((message) => message.status === "new").length;
 });
 
 const repliedMessages = computed(() => {
-  return messages.value.filter(
-    (message) => message.status === "replied"
-  ).length;
+  return messages.value.filter((message) => message.status === "replied")
+    .length;
 });
 
 const archivedMessages = computed(() => {
-  return messages.value.filter(
-    (message) => message.status === "archived"
-  ).length;
+  return messages.value.filter((message) => message.status === "archived")
+    .length;
 });
 
 const readMessages = computed(() => {
-  return messages.value.filter(
-    (message) => message.status === "read"
-  ).length;
+  return messages.value.filter((message) => message.status === "read").length;
 });
 
 const importantMessages = computed(() => {
-  return messages.value.filter(
-    (message) => message.isImportant
-  ).length;
+  return messages.value.filter((message) => message.isImportant).length;
 });
 
 /* =========================================================
-   Filtering
+   FILTERING
 ========================================================= */
 
 const filteredMessages = computed(() => {
-  const query = searchQuery.value
-    .trim()
-    .toLowerCase();
+  const query = searchQuery.value.trim().toLowerCase();
 
   return messages.value.filter((message) => {
     const matchesSearch =
@@ -119,42 +115,26 @@ const filteredMessages = computed(() => {
       message.message?.toLowerCase().includes(query);
 
     const matchesStatus =
-      statusFilter.value === "all" ||
-      message.status === statusFilter.value;
+      statusFilter.value === "all" || message.status === statusFilter.value;
 
-    const matchesImportant =
-      !importantOnly.value ||
-      message.isImportant;
+    const matchesImportant = !importantOnly.value || message.isImportant;
 
-    return (
-      matchesSearch &&
-      matchesStatus &&
-      matchesImportant
-    );
+    return matchesSearch && matchesStatus && matchesImportant;
   });
 });
 
 /* =========================================================
-   Pagination
+   PAGINATION
 ========================================================= */
 
 const totalPages = computed(() => {
-  return Math.max(
-    1,
-    Math.ceil(
-      filteredMessages.value.length / perPage
-    )
-  );
+  return Math.max(1, Math.ceil(filteredMessages.value.length / perPage));
 });
 
 const paginatedMessages = computed(() => {
-  const start =
-    (currentPage.value - 1) * perPage;
+  const start = (currentPage.value - 1) * perPage;
 
-  return filteredMessages.value.slice(
-    start,
-    start + perPage
-  );
+  return filteredMessages.value.slice(start, start + perPage);
 });
 
 const startItem = computed(() => {
@@ -162,27 +142,22 @@ const startItem = computed(() => {
     return 0;
   }
 
-  return (
-    (currentPage.value - 1) * perPage + 1
-  );
+  return (currentPage.value - 1) * perPage + 1;
 });
 
 const endItem = computed(() => {
-  return Math.min(
-    currentPage.value * perPage,
-    filteredMessages.value.length
-  );
+  return Math.min(currentPage.value * perPage, filteredMessages.value.length);
 });
 
 /* =========================================================
-   Filter Helpers
+   FILTER HELPERS
 ========================================================= */
 
 const hasActiveFilters = computed(() => {
-  return (
+  return Boolean(
     searchQuery.value.trim() ||
     statusFilter.value !== "all" ||
-    importantOnly.value
+    importantOnly.value,
   );
 });
 
@@ -210,91 +185,148 @@ const handleSearch = () => {
 };
 
 /* =========================================================
-   Message Actions
+   VIEW MESSAGE
 ========================================================= */
 
 const viewMessage = (message) => {
+  let currentMessage = message;
+
+  // New message automatically becomes read
   if (message.status === "new") {
     markMessageAsRead(message.id);
 
     loadMessages();
 
-    message =
-      messages.value.find(
-        (item) => item.id === message.id
-      ) || message;
+    currentMessage =
+      messages.value.find((item) => item.id === message.id) || message;
   }
 
-  selectedMessage.value = message;
+  selectedMessage.value = currentMessage;
   showDetails.value = true;
 };
+
+/* =========================================================
+   CLOSE DETAILS
+========================================================= */
 
 const closeDetails = () => {
   showDetails.value = false;
   selectedMessage.value = null;
 };
 
-const replyMessage = (message) => {
-  markMessageAsReplied(message.id);
+/* =========================================================
+   OPEN REPLY
+========================================================= */
 
-  loadMessages();
+const openReply = (message) => {
+  selectedMessage.value = message;
 
-  const updated = messages.value.find(
-    (item) => item.id === message.id
-  );
+  showReply.value = true;
+};
 
-  if (updated) {
-    selectedMessage.value = updated;
+/* =========================================================
+   CLOSE REPLY
+========================================================= */
+
+const closeReply = () => {
+  if (replyLoading.value) {
+    return;
+  }
+
+  showReply.value = false;
+};
+
+/* =========================================================
+   SEND REPLY
+========================================================= */
+
+const sendReply = async (replyData) => {
+  if (!selectedMessage.value) {
+    return;
+  }
+
+  replyLoading.value = true;
+
+  try {
+    /* * এখন temporary/localStorage flow. * * পরে এখানে Laravel API call বসবে: * * await sendMessageReply(replyData); */ console.log(
+      "Reply data:",
+      replyData,
+    );
+    /* * Message কে replied হিসেবে update */ if (replyData?.messageId) {
+      markMessageAsReplied(replyData.messageId);
+    }
+    /* * Latest messages reload */ loadMessages();
+    /* * Selected message update */ if (replyData?.messageId) {
+      const updated = messages.value.find(
+        (item) => item.id === replyData.messageId,
+      );
+      if (updated) {
+        selectedMessage.value = updated;
+      }
+    }
+    /* * Reply modal close */ showReply.value = false;
+    /* * Success notification */ success("Reply sent successfully!");
+    /* * Message List page এ redirect */ await router.push({
+      name: "MessageList",
+    });
+  } catch (err) {
+    console.error("Failed to send reply:", err);
+    error("Failed to send reply. Please try again.");
+  } finally {
+    replyLoading.value = false;
   }
 };
+
+/* =========================================================
+   ARCHIVE
+========================================================= */
 
 const archive = (message) => {
   archiveMessage(message.id);
 
   loadMessages();
 
-  if (
-    selectedMessage.value?.id ===
-    message.id
-  ) {
+  if (selectedMessage.value?.id === message.id) {
     closeDetails();
   }
 };
+
+/* =========================================================
+   DELETE
+========================================================= */
 
 const removeMessage = (message) => {
   deleteMessage(message.id);
 
   loadMessages();
 
-  if (
-    selectedMessage.value?.id ===
-    message.id
-  ) {
+  if (selectedMessage.value?.id === message.id) {
     closeDetails();
   }
 
-  if (
-    currentPage.value > totalPages.value
-  ) {
+  if (currentPage.value > totalPages.value) {
     currentPage.value = totalPages.value;
   }
 };
+
+/* =========================================================
+   TOGGLE IMPORTANT
+========================================================= */
 
 const toggleImportant = (message) => {
   toggleMessageImportant(message.id);
 
   loadMessages();
 
-  if (
-    selectedMessage.value?.id ===
-    message.id
-  ) {
+  if (selectedMessage.value?.id === message.id) {
     selectedMessage.value =
-      messages.value.find(
-        (item) => item.id === message.id
-      );
+      messages.value.find((item) => item.id === message.id) || null;
   }
 };
+
+/* =========================================================
+   TOGGLE READ
+========================================================= */
 
 const toggleRead = (message) => {
   if (message.status === "new") {
@@ -305,69 +337,59 @@ const toggleRead = (message) => {
 
   loadMessages();
 
-  if (
-    selectedMessage.value?.id ===
-    message.id
-  ) {
+  if (selectedMessage.value?.id === message.id) {
     selectedMessage.value =
-      messages.value.find(
-        (item) => item.id === message.id
-      );
+      messages.value.find((item) => item.id === message.id) || null;
   }
 };
 </script>
 
 <template>
   <div class="space-y-6">
-
     <!-- =====================================================
          PAGE HEADER
     ====================================================== -->
 
     <section
-      class="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-900/60 px-5 py-5 shadow-sm sm:px-6"
+      class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-5 py-5 shadow-sm sm:px-6"
     >
-      <!-- Decorative Background -->
+      <!-- Decorative -->
       <div
-        class="pointer-events-none absolute -right-12 -top-16 h-40 w-40 rounded-full bg-cyan-500/5"
+        class="pointer-events-none absolute -right-12 -top-16 h-40 w-40 rounded-full bg-cyan-500/5 blur-3xl"
       ></div>
 
       <div
-        class="pointer-events-none absolute -bottom-20 right-20 h-32 w-32 rounded-full bg-slate-900/60"
+        class="pointer-events-none absolute -bottom-20 right-20 h-32 w-32 rounded-full bg-slate-900/60 blur-2xl"
       ></div>
 
       <div
         class="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
       >
+        <!-- Left -->
         <div class="flex items-center gap-4">
-
-          <!-- Icon -->
           <div
-            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-900/60 text-cyan-600 ring-1 ring-cyan-100"
+            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 ring-1 ring-cyan-500/20"
           >
             <MessageSquare class="h-5 w-5" />
           </div>
 
-          <!-- Title -->
           <div>
             <div class="flex items-center gap-2">
               <h1
-                class="text-xl font-bold tracking-tight text-slate-800 sm:text-2xl"
+                class="text-xl font-bold tracking-tight text-white sm:text-2xl"
               >
                 Messages
               </h1>
 
               <span
                 v-if="newMessages"
-                class="rounded-full bg-cyan-50 px-2 py-0.5 text-[10px] font-bold text-cyan-600"
+                class="rounded-full bg-cyan-500/10 px-2 py-0.5 text-[10px] font-bold text-cyan-400"
               >
                 {{ newMessages }} new
               </span>
             </div>
 
-            <p
-              class="mt-1 text-xs text-slate-400 sm:text-sm"
-            >
+            <p class="mt-1 text-xs text-slate-400 sm:text-sm">
               Manage inquiries and messages from alumni.
             </p>
           </div>
@@ -376,7 +398,7 @@ const toggleRead = (message) => {
         <!-- Refresh -->
         <button
           type="button"
-          class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-900/60 px-4 py-2.5 text-xs font-semibold text-slate-600 shadow-sm transition hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-600 active:scale-[0.98]"
+          class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/3 px-4 py-2.5 text-xs font-semibold text-slate-400 transition hover:bg-white/6 hover:text-white active:scale-[0.98]"
           @click="loadMessages"
         >
           <RefreshCw class="h-4 w-4" />
@@ -389,17 +411,12 @@ const toggleRead = (message) => {
          STATISTICS
     ====================================================== -->
 
-    <section
-      class="grid grid-cols-2 gap-3 lg:grid-cols-4"
-    >
-
+    <section class="grid grid-cols-2 gap-3 lg:grid-cols-4">
       <!-- Total -->
       <div
-        class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-900/60 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5"
+        class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-white/5 sm:p-5"
       >
-        <div
-          class="absolute left-0 top-0 h-full w-1 bg-cyan-500"
-        ></div>
+        <div class="absolute left-0 top-0 h-full w-1 bg-cyan-400"></div>
 
         <div class="flex items-center justify-between">
           <div>
@@ -409,19 +426,15 @@ const toggleRead = (message) => {
               Total
             </p>
 
-            <p
-              class="mt-2 text-2xl font-bold text-slate-800"
-            >
+            <p class="mt-2 text-2xl font-bold text-white">
               {{ totalMessages }}
             </p>
 
-            <p class="mt-1 text-[10px] text-slate-400">
-              All messages
-            </p>
+            <p class="mt-1 text-[10px] text-slate-500">All messages</p>
           </div>
 
           <div
-            class="hidden rounded-xl bg-cyan-50 p-2.5 text-cyan-600 sm:block"
+            class="hidden rounded-xl bg-cyan-500/10 p-2.5 text-cyan-400 sm:block"
           >
             <Mail class="h-5 w-5" />
           </div>
@@ -430,11 +443,9 @@ const toggleRead = (message) => {
 
       <!-- New -->
       <div
-        class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-900/60 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5"
+        class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-white/5 sm:p-5"
       >
-        <div
-          class="absolute left-0 top-0 h-full w-1 bg-amber-500"
-        ></div>
+        <div class="absolute left-0 top-0 h-full w-1 bg-amber-400"></div>
 
         <div class="flex items-center justify-between">
           <div>
@@ -444,19 +455,15 @@ const toggleRead = (message) => {
               New
             </p>
 
-            <p
-              class="mt-2 text-2xl font-bold text-slate-800"
-            >
+            <p class="mt-2 text-2xl font-bold text-white">
               {{ newMessages }}
             </p>
 
-            <p class="mt-1 text-[10px] text-slate-400">
-              Need attention
-            </p>
+            <p class="mt-1 text-[10px] text-slate-500">Need attention</p>
           </div>
 
           <div
-            class="hidden rounded-xl bg-amber-50 p-2.5 text-amber-600 sm:block"
+            class="hidden rounded-xl bg-amber-500/10 p-2.5 text-amber-400 sm:block"
           >
             <MailOpen class="h-5 w-5" />
           </div>
@@ -465,11 +472,9 @@ const toggleRead = (message) => {
 
       <!-- Replied -->
       <div
-        class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5"
+        class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-white/5 sm:p-5"
       >
-        <div
-          class="absolute left-0 top-0 h-full w-1 bg-emerald-500"
-        ></div>
+        <div class="absolute left-0 top-0 h-full w-1 bg-emerald-400"></div>
 
         <div class="flex items-center justify-between">
           <div>
@@ -479,19 +484,15 @@ const toggleRead = (message) => {
               Replied
             </p>
 
-            <p
-              class="mt-2 text-2xl font-bold text-slate-800"
-            >
+            <p class="mt-2 text-2xl font-bold text-white">
               {{ repliedMessages }}
             </p>
 
-            <p class="mt-1 text-[10px] text-slate-400">
-              Handled messages
-            </p>
+            <p class="mt-1 text-[10px] text-slate-500">Handled messages</p>
           </div>
 
           <div
-            class="hidden rounded-xl bg-emerald-50 p-2.5 text-emerald-600 sm:block"
+            class="hidden rounded-xl bg-emerald-500/10 p-2.5 text-emerald-400 sm:block"
           >
             <CheckCircle2 class="h-5 w-5" />
           </div>
@@ -500,11 +501,9 @@ const toggleRead = (message) => {
 
       <!-- Archived -->
       <div
-        class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5"
+        class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-4 shadow-sm transition hover:-translate-y-0.5 hover:bg-white/5 sm:p-5"
       >
-        <div
-          class="absolute left-0 top-0 h-full w-1 bg-slate-400"
-        ></div>
+        <div class="absolute left-0 top-0 h-full w-1 bg-slate-400"></div>
 
         <div class="flex items-center justify-between">
           <div>
@@ -514,19 +513,15 @@ const toggleRead = (message) => {
               Archived
             </p>
 
-            <p
-              class="mt-2 text-2xl font-bold text-slate-800"
-            >
+            <p class="mt-2 text-2xl font-bold text-white">
               {{ archivedMessages }}
             </p>
 
-            <p class="mt-1 text-[10px] text-slate-400">
-              Stored messages
-            </p>
+            <p class="mt-1 text-[10px] text-slate-500">Stored messages</p>
           </div>
 
           <div
-            class="hidden rounded-xl bg-slate-100 p-2.5 text-slate-500 sm:block"
+            class="hidden rounded-xl bg-slate-500/10 p-2.5 text-slate-400 sm:block"
           >
             <ArchiveRestore class="h-5 w-5" />
           </div>
@@ -539,24 +534,15 @@ const toggleRead = (message) => {
     ====================================================== -->
 
     <section
-      class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-900/60 shadow-sm"
+      class="overflow-hidden rounded-2xl border border-white/10 bg-white/3 shadow-sm"
     >
-
-      <!-- =================================================
-           TOOLBAR
-      ================================================== -->
-
-      <div
-        class="border-b border-slate-100 bg-white p-4 sm:p-5"
-      >
-
+      <!-- TOOLBAR -->
+      <div class="border-b border-white/10 bg-white/2 p-4 sm:p-5">
         <div
           class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between"
         >
-
           <!-- Search -->
           <div class="relative w-full lg:max-w-md">
-
             <Search
               class="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
             />
@@ -565,14 +551,15 @@ const toggleRead = (message) => {
               v-model="searchQuery"
               type="text"
               placeholder="Search by name, email, subject..."
-              class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-10 text-xs text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-500/5"
+              class="w-full rounded-xl border border-white/10 bg-slate-900/60 py-2.5 pl-10 pr-10 text-xs text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:bg-slate-900 focus:ring-4 focus:ring-cyan-500/5"
               @input="handleSearch"
             />
 
             <button
               v-if="searchQuery"
               type="button"
-              class="absolute right-2.5 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-lg p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+              class="absolute right-2.5 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-lg p-1 text-slate-400 transition hover:bg-white/10 hover:text-white"
+              title="Clear search"
               @click="
                 searchQuery = '';
                 currentPage = 1;
@@ -583,10 +570,7 @@ const toggleRead = (message) => {
           </div>
 
           <!-- Controls -->
-          <div
-            class="flex flex-wrap items-center gap-2"
-          >
-
+          <div class="flex flex-wrap items-center gap-2">
             <!-- Status -->
             <div class="relative">
               <SlidersHorizontal
@@ -595,28 +579,18 @@ const toggleRead = (message) => {
 
               <select
                 v-model="statusFilter"
-                class="appearance-none rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-9 pr-9 text-xs font-semibold text-slate-600 outline-none transition hover:bg-slate-100 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-500/5"
+                class="appearance-none rounded-xl border border-white/10 bg-slate-900/60 py-2.5 pl-9 pr-9 text-xs font-semibold text-slate-300 outline-none transition hover:bg-white/5 focus:border-cyan-400 focus:bg-slate-900 focus:ring-4 focus:ring-cyan-500/5"
                 @change="currentPage = 1"
               >
-                <option value="all">
-                  All Status
-                </option>
+                <option value="all">All Status</option>
 
-                <option value="new">
-                  New
-                </option>
+                <option value="new">New</option>
 
-                <option value="read">
-                  Read
-                </option>
+                <option value="read">Read</option>
 
-                <option value="replied">
-                  Replied
-                </option>
+                <option value="replied">Replied</option>
 
-                <option value="archived">
-                  Archived
-                </option>
+                <option value="archived">Archived</option>
               </select>
             </div>
 
@@ -626,8 +600,8 @@ const toggleRead = (message) => {
               class="inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2.5 text-xs font-semibold transition"
               :class="
                 importantOnly
-                  ? 'border-amber-200 bg-amber-50 text-amber-600'
-                  : 'border-slate-200 bg-slate-50 text-slate-500 hover:bg-slate-100'
+                  ? 'border-amber-400/20 bg-amber-500/10 text-amber-400'
+                  : 'border-white/10 bg-white/3 text-slate-400 hover:bg-white/5 hover:text-white'
               "
               @click="
                 importantOnly = !importantOnly;
@@ -637,8 +611,7 @@ const toggleRead = (message) => {
               <Star
                 class="h-3.5 w-3.5"
                 :class="{
-                  'fill-amber-400 text-amber-500':
-                    importantOnly,
+                  'fill-amber-400 text-amber-400': importantOnly,
                 }"
               />
 
@@ -646,11 +619,11 @@ const toggleRead = (message) => {
 
               <span
                 v-if="importantMessages"
-                class="ml-0.5 rounded-full bg-slate-200 px-1.5 py-0.5 text-[9px]"
+                class="rounded-full px-1.5 py-0.5 text-[9px]"
                 :class="
                   importantOnly
-                    ? 'bg-amber-100 text-amber-600'
-                    : 'text-slate-500'
+                    ? 'bg-amber-400/10 text-amber-400'
+                    : 'bg-white/6 text-slate-500'
                 "
               >
                 {{ importantMessages }}
@@ -661,7 +634,7 @@ const toggleRead = (message) => {
             <button
               v-if="hasActiveFilters"
               type="button"
-              class="inline-flex items-center gap-1 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+              class="inline-flex items-center gap-1 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-500 transition hover:bg-white/5 hover:text-white"
               @click="resetFilters"
             >
               <X class="h-3.5 w-3.5" />
@@ -670,57 +643,45 @@ const toggleRead = (message) => {
           </div>
         </div>
 
-        <!-- Active filter / result info -->
+        <!-- Result Info -->
         <div
-          class="mt-4 flex flex-col gap-2 border-t border-slate-100 pt-3 sm:flex-row sm:items-center sm:justify-between"
+          class="mt-4 flex flex-col gap-2 border-t border-white/10 pt-3 sm:flex-row sm:items-center sm:justify-between"
         >
-
           <div class="flex items-center gap-2">
-            <span
-              class="text-[11px] font-medium text-slate-400"
-            >
+            <span class="text-[11px] font-medium text-slate-400">
               {{ statusLabel }}
             </span>
 
             <span
               v-if="importantOnly"
-              class="h-1 w-1 rounded-full bg-slate-300"
+              class="h-1 w-1 rounded-full bg-slate-600"
             ></span>
 
             <span
               v-if="importantOnly"
-              class="text-[11px] font-semibold text-amber-500"
+              class="text-[11px] font-semibold text-amber-400"
             >
               Important only
             </span>
           </div>
 
           <div class="flex items-center gap-3">
-
-            <p
-              class="text-[11px] text-slate-400"
-            >
+            <p class="text-[11px] text-slate-500">
               Showing
 
-              <span
-                class="font-semibold text-slate-600"
-              >
+              <span class="font-semibold text-slate-300">
                 {{ startItem }}
               </span>
 
               -
 
-              <span
-                class="font-semibold text-slate-600"
-              >
+              <span class="font-semibold text-slate-300">
                 {{ endItem }}
               </span>
 
               of
 
-              <span
-                class="font-semibold text-slate-600"
-              >
+              <span class="font-semibold text-slate-300">
                 {{ filteredMessages.length }}
               </span>
             </p>
@@ -732,7 +693,7 @@ const toggleRead = (message) => {
 
             <p
               v-if="newMessages"
-              class="hidden text-[11px] font-semibold text-cyan-600 sm:block"
+              class="hidden text-[11px] font-semibold text-cyan-400 sm:block"
             >
               {{ newMessages }} unread
             </p>
@@ -747,7 +708,7 @@ const toggleRead = (message) => {
       <MessageTable
         :messages="paginatedMessages"
         @view="viewMessage"
-        @reply="replyMessage"
+        @reply="openReply"
         @archive="archive"
         @delete="removeMessage"
         @toggle-important="toggleImportant"
@@ -772,13 +733,24 @@ const toggleRead = (message) => {
     ====================================================== -->
 
     <MessageDetails
-      :message="selectedMessage"
+      :message="showDetails ? selectedMessage : null"
       @close="closeDetails"
-      @reply="replyMessage"
+      @reply="openReply"
       @archive="archive"
       @delete="removeMessage"
       @toggle-important="toggleImportant"
     />
 
+    <!-- =====================================================
+         MESSAGE REPLY
+    ====================================================== -->
+
+    <MessageReply
+      v-if="showReply"
+      :message="selectedMessage"
+      :loading="replyLoading"
+      @close="closeReply"
+      @send="sendReply"
+    />
   </div>
 </template>

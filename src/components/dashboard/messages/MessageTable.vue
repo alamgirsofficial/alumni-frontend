@@ -66,7 +66,7 @@ const truncate = (text, length = 65) => {
       <table class="w-full">
 
         <thead>
-          <tr class="border-b border-slate-200 bg-slate-50/80">
+          <tr class="border-b border-white/10 bgwhite/3">
             <th
               class="px-5 py-3.5 text-left text-[11px] font-bold uppercase tracking-wider text-slate-400"
             >
@@ -99,14 +99,14 @@ const truncate = (text, length = 65) => {
           </tr>
         </thead>
 
-        <tbody class="divide-y divide-slate-100">
+        <tbody class="divide-y divide-white/5 bg-white/3">
 
           <tr
             v-for="message in messages"
             :key="message.id"
-            class="group transition hover:bg-slate-50/70"
+            class="group transition hover:bg-white/5"
             :class="{
-              'bg-slate-900/60 text-white':
+              'bg-cyan-500/5':
                 message.status === 'new',
             }"
           >
@@ -124,7 +124,7 @@ const truncate = (text, length = 65) => {
                 <div class="min-w-0">
                   <div class="flex items-center gap-1.5">
                     <p
-                      class="truncate text-sm font-semibold"
+                      class="truncate text-sm font-semibold text-white"
                       :class="
                         message.status === 'new'
                           ? 'text-slate-900'
@@ -154,21 +154,21 @@ const truncate = (text, length = 65) => {
                 class="truncate text-sm"
                 :class="
                   message.status === 'new'
-                    ? 'font-semibold text-slate-800'
-                    : 'font-medium text-slate-600'
+                    ? 'font-semibold text-white'
+                    : 'font-medium text-slate-300'
                 "
               >
                 {{ message.subject }}
               </p>
 
-              <p class="mt-1 truncate text-xs text-slate-400">
+              <p class="mt-1 truncate text-xs text-slate-500">
                 {{ truncate(message.message) }}
               </p>
             </td>
 
             <!-- Date -->
             <td class="whitespace-nowrap px-5 py-4">
-              <p class="text-xs font-medium text-slate-500">
+              <p class="text-xs font-medium text-slate-400">
                 {{ formatDate(message.createdAt) }}
               </p>
             </td>
@@ -187,7 +187,7 @@ const truncate = (text, length = 65) => {
                 <button
                   type="button"
                   title="View"
-                  class="rounded-lg p-2 text-slate-400 transition hover:bg-[var(--theme-primary)]/10 hover:text-[var(--theme-primary)]"
+                  class="rounded-lg p-2 text-slate-400 transition hover:bg-cyan-500/10 hover:text-cyan-400"
                   @click="emit('view', message)"
                 >
                   <Eye class="h-4 w-4" />
@@ -196,7 +196,7 @@ const truncate = (text, length = 65) => {
                 <button
                   type="button"
                   title="Reply"
-                  class="rounded-lg p-2 text-slate-400 transition hover:bg-emerald-50 hover:text-emerald-600"
+                 class="rounded-lg p-2 text-slate-400 transition hover:bg-emerald-500/10 hover:text-emerald-400"
                   @click="emit('reply', message)"
                 >
                   <Reply class="h-4 w-4" />
@@ -209,7 +209,7 @@ const truncate = (text, length = 65) => {
                       ? 'Mark as read'
                       : 'Mark as unread'
                   "
-                  class="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                  class="rounded-lg p-2 text-slate-400 transition hover:bg-white/5 hover:text-white"
                   @click="emit('toggle-read', message)"
                 >
                   <MailOpen
@@ -226,7 +226,7 @@ const truncate = (text, length = 65) => {
                 <button
                   type="button"
                   title="Archive"
-                  class="rounded-lg p-2 text-slate-400 transition hover:bg-amber-50 hover:text-amber-600"
+                  class="rounded-lg p-2 text-slate-400 transition hover:bg-amber-500/10 hover:text-amber-400"
                   @click="emit('archive', message)"
                 >
                   <Archive class="h-4 w-4" />
@@ -235,7 +235,7 @@ const truncate = (text, length = 65) => {
                 <button
                   type="button"
                   title="Delete"
-                  class="rounded-lg p-2 text-slate-400 transition hover:bg-red-50 hover:text-red-600"
+                  class="rounded-lg p-2 text-slate-400 transition hover:bg-red-500/10 hover:text-red-400"
                   @click="emit('delete', message)"
                 >
                   <Trash2 class="h-4 w-4" />
@@ -251,16 +251,16 @@ const truncate = (text, length = 65) => {
               <div class="px-6 py-16 text-center">
 
                 <div
-                  class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100"
+                  class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 "
                 >
-                  <Mail class="h-5 w-5 text-slate-400" />
+                  <Mail class="h-5 w-5 text-slate-500" />
                 </div>
 
-                <h3 class="mt-4 text-sm font-semibold text-slate-700">
+                <h3 class="mt-4 text-sm font-semibold text-white">
                   No messages found
                 </h3>
 
-                <p class="mt-1 text-xs text-slate-400">
+                <p class="mt-1 text-xs text-slate-500">
                   Try changing your search or filter.
                 </p>
 
@@ -273,7 +273,7 @@ const truncate = (text, length = 65) => {
     </div>
 
     <!-- Mobile -->
-    <div class="divide-y divide-slate-100 lg:hidden">
+    <div class="divide-y divide-white/5 lg:hidden">
 
       <div
         v-for="message in messages"
@@ -283,7 +283,7 @@ const truncate = (text, length = 65) => {
         <div class="flex gap-3">
 
           <div
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--theme-primary)]/10 text-xs font-bold text-[var(--theme-primary)]"
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 text-xs font-bold text-white"
           >
             {{ getInitials(message.name) }}
           </div>
@@ -294,7 +294,7 @@ const truncate = (text, length = 65) => {
               <div class="min-w-0">
 
                 <div class="flex items-center gap-1.5">
-                  <p class="truncate text-sm font-semibold text-slate-800">
+                  <p class="truncate text-sm font-semibold text-white">
                     {{ message.name }}
                   </p>
 
@@ -315,45 +315,48 @@ const truncate = (text, length = 65) => {
               />
             </div>
 
-            <p class="mt-3 text-sm font-semibold text-slate-700">
+            <p class="mt-3 text-sm font-semibold text-slate-200">
               {{ message.subject }}
             </p>
 
-            <p class="mt-1 text-xs leading-5 text-slate-400">
+            <p class="mt-1 text-xs leading-5 text-slate-500">
               {{ truncate(message.message, 90) }}
             </p>
 
             <div class="mt-3 flex items-center justify-between">
 
-              <span class="text-[11px] text-slate-400">
+              <span class="text-[11px] text-slate-500">
                 {{ formatDate(message.createdAt) }}
               </span>
 
               <div class="flex items-center gap-0.5">
 
-                <button
-                  type="button"
-                  class="rounded-lg p-2 text-slate-400 hover:bg-slate-100"
-                  @click="emit('view', message)"
-                >
-                  <Eye class="h-4 w-4" />
-                </button>
+               <!-- View -->
+<button
+  type="button"
+  class="rounded-lg p-2 text-slate-400 transition hover:bg-cyan-500/10 hover:text-cyan-400"
+  @click="emit('view', message)"
+>
+  <Eye class="h-4 w-4" />
+</button>
 
-                <button
-                  type="button"
-                  class="rounded-lg p-2 text-slate-400 hover:bg-emerald-50 hover:text-emerald-600"
-                  @click="emit('reply', message)"
-                >
-                  <Reply class="h-4 w-4" />
-                </button>
+<!-- Reply -->
+<button
+  type="button"
+  class="rounded-lg p-2 text-slate-400 transition hover:bg-emerald-500/10 hover:text-emerald-400"
+  @click="emit('reply', message)"
+>
+  <Reply class="h-4 w-4" />
+</button>
 
-                <button
-                  type="button"
-                  class="rounded-lg p-2 text-slate-400 hover:bg-red-50 hover:text-red-600"
-                  @click="emit('delete', message)"
-                >
-                  <Trash2 class="h-4 w-4" />
-                </button>
+<!-- Delete -->
+<button
+  type="button"
+  class="rounded-lg p-2 text-slate-400 transition hover:bg-red-500/10 hover:text-red-400"
+  @click="emit('delete', message)"
+>
+  <Trash2 class="h-4 w-4" />
+</button>
 
               </div>
             </div>
@@ -366,11 +369,11 @@ const truncate = (text, length = 65) => {
         v-if="!messages.length"
         class="px-5 py-16 text-center"
       >
-        <Mail class="mx-auto h-7 w-7 text-slate-300" />
+        <Mail class="mx-auto h-7 w-7 text-slate-500" />
 
-        <p class="mt-3 text-sm font-semibold text-slate-700">
-          No messages found
-        </p>
+<p class="mt-3 text-sm font-semibold text-white">
+  No messages found
+</p>
       </div>
 
     </div>

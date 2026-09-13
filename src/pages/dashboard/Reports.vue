@@ -1,9 +1,5 @@
 <script setup>
-import {
-  computed,
-  reactive,
-  ref,
-} from "vue";
+import { computed, reactive, ref } from "vue";
 
 import {
   FileBarChart,
@@ -24,12 +20,7 @@ import ReportTable from "@/components/dashboard/reports/ReportTable.vue";
 import { reportTypes } from "@/constants/reportTypes.js";
 import { useReports } from "@/composables/useReports.js";
 
-const {
-  summary,
-  monthlyData,
-  reports,
-  eventStatistics,
-} = useReports();
+const { summary, monthlyData, reports, eventStatistics } = useReports();
 
 /*
 |--------------------------------------------------------------------------
@@ -61,9 +52,7 @@ const perPage = ref(5);
 */
 
 const filteredReports = computed(() => {
-  const search = appliedFilters.value.search
-    .toLowerCase()
-    .trim();
+  const search = appliedFilters.value.search.toLowerCase().trim();
 
   return reports.value.filter((report) => {
     const matchesSearch =
@@ -72,8 +61,7 @@ const filteredReports = computed(() => {
       report.category.toLowerCase().includes(search);
 
     const matchesType =
-      !appliedFilters.value.type ||
-      report.type === appliedFilters.value.type;
+      !appliedFilters.value.type || report.type === appliedFilters.value.type;
 
     return matchesSearch && matchesType;
   });
@@ -86,19 +74,13 @@ const filteredReports = computed(() => {
 */
 
 const totalPages = computed(() => {
-  return Math.ceil(
-    filteredReports.value.length / perPage.value
-  );
+  return Math.ceil(filteredReports.value.length / perPage.value);
 });
 
 const paginatedReports = computed(() => {
-  const start =
-    (currentPage.value - 1) * perPage.value;
+  const start = (currentPage.value - 1) * perPage.value;
 
-  return filteredReports.value.slice(
-    start,
-    start + perPage.value
-  );
+  return filteredReports.value.slice(start, start + perPage.value);
 });
 
 const startItem = computed(() => {
@@ -106,17 +88,13 @@ const startItem = computed(() => {
     return 0;
   }
 
-  return (
-    (currentPage.value - 1) *
-      perPage.value +
-    1
-  );
+  return (currentPage.value - 1) * perPage.value + 1;
 });
 
 const endItem = computed(() => {
   return Math.min(
     currentPage.value * perPage.value,
-    filteredReports.value.length
+    filteredReports.value.length,
   );
 });
 
@@ -159,10 +137,7 @@ const refreshReports = () => {
 };
 
 const goToPage = (page) => {
-  if (
-    page < 1 ||
-    page > totalPages.value
-  ) {
+  if (page < 1 || page > totalPages.value) {
     return;
   }
 
@@ -209,10 +184,7 @@ const downloadReport = (report) => {
 };
 
 const exportReport = () => {
-  console.log(
-    "Export Report:",
-    appliedFilters.value
-  );
+  console.log("Export Report:", appliedFilters.value);
 
   /*
    * Later:
@@ -224,7 +196,6 @@ const exportReport = () => {
 
 <template>
   <div class="space-y-6 pb-8">
-
     <!-- ================================================= -->
     <!-- Page Header -->
     <!-- ================================================= -->
@@ -234,31 +205,21 @@ const exportReport = () => {
     >
       <div>
         <div class="flex items-center gap-2">
+          <FileBarChart :size="22" class="text-blue-400" />
 
-          <FileBarChart
-            :size="22"
-            class="text-blue-400"
-          />
-
-          <h1
-            class="text-2xl font-bold tracking-tight text-white"
-          >
+          <h1 class="text-2xl font-bold tracking-tight text-white">
             Reports
 
-            <span class="text-blue-400">
-              : {{ filteredReports.length }}
-            </span>
+            <span class="text-blue-400"> : {{ filteredReports.length }} </span>
           </h1>
         </div>
 
         <p class="mt-1 text-sm text-slate-400">
-          Analyze members, events, registrations and
-          financial activities.
+          Analyze members, events, registrations and financial activities.
         </p>
       </div>
 
       <div class="flex items-center gap-2">
-
         <!-- Refresh -->
         <button
           type="button"
@@ -267,9 +228,7 @@ const exportReport = () => {
         >
           <RefreshCw :size="16" />
 
-          <span class="hidden sm:inline">
-            Refresh
-          </span>
+          <span class="hidden sm:inline"> Refresh </span>
         </button>
 
         <!-- Export -->
@@ -280,11 +239,8 @@ const exportReport = () => {
         >
           <Download :size="17" />
 
-          <span>
-            Export Report
-          </span>
+          <span> Export Report </span>
         </button>
-
       </div>
     </div>
 
@@ -292,9 +248,7 @@ const exportReport = () => {
     <!-- Summary -->
     <!-- ================================================= -->
 
-    <ReportSummaryCards
-      :summary="summary"
-    />
+    <ReportSummaryCards :summary="summary" />
 
     <!-- ================================================= -->
     <!-- Filters -->
@@ -310,23 +264,15 @@ const exportReport = () => {
     <!-- Analytics -->
     <!-- ================================================= -->
 
-    <div
-      class="grid grid-cols-1 gap-4 xl:grid-cols-3"
-    >
-
+    <div class="grid grid-cols-1 gap-4 xl:grid-cols-3">
       <!-- Chart -->
       <div class="xl:col-span-2">
-        <ReportOverviewChart
-          :data="monthlyData"
-        />
+        <ReportOverviewChart :data="monthlyData" />
       </div>
 
       <!-- Event Statistics -->
-      <div
-        class="rounded-2xl border border-white/10 bg-white/3 p-5"
-      >
+      <div class="rounded-2xl border border-white/10 bg-white/3 p-5">
         <div class="flex items-center gap-3">
-
           <div
             class="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400"
           >
@@ -334,28 +280,18 @@ const exportReport = () => {
           </div>
 
           <div>
-            <h3
-              class="text-sm font-semibold text-white"
-            >
-              Event Statistics
-            </h3>
+            <h3 class="text-sm font-semibold text-white">Event Statistics</h3>
 
-            <p class="mt-1 text-xs text-slate-500">
-              Current event overview
-            </p>
+            <p class="mt-1 text-xs text-slate-500">Current event overview</p>
           </div>
-
         </div>
 
         <div class="mt-6 space-y-4">
-
           <!-- Total -->
           <div
             class="flex items-center justify-between rounded-xl border border-white/5 bg-white/3 p-4"
           >
-            <span class="text-sm text-slate-400">
-              Total Events
-            </span>
+            <span class="text-sm text-slate-400"> Total Events </span>
 
             <span class="text-lg font-bold text-white">
               {{ eventStatistics.total }}
@@ -363,17 +299,11 @@ const exportReport = () => {
           </div>
 
           <!-- Completed -->
-          <div
-            class="flex items-center justify-between"
-          >
+          <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span
-                class="h-2 w-2 rounded-full bg-emerald-400"
-              ></span>
+              <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
 
-              <span class="text-sm text-slate-400">
-                Completed
-              </span>
+              <span class="text-sm text-slate-400"> Completed </span>
             </div>
 
             <span class="text-sm font-semibold text-white">
@@ -382,17 +312,11 @@ const exportReport = () => {
           </div>
 
           <!-- Upcoming -->
-          <div
-            class="flex items-center justify-between"
-          >
+          <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span
-                class="h-2 w-2 rounded-full bg-yellow-400"
-              ></span>
+              <span class="h-2 w-2 rounded-full bg-yellow-400"></span>
 
-              <span class="text-sm text-slate-400">
-                Upcoming
-              </span>
+              <span class="text-sm text-slate-400"> Upcoming </span>
             </div>
 
             <span class="text-sm font-semibold text-white">
@@ -401,58 +325,39 @@ const exportReport = () => {
           </div>
 
           <!-- Cancelled -->
-          <div
-            class="flex items-center justify-between"
-          >
+          <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <span
-                class="h-2 w-2 rounded-full bg-red-400"
-              ></span>
+              <span class="h-2 w-2 rounded-full bg-red-400"></span>
 
-              <span class="text-sm text-slate-400">
-                Cancelled
-              </span>
+              <span class="text-sm text-slate-400"> Cancelled </span>
             </div>
 
             <span class="text-sm font-semibold text-white">
               {{ eventStatistics.cancelled }}
             </span>
           </div>
-
         </div>
 
         <!-- Completion -->
-        <div
-          class="mt-6 border-t border-white/5 pt-5"
-        >
-          <div
-            class="flex items-center justify-between text-xs"
-          >
-            <span class="text-slate-500">
-              Completion Rate
-            </span>
+        <div class="mt-6 border-t border-white/5 pt-5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-500"> Completion Rate </span>
 
             <span class="font-semibold text-cyan-400">
               {{
                 Math.round(
-                  (eventStatistics.completed /
-                    eventStatistics.total) *
-                    100
+                  (eventStatistics.completed / eventStatistics.total) * 100,
                 )
               }}%
             </span>
           </div>
 
-          <div
-            class="mt-2 h-2 overflow-hidden rounded-full bg-slate-900"
-          >
+          <div class="mt-2 h-2 overflow-hidden rounded-full bg-slate-900">
             <div
               class="h-full rounded-full bg-linear-to-r from-blue-500 to-cyan-400 shadow-lg shadow-blue-500/20"
               :style="{
                 width: `${
-                  (eventStatistics.completed /
-                    eventStatistics.total) *
-                  100
+                  (eventStatistics.completed / eventStatistics.total) * 100
                 }%`,
               }"
             ></div>
@@ -466,16 +371,9 @@ const exportReport = () => {
     <!-- ================================================= -->
 
     <div>
-
-      <div
-        class="mb-4 flex items-end justify-between"
-      >
+      <div class="mb-4 flex items-end justify-between">
         <div>
-          <h2
-            class="text-sm font-semibold text-white"
-          >
-            Report Categories
-          </h2>
+          <h2 class="text-sm font-semibold text-white">Report Categories</h2>
 
           <p class="mt-1 text-xs text-slate-500">
             Select a category to view detailed reports.
@@ -483,16 +381,13 @@ const exportReport = () => {
         </div>
       </div>
 
-      <div
-        class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
-      >
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <ReportCategoryCard
           v-for="report in reportTypes"
           :key="report.id"
           :report="report"
         />
       </div>
-
     </div>
 
     <!-- ================================================= -->
@@ -513,7 +408,6 @@ const exportReport = () => {
       v-if="filteredReports.length > 0"
       class="flex flex-col gap-4 border-t border-white/10 pt-4 sm:flex-row sm:items-center sm:justify-between"
     >
-
       <p class="text-xs text-slate-500">
         Showing
 
@@ -536,11 +430,7 @@ const exportReport = () => {
         reports
       </p>
 
-      <div
-        v-if="totalPages > 1"
-        class="flex items-center gap-1"
-      >
-
+      <div v-if="totalPages > 1" class="flex items-center gap-1">
         <!-- Previous -->
         <button
           type="button"
@@ -576,9 +466,7 @@ const exportReport = () => {
         >
           <ChevronRight :size="15" />
         </button>
-
       </div>
     </div>
-
   </div>
 </template>
